@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 
 import App from './App.jsx'
 import './index.css'
-import Home from './components/home.jsx'
-import Router from './components/router.jsx'
+import Home from './routes/home.jsx'
+import Router from './routes/router.jsx'
 
 
 

@@ -1,8 +1,8 @@
 
-import Banner from "./banner";
-import NavBar from "./navbar";
-import ProductDropScreen from "./productDrop";
-import Footer from "./footer";
+import Banner from "../components/banner";
+import NavBar from "../components/navbar";
+import ProductDropScreen from "../components/productDrop";
+import Footer from "../components/footer";
 
 import '../index.css'
 
