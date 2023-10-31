@@ -1,8 +1,7 @@
-import React from "react";
 import '../index.css'
 import { useId } from 'react';
 
-export default function Register(){
+export default function RegisterForm(){
     const nameId = useId();
     const emailId = useId();
     const passwordId = useId();
@@ -10,14 +9,14 @@ export default function Register(){
     return(
         <>
          
-
+        <main>
         <div className="registerBox">
         
-        <h1>Create Account</h1>
+        <h1>CREATE ACCOUNT</h1>
 
         <span className="underline"></span>
 
-        <form action="post">
+        <form  className= 'registerForm' action="post">
 
            <label htmlFor={nameId}>Name</label>
            <input  required='true ' name="name" id={nameId}/>
@@ -40,7 +39,7 @@ export default function Register(){
         
 
         </div>
-        
+        </main>
         
         
         
