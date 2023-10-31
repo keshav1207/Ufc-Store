@@ -9,7 +9,9 @@ export default function RegisterForm(){
     return(
         <>
          
-        <main>
+        <div className="registerSection">
+
+        
         <div className="registerBox">
         
         <h1>CREATE ACCOUNT</h1>
@@ -39,7 +41,8 @@ export default function RegisterForm(){
         
 
         </div>
-        </main>
+       
+        </div>
         
         
         

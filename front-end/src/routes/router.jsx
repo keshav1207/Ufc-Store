@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./home";
+import Register from "./register";
 
 
 const Router = () => {
@@ -10,8 +11,13 @@ const Router = () => {
      
     },
 
-   
-    
+    {
+      path: "/register",
+      element: < Register/>,
+     
+    },
+
+
   ]);
 
   return <RouterProvider router={router} />;
