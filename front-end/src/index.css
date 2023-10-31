@@ -1,0 +1,139 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:  sans-serif;
+  
+  
+}
+
+#navSvg{
+  width: 1.75rem;
+  height: auto;
+}
+
+
+main{
+  height: 100vh;
+  width: 100vw;
+}
+
+.navBar{
+  display: flex;
+ background-color: #fff;
+ box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
+  width: 100%;
+  height: 10vh;
+}
+
+
+.logo{
+  margin-left: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 10%;
+}
+
+#logo{
+  width: 10rem;
+  height: auto;
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-left: 7rem;
+ 
+}
+
+.menu h4 {
+  font-weight: 100;
+  font-size: 0.95rem;
+}
+
+
+.options{
+  margin-right: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 30%;
+}
+
+.cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  
+}
+
+.user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.promoBanner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.75rem;
+  height: 3vh;
+}
+
+.productDrop{
+  height: 67vh;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+.productDrop p {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+.footerBox{
+  margin-top: auto;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background-color: black;
+  gap: 4rem;
+  height:20vh;
+  font-size: 0.75rem;
+}
+
+.shop, .helpAndAdvice{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#footerTitle{
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
