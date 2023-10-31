@@ -6,6 +6,7 @@ import ufclogo from "../assets/logo.avif"
 import product1 from "../assets/product1.webp"
 import product2 from "../assets/product2.webp"
 import product3 from "../assets/product3.webp"
+import Banner from "./banner";
 
 import '../index.css'
 
@@ -15,9 +16,7 @@ export default function Home(){
 
         <main>
 
-        <div className="promoBanner">
-            <p>FREE SHIPPING ON ORDERS $85+ WORLDWIDE*</p>
-        </div>
+        <Banner/>
 
 
         
