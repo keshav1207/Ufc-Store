@@ -1,5 +1,6 @@
 import '../index.css'
 import { useId } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function RegisterForm(){
     const nameId = useId();
@@ -35,7 +36,8 @@ export default function RegisterForm(){
         </form>
 
         <span className="alreadyHaveAcc">
-        Already have an account? Log in here
+        Already have an account? <Link to="/login">Login</Link>
+
       
         </span>
         
