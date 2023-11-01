@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import App from './App.jsx'
+
 import './index.css'
-import Home from './routes/home.jsx'
+
 import Router from './routes/router.jsx'
 
 

@@ -139,7 +139,7 @@ main{
 }
 
 
-.registerSection{
+.registerSection, .loginSection{
   
   height: 67vh;
   display: flex;
@@ -148,7 +148,7 @@ main{
 }
 
 
-.registerBox{
+.registerBox, .loginBox{
   
   width: 30vw;
   gap: 1rem;
@@ -163,7 +163,7 @@ main{
 
 }
 
-.registerForm{
+.registerForm, .loginForm{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -176,7 +176,7 @@ main{
   background-color: black;
 }
 
-.registerBtn{
+.registerBtn, .loginBtn{
   margin-top: 2rem;
   background-color: black;
   color: white;
