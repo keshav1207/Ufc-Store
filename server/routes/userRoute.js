@@ -3,40 +3,34 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-import User from "../models/userModel"
+const User = require("../models/userModel");
 require('dotenv').config();
 
 /* Create user account. */
 router.post('/register', asyncHandler( async function(req, res, next) {
-
     // Check if user already exists
     const userEmailAlreadyExist = await User.findOne({ email: req.body.email }).exec();
     if(userEmailAlreadyExist){
+        console.log("email already exist");
         throw new Error("User already exists!");
     }
 
     else{
-        const userName = req.body.name;
-        const userEmail = req.body.email;
-        const userPassword = req.body.password;
+        let userName = req.body.name;
+        let userEmail = req.body.email;
+        let userPassword = req.body.password;
         const saltRounds = 10;
 
         //Hash Password
+        const hashedPassword =  await bcrypt.hash(userPassword, saltRounds);
+        userPassword = hashedPassword;
 
-        bcrypt.hash(userPassword, saltRounds, function(err, hash) {
-            userPassword = hash;
-        });
 
         // Create new user
-        User.Create({name:userName},{email:userEmail},{password:userPassword});
-          res.send({
-            success: true,
-            message: "User created successfully",
-         })
-       
-
+        await User.create({name: userName,email: userEmail,password :userPassword});
+        
+        res.send("User created successfully!")
     }
-
   }));
 
   /* Login to user account. */
@@ -71,12 +65,5 @@ router.post('/login', asyncHandler(async function(req,res,next){
   }));
 
 
-
-
-
-
-
-
-  
   module.exports = router;
 
