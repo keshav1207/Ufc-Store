@@ -193,3 +193,26 @@ input{
   width: 15rem;
 
 }
+
+.alert{
+  position: relative;
+  left: 45rem;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  width: 30rem;
+  height: 10rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.success{
+  color:  limegreen;
+  
+}
+
+.warning{
+  color: red;
+}

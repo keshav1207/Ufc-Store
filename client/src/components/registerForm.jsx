@@ -3,6 +3,7 @@ import { useId } from 'react';
 import { Link } from 'react-router-dom';
 import { RegisterUser } from '../apicalls/users';
 import { useState } from 'react';
+import Alert from './alert';
 
 
 export default function RegisterForm(){
@@ -34,6 +35,9 @@ export default function RegisterForm(){
             event.preventDefault();
             const response = await RegisterUser(formData);
             console.log(response);
+
+            //Reset form after submission
+            setFormData({name: "",email: "",password:""})
            
             
   
@@ -53,6 +57,7 @@ export default function RegisterForm(){
 
     return(
         <>
+        <Alert message={' Account was created successfully!'} type={'success'}/>
          
         <div className="registerSection">
 
