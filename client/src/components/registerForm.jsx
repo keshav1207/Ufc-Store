@@ -1,5 +1,5 @@
 import '../index.css'
-import { useId } from 'react';
+import {  useEffect, useId} from 'react';
 import { Link } from 'react-router-dom';
 import { RegisterUser } from '../apicalls/users';
 import { useState } from 'react';
@@ -12,6 +12,33 @@ export default function RegisterForm(){
     const emailId = useId();
     const passwordId = useId();
 
+
+
+    const[isAlert,setAlert] = useState(false);
+    const[isSuccess,setSuccess] = useState(false);
+
+   
+   
+    function showAlert(){
+      setAlert(true);
+   }
+
+   function successType(){
+    setSuccess(true);
+ }
+
+ function errorType(){
+  setSuccess(false);
+}
+
+
+   //Adding the auto-dismiss feature on the alert message components
+
+   useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 7000);
+  },[showAlert]);
    
 
 
@@ -38,26 +65,39 @@ export default function RegisterForm(){
 
             //Reset form after submission
             setFormData({name: "",email: "",password:""})
-           
+
+           successType();
+            showAlert();
+
             
+  
   
           } catch (error) {
             console.log(error.message);
+            errorType();
+            showAlert();
+
+           
+
+            
           }
-          
 
         })();
+
+        
         
 
     }
 
-
-
+  
 
 
     return(
         <>
-        <Alert message={' Account was created successfully!'} type={'success'}/>
+       
+        {isAlert?(isSuccess?<Alert type={'success'} message={'New use created successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
+        :null}
+      
          
         <div className="registerSection">
 
