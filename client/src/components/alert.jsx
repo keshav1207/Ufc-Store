@@ -7,7 +7,7 @@ export default function Alert({type,message}){
     
     <div className={`alert ${type}`}  >
         
-        <h1>{message}</h1>
+        <h4>{message}</h4>
 
     </div>
     

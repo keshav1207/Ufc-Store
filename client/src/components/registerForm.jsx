@@ -14,7 +14,7 @@ export default function RegisterForm(){
 
 
 
-    const[isAlert,setAlert] = useState(false);
+    const[isAlert,setAlert] = useState(true);
     const[isSuccess,setSuccess] = useState(false);
 
    
@@ -36,8 +36,8 @@ export default function RegisterForm(){
 
    useEffect(() => {
     setTimeout(() => {
-      setAlert(false);
-    }, 7000);
+      setAlert(true);
+    }, 5000);
   },[showAlert]);
    
 
