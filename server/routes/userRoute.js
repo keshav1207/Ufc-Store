@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+require('express-async-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
@@ -10,9 +11,11 @@ require('dotenv').config();
 router.post('/register', asyncHandler( async function(req, res, next) {
     // Check if user already exists
     const userEmailAlreadyExist = await User.findOne({ email: req.body.email }).exec();
+
     if(userEmailAlreadyExist){
         console.log("email already exist");
         throw new Error("User already exists!");
+        
     }
 
     else{
@@ -35,32 +38,38 @@ router.post('/register', asyncHandler( async function(req, res, next) {
 
   /* Login to user account. */
 router.post('/login', asyncHandler(async function(req,res,next){
-
+    
     //Verify if user exist
     const userExist = await User.findOne({ email: req.body.email }).exec();
     if(!userExist){
+        console.log("User does not exist");
         throw new Error("User does not exist");
+
     }
 
 
     //Verify password
-    const userName = req.body.name;
-    const userEmail = req.body.email;
+    
     const userPassword = req.body.password;
 
-   const validPassword = bcrypt.compare(userPassword, userExist.password);
+   const validPassword = await bcrypt.compare(userPassword, userExist.password);
+
+  
 
 
-   // Create Json web token and send it to user
-    if(validPassword){
-        const token = jwt.sign({userId: user._id},process.env.SECRET_KEY);
-    res.send({
-        token: token,
-        success: true,
-        message: "User logged successfully",
-     })
+   
+    if(!validPassword){
+    throw new Error("Password invalid!")
     }
     
+
+    // Create Json web token and send it to user
+    const token = jwt.sign({userId: User._id},process.env.SECRET_KEY);
+    console.log(token);
+
+    return res
+    .status(200)
+    .json({ message: "User Logged in Successfully", token });
 
   }));
 
