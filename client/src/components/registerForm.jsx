@@ -38,7 +38,7 @@ export default function RegisterForm(){
    useEffect(() => {
     setTimeout(() => {
       setAlert(false);
-    }, 20000);
+    }, 10000);
   },[showAlert]);
    
 

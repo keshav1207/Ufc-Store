@@ -33,7 +33,7 @@ export default function LoginForm(){
    useEffect(() => {
     setTimeout(() => {
       setAlert(false);
-    }, 20000);
+    }, 10000);
   },[showAlert]);
    
 
@@ -52,14 +52,24 @@ export default function LoginForm(){
         }));
       };
 
+      //This response state will used as a prop to display  messages in the alert forms
+
+        const[response,setResponse] = useState("");
 
       function submitForm(event){
         (async() =>{
           try {
             event.preventDefault();
             const response = await LoginUser(formData);
-            console.log(response);
+            console.log(`the response is: ${response}`)
+            setResponse(response);
+            
+            if(response != "User Logged in Successfully"){
+              
+              throw Error(response);
 
+            }
+            
             //Reset form after submission
             setFormData({name: "",email: "",password:""})
 
@@ -74,8 +84,6 @@ export default function LoginForm(){
             errorType();
             showAlert();
 
-           
-
             
           }
 
@@ -84,7 +92,7 @@ export default function LoginForm(){
 
     return(
         <>
-        {isAlert?(isSuccess?<Alert type={'success'} message={'User log in successfully'}/>:<Alert type={'warning'} message={'Error! User does not exist'}/>)
+        {isAlert?(isSuccess?<Alert type={'success'} message={response}/>:<Alert type={'warning'} message={response}/>)
         :null}
          
         <div className="loginSection">

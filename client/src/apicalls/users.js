@@ -19,7 +19,7 @@ export const RegisterUser= async function(payload){
 export const LoginUser = async function(payload){
     try {
         const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
-        return response.data;
+        return response.data.msg;
     } catch (error) {
         if(error.response){
             return `${error.response.data.msg}`
