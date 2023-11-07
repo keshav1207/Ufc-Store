@@ -38,7 +38,7 @@ export default function RegisterForm(){
    useEffect(() => {
     setTimeout(() => {
       setAlert(false);
-    }, 5000);
+    }, 20000);
   },[showAlert]);
    
 
@@ -57,13 +57,25 @@ export default function RegisterForm(){
         }));
       };
 
+
+      //This response state will used as a prop to display  messages in the alert forms
+
+      const[response,setResponse] = useState("");
+
+    
+
       function submitForm(event){
         (async() =>{
           try {
             event.preventDefault();
-            const response = await RegisterUser(formData);
-            console.log(response);
-
+             const response = await RegisterUser(formData);
+             
+             setResponse(response);
+            
+            if(response != "User created successfully!"){
+              
+              throw Error(response);
+            }
             //Reset form after submission
             setFormData({name: "",email: "",password:""})
 
@@ -74,29 +86,22 @@ export default function RegisterForm(){
   
   
           } catch (error) {
-            console.log(error.message);
+            console.log(`The error is ${error.message}`);
             errorType();
-            showAlert();
-
-           
-
-            
+            showAlert();  
           }
 
-        })();
-
-        
-        
+        })();   
 
     }
 
   
 
-
+   
     return(
         <>
        
-        {isAlert?(isSuccess?<Alert type={'success'} message={'New user created successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
+        {isAlert?(isSuccess?<Alert type={'success'} message={response}/>:<Alert type={'warning'} message={response}/>)
         :null}
       
          

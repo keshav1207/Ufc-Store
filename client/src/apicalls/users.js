@@ -8,7 +8,10 @@ export const RegisterUser= async function(payload){
         const response = await axiosInstance.post("http://localhost:5000/api/users/register", payload);
         return response.data;
     } catch (error) {
-        return error.message;
+        if(error.response){
+            return `${error.response.data.msg}`
+            
+        } 
     }
 }
 
@@ -18,6 +21,8 @@ export const LoginUser = async function(payload){
         const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
         return response.data;
     } catch (error) {
-        return error.message;
+        if(error.response){
+            return `${error.response.data.msg}`
+        } 
     }
 }

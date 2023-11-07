@@ -33,7 +33,7 @@ export default function LoginForm(){
    useEffect(() => {
     setTimeout(() => {
       setAlert(false);
-    }, 5000);
+    }, 20000);
   },[showAlert]);
    
 
