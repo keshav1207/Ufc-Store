@@ -84,7 +84,7 @@ export default function LoginForm(){
 
     return(
         <>
-        {isAlert?(isSuccess?<Alert type={'success'} message={'User log in successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
+        {isAlert?(isSuccess?<Alert type={'success'} message={'User log in successfully'}/>:<Alert type={'warning'} message={'Error! User does not exist'}/>)
         :null}
          
         <div className="loginSection">
