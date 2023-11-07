@@ -8,14 +8,15 @@ import Alert from './alert';
 
 export default function RegisterForm(){
 
+  //Generating unique ids
     const nameId = useId();
     const emailId = useId();
     const passwordId = useId();
 
 
 
-    const[isAlert,setAlert] = useState(true);
-    const[isSuccess,setSuccess] = useState(false);
+    const[isAlert,setAlert] = useState(false);
+    const[isSuccess,setSuccess] = useState(true);
 
    
    
@@ -36,7 +37,7 @@ export default function RegisterForm(){
 
    useEffect(() => {
     setTimeout(() => {
-      setAlert(true);
+      setAlert(false);
     }, 5000);
   },[showAlert]);
    
@@ -95,7 +96,7 @@ export default function RegisterForm(){
     return(
         <>
        
-        {isAlert?(isSuccess?<Alert type={'success'} message={'New use created successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
+        {isAlert?(isSuccess?<Alert type={'success'} message={'New user created successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
         :null}
       
          

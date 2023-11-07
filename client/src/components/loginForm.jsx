@@ -1,13 +1,91 @@
 import '../index.css'
-import { useId } from 'react';
+import { useId, useEffect, useState} from 'react';
+import Alert from './alert';
+import { LoginUser } from '../apicalls/users';
 
 export default function LoginForm(){
+
+    //Generating unique ids
     const nameId = useId();
     const emailId = useId();
     const passwordId = useId();
 
+    const[isAlert,setAlert] = useState(false);
+    const[isSuccess,setSuccess] = useState(true);
+
+   
+   
+    function showAlert(){
+      setAlert(true);
+    }
+
+   function successType(){
+    setSuccess(true);
+    }
+
+ function errorType(){
+  setSuccess(false);
+}
+
+
+   //Adding the auto-dismiss feature on the alert message components
+
+   useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 5000);
+  },[showAlert]);
+   
+
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password:""
+      });
+
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      };
+
+
+      function submitForm(event){
+        (async() =>{
+          try {
+            event.preventDefault();
+            const response = await LoginUser(formData);
+            console.log(response);
+
+            //Reset form after submission
+            setFormData({name: "",email: "",password:""})
+
+           successType();
+            showAlert();
+
+            
+  
+  
+          } catch (error) {
+            console.log(error.message);
+            errorType();
+            showAlert();
+
+           
+
+            
+          }
+
+        })();
+    }
+
     return(
         <>
+        {isAlert?(isSuccess?<Alert type={'success'} message={'User log in successfully'}/>:<Alert type={'warning'} message={'Error! Please try again'}/>)
+        :null}
          
         <div className="loginSection">
 
@@ -18,24 +96,21 @@ export default function LoginForm(){
 
         <span className="underline"></span>
 
-        <form  className= 'loginForm' action="post">
+        <form  className= 'loginForm'  onSubmit={submitForm}>
 
            <label htmlFor={nameId}>Name</label>
-           <input  required='true ' name="name" id={nameId}/>
+           <input  required='true ' name="name" id={nameId} type='text'  onChange={handleInputChange}  value={formData.name} autoComplete="on" />
 
            <label htmlFor={emailId}>Email</label>
-           <input  required='true ' name="email"  id={emailId}/>
+           <input  required='true ' name="email"  id={emailId} type='text'  onChange={handleInputChange}  value={formData.email} autoComplete="on"/>
 
 
            <label htmlFor={passwordId} >Password</label>
-           <input  required='true ' name="password" id={passwordId} type='password'/>
+           <input  required='true ' name="password" id={passwordId} type='password' onChange={handleInputChange} value={formData.password} autoComplete="on"/>
 
            <button type="submit" className="loginBtn">Login</button>
 
         </form>
-
-        
-        
 
         </div>
        
