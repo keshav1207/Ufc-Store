@@ -42,7 +42,7 @@ router.post('/login', asyncHandler(async function(req,res,next){
     //Verify if user exist
     const userExist = await User.findOne({ email: req.body.email }).exec();
     if(!userExist){
-        console.log("User does not exist");
+        
         throw new Error("User does not exist");
 
     }
@@ -68,8 +68,7 @@ router.post('/login', asyncHandler(async function(req,res,next){
     console.log(token);
 
     return res
-    .status(200)
-    .json({ message: "User Logged in Successfully", token });
+    .json({ msg: "User Logged in Successfully", token });
 
   }));
 
