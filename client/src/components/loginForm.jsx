@@ -1,7 +1,9 @@
 import '../index.css'
 import { useId, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import Alert from './alert';
 import { LoginUser } from '../apicalls/users';
+
 
 export default function LoginForm(){
 
@@ -118,6 +120,10 @@ export default function LoginForm(){
            <button type="submit" className="loginBtn">Login</button>
 
         </form>
+
+        <span className="alreadyHaveAcc">
+        Don't have an account? <Link to="/register">Register</Link>
+        </span>
 
         </div>
        
