@@ -6,7 +6,7 @@ import { LoginUser } from '../apicalls/users';
 export default function LoginForm(){
 
     //Generating unique ids
-    const nameId = useId();
+   
     const emailId = useId();
     const passwordId = useId();
 
@@ -106,8 +106,7 @@ export default function LoginForm(){
 
         <form  className= 'loginForm'  onSubmit={submitForm}>
 
-           <label htmlFor={nameId}>Name</label>
-           <input  required='true ' name="name" id={nameId} type='text'  onChange={handleInputChange}  value={formData.name} autoComplete="on" />
+           
 
            <label htmlFor={emailId}>Email</label>
            <input  required='true ' name="email"  id={emailId} type='text'  onChange={handleInputChange}  value={formData.email} autoComplete="on"/>
