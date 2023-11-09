@@ -65,8 +65,11 @@ router.post('/login', asyncHandler(async function(req,res,next){
     
 
     // Create Json web token and send it to user
-    const token = jwt.sign({userId: User._id},process.env.SECRET_KEY);
-    console.log(token);
+    
+    const token = jwt.sign({userId: userExist._id},process.env.SECRET_KEY,{ expiresIn: '1d' });
+
+    
+    
 
     return res
     .json({ msg: "User Logged in Successfully", token });
@@ -78,11 +81,18 @@ router.post('/login', asyncHandler(async function(req,res,next){
 /* Get user information. */
 
 router.get('/get-user-info',authMiddleware, asyncHandler(async function(req,res,next){
-    const user = await User.findById(req.body.userId);
+
+    console.log(req.body);
+
+    const user = await User.findById(req.body.userId).exec;
+
+    console.log(`User is ${user}`);
+
     if(!user){
         throw Error("User not found");
     }
-    res.send({
+    res.json({
+        success: true,
         msg: "User fetched successfully",
         data: user,
     });

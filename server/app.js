@@ -37,10 +37,7 @@ app.use('/api/users', userRoute);
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+
 
 
 
