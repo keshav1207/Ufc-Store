@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
 require('dotenv').config();
+const authMiddleware = require('../middleware/authMiddleware');
 
 /* Create user account. */
 router.post('/register', asyncHandler( async function(req, res, next) {
@@ -72,6 +73,20 @@ router.post('/login', asyncHandler(async function(req,res,next){
 
   }));
 
+
+
+/* Get user information. */
+
+router.get('/get-user-info',authMiddleware, asyncHandler(async function(req,res,next){
+    const user = await User.findById(req.body.userId);
+    if(!user){
+        throw Error("User not found");
+    }
+    res.send({
+        msg: "User fetched successfully",
+        data: user,
+    });
+}));
 
   module.exports = router;
 
