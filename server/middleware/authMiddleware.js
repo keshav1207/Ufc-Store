@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 require('dotenv').config();
 
 
-const authMiddleware = asyncHandler(function (req,res,next){
+const authMiddleware = asyncHandler(async(req,res,next)=>{
     
     const token = req.header("authorization").split(" ")[1];
 
@@ -13,7 +13,7 @@ const authMiddleware = asyncHandler(function (req,res,next){
     
     req.body.userId = decryptedToken.userId;
 
-    (next)
+    next() ;  
 })
 
 module.exports = authMiddleware;

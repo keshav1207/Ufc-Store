@@ -80,22 +80,22 @@ router.post('/login', asyncHandler(async function(req,res,next){
 
 /* Get user information. */
 
-router.get('/get-user-info',authMiddleware, asyncHandler(async function(req,res,next){
+router.get('/get-user-info',authMiddleware,asyncHandler(async(req,res)=>{
 
-    console.log(req.body);
 
-    const user = await User.findById(req.body.userId).exec;
-
-    console.log(`User is ${user}`);
+    const user = await User.findById(req.body.userId).exec();
 
     if(!user){
         throw Error("User not found");
     }
-    res.json({
+
+   return res.
+   json({
         success: true,
         msg: "User fetched successfully",
         data: user,
     });
+
 }));
 
   module.exports = router;
