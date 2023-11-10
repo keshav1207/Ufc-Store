@@ -132,8 +132,6 @@ export default function RegisterForm(){
 
         <span className="alreadyHaveAcc">
         Already have an account? <Link to="/login">Login</Link>
-
-      
         </span>
         
 
