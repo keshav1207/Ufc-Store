@@ -82,7 +82,7 @@ router.post('/login', asyncHandler(async function(req,res,next){
 
 router.get('/get-user-info',authMiddleware,asyncHandler(async(req,res)=>{
 
-
+    console.log("router function")
     const user = await User.findById(req.body.userId).exec();
 
     if(!user){
