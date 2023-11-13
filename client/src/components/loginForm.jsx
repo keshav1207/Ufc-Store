@@ -3,7 +3,7 @@ import { useId, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Alert from './alert';
 import { LoginUser } from '../apicalls/users';
-
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(){
 
@@ -91,6 +91,15 @@ export default function LoginForm(){
 
         })();
     }
+
+
+    const navigate = useNavigate();
+    // If user is already log in, redirect to home page
+    useEffect(()=>{
+      if(localStorage.getItem("token")){
+        navigate("/");
+      }
+  },[]);
 
     return(
         <>

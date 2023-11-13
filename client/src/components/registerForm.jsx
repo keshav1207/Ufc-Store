@@ -1,6 +1,6 @@
 import '../index.css'
 import {  useEffect, useId} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../apicalls/users';
 import { useState } from 'react';
 import Alert from './alert';
@@ -94,6 +94,14 @@ export default function RegisterForm(){
         })();   
 
     }
+
+    const navigate = useNavigate();
+    // If user is already log in, redirect to home page
+    useEffect(()=>{
+      if(localStorage.getItem("token")){
+        navigate("/");
+      }
+  },[]);
 
   
 

@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 import { CurrentUser } from "../apicalls/users";
+import { useNavigate } from "react-router-dom";
 
 export default function ProtectedPage({children}){
     const [user,setUser] = useState(null);
+    const navigate = useNavigate();
 
     const validateToken = async () => {
     
         try {
             const response = await CurrentUser();
-            
+            console.log(response.success);
             if(response.success){
+            console.log("validate token success");
             setUser(response.success);
             }
     
             else{
+                console.log("validate token error");
+                navigate("/login");
                 throw Error(response.msg);
+                
             } 
         } catch (error) {
             console.log(error);
@@ -25,14 +31,21 @@ export default function ProtectedPage({children}){
 
 
     useEffect(()=>{
-        validateToken();
+        if(localStorage.getItem("token")){
+            validateToken();
+        }
+
+        else{
+            navigate("/login");
+        }
+        
     },[]);
 
 
     return(
         <div>
 
-        {user? <div>{children}</div>: <h1>Error</h1>}
+        {user? <div>{children}</div>: null}
         
         </div>
 
