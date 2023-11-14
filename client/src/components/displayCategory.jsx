@@ -1,4 +1,5 @@
 import CategoryHeader from "./categoryHeader"
+import DropdownFilter from "./dropdownFilter"
 
 export default function DisplayCategory(){
     return(
@@ -9,6 +10,8 @@ export default function DisplayCategory(){
 
         </div>
 
+
+        <DropdownFilter/>
       
 
         
