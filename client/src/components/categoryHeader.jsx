@@ -31,8 +31,11 @@ export default function CategoryHeader(props){
         <div className="CatHeaderBox">
 
             <div className="CatHeaderText">
+                <div className="CatHeaderTextComponent">
                 <h1>{header}</h1>
                 <p>{paragraph}</p>
+                </div>
+                
             </div>
 
             <div className="CatHeaderImg">

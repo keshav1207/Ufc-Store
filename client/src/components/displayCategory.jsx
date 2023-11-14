@@ -4,7 +4,12 @@ export default function DisplayCategory(){
     return(
         <>
 
-        <CategoryHeader category={"Accessories"}/>
+        <div className="Categorycontainer">
+            <CategoryHeader category={"Accessories"}/>  
+
+        </div>
+
+      
 
         
       
