@@ -3,6 +3,7 @@ import Home from "./home";
 import Register from "./register";
 import Login from "./login";
 import ProtectedPage from "../components/ProtectedPage";
+import Category from "./category";
 
 
 const Router = () => {
@@ -21,6 +22,12 @@ const Router = () => {
     {
       path: "/login",
       element: < Login/>,
+     
+    },
+
+    {
+      path: "/category",
+      element: < Category/>,
      
     },
 
