@@ -5,13 +5,17 @@ export default function DisplayCategory(){
     return(
         <>
 
-        <div className="Categorycontainer">
-            <CategoryHeader category={"Accessories"}/>  
+        < div className="Categorycontainer">
+            <CategoryHeader category={"Accessories"}/> 
+
+            
+            <DropdownFilter/>
+             
 
         </div>
 
-
-        <DropdownFilter/>
+        
+        
       
 
         

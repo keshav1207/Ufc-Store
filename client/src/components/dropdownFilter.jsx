@@ -3,7 +3,7 @@
 export default function DropdownFilter(){
     return(
         <>
-
+        <div className="dropdownFilter">
         <select>
 
         <option value="">Date, New to Old</option>
@@ -12,8 +12,10 @@ export default function DropdownFilter(){
         <option value="">Name, Z-A</option>
         <option value="">Price, Low to High</option>
         <option value="">Price, High to Low</option>
-        
+
         </select>
+        </div>
+       
 
       
 

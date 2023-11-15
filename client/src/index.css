@@ -224,24 +224,26 @@ input{
 }
 
 
-
-
-
-/* Category Header component*/
-
+/* Category Page component*/
 .Categorycontainer{
   height: 67%;
   width: 100%;
   padding: 0 4rem;
   display: flex;
-  justify-content: center;
+ flex-direction: column;
   
 }
 
 
+/* Category Header component*/
+
+
+
+
+
 .CatHeaderBox{
-  height: 10%;
-  padding: 0 4rem;
+  height: 30%;
+  padding: 1rem 4rem;
   display: grid;
   grid-template-columns: repeat(12,1fr);
   gap: 0;
@@ -249,7 +251,7 @@ input{
 }
 
 .CatHeaderText{
- 
+  padding: 3rem;
   text-align: center;
   grid-column: 1/6;
   color: white;
@@ -262,7 +264,7 @@ input{
 
 .CatHeaderTextComponent{
   
-  padding-top: 3.5rem;
+  
   width: 500px;
 }
 
@@ -276,7 +278,32 @@ input{
 
 
 .CatHeaderImg{
+
   grid-column: 6/13;
+
+  overflow: hidden;
 
 }
 
+.CatHeaderImg img{
+  width: 100%;
+  
+}
+
+
+
+/* Dropdown Filter component*/
+.dropdownFilter{
+  margin-top: 5rem;
+  padding: 1rem 4rem;
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+select{
+  border: none;
+  background-color: #fff;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
