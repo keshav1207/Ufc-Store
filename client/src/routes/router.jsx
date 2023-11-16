@@ -4,6 +4,7 @@ import Register from "./register";
 import Login from "./login";
 import ProtectedPage from "../components/ProtectedPage";
 import Category from "./category";
+import Product_Detail from "./product_detail";
 
 
 const Router = () => {
@@ -28,6 +29,12 @@ const Router = () => {
     {
       path: "/category",
       element: < Category/>,
+     
+    },
+
+    {
+      path: "/product",
+      element: < Product_Detail/>,
      
     },
 

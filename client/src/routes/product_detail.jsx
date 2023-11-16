@@ -1,11 +1,12 @@
 import Banner from '../components/banner'
 import Footer from '../components/footer'
 import NavBar from '../components/navbar'
-import DisplayCategory from '../components/displayCategory'
+import DisplayProduct from '../components/displayProduct'
+
 
 import '../index.css'
 
-export default function Category(){
+export default function Product_Detail(){
     return(
         <>
 
@@ -15,7 +16,7 @@ export default function Category(){
 
         <NavBar/>
 
-        <DisplayCategory/>
+        <DisplayProduct/>
 
 
         <Footer/>

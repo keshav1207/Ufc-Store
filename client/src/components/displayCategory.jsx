@@ -1,5 +1,6 @@
 import CategoryHeader from "./categoryHeader"
 import DropdownFilter from "./dropdownFilter"
+import ProductsGrid from "./productsGrid"
 
 export default function DisplayCategory(){
     return(
@@ -11,6 +12,7 @@ export default function DisplayCategory(){
             
             <DropdownFilter/>
              
+             <ProductsGrid/>
 
         </div>
 

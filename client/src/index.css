@@ -7,6 +7,15 @@
   
 }
 
+ul, li{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+ min-height: 100vh;
+}
+
 #navSvg{
   width: 1.75rem;
   height: auto;
@@ -14,15 +23,17 @@
 
 
 main{
-  height: 100vh;
-  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
 }
 
 .navBar{
   display: flex;
  background-color: #fff;
  box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
-  width: 100vw;
+  width: 100%;
   height: 10%;
 }
 
@@ -95,13 +106,13 @@ main{
   color: #fff;
   font-weight: bold;
   font-size: 0.75rem;
-  width: 100vw;
+  width: 100%;
   height: 3%;
 }
 
 .productDrop{
-  width: 100vw;
-  height: 67%;
+  width: 100%;
+ 
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -119,15 +130,13 @@ main{
 
 .footerBox{
   margin-top: auto;
- 
   padding: 2rem;
   display: flex;
   align-items: center;
   color: #fff;
   background-color: black;
   gap: 4rem;
-  height:20%;
-  width: 100vw;
+  width: 100%;
   font-size: 0.75rem;
 }
 
@@ -227,7 +236,7 @@ input{
 /* Category Page component*/
 .Categorycontainer{
   height: 67%;
-  width: 100%;
+ 
   padding: 0 4rem;
   display: flex;
  flex-direction: column;
@@ -237,12 +246,9 @@ input{
 
 /* Category Header component*/
 
-
-
-
-
 .CatHeaderBox{
-  height: 30%;
+ 
+  height: 20rem;
   padding: 1rem 4rem;
   display: grid;
   grid-template-columns: repeat(12,1fr);
@@ -263,8 +269,7 @@ input{
 }
 
 .CatHeaderTextComponent{
-  
-  
+
   width: 500px;
 }
 
@@ -285,10 +290,6 @@ input{
 
 }
 
-.CatHeaderImg img{
-  width: 100%;
-  
-}
 
 
 
@@ -299,6 +300,7 @@ input{
   display: flex;
   justify-content: flex-end;
   
+  
 }
 
 select{
@@ -307,3 +309,124 @@ select{
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+/* Product grid component*/
+
+.ProductsGrid{
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  padding: 1rem 4rem;
+  gap: 1.5rem;
+  
+  
+}
+
+.product{
+  background-color: #f0f2f5;
+  
+}
+
+.picture img{
+  
+  width: 300px;
+  height: auto;
+}
+
+.info{
+  text-align: center;
+  background-color: white;
+  padding: 2rem 2rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.productName{
+  font-weight: bold;
+}
+
+/* Product detail  page*/
+
+.productImageBox{
+  display: flex;
+  padding: 4rem 8rem;
+  gap: 2rem;
+  width: 100%;
+  
+}
+
+.smallPics{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 5%;
+
+}
+
+
+.bigPic {
+  width: 50%;
+  border: dotted 1px black;
+
+
+}
+
+.bigPic img{
+  
+  width: 100%;
+
+}
+
+.textbox{
+  background-color:  #fff ;
+  padding: 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#AddToCartBtn{
+  margin-top: 10rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 50%;
+  background-color: red;
+  color: white;
+
+}
+
+.featureBox{
+  display: flex;
+  gap: 10rem;
+  padding: 4rem 6rem;
+}
+
+.comments{
+  font-size: large;
+  letter-spacing: 2px;
+  line-height: 2;
+  padding: 4rem 0;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.keyFeatures{
+ 
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.keyFeatures li{
+  list-style: circle;
+  margin-bottom: 1rem;
+}
+
+
