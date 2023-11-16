@@ -30,6 +30,8 @@ main{
 }
 
 .navBar{
+  position: fixed;
+  margin-top: 1.5rem;
   display: flex;
  background-color: #fff;
  box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
@@ -99,6 +101,7 @@ main{
 }
 
 .promoBanner{
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +116,7 @@ main{
 .productDrop{
   width: 100%;
  
-  margin-top: 2rem;
+  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,9 +238,10 @@ input{
 
 /* Category Page component*/
 .Categorycontainer{
+  margin-top: 8rem;
   height: 67%;
  
-  padding: 0 4rem;
+  padding: 1rem 4rem;
   display: flex;
  flex-direction: column;
   
@@ -350,6 +354,7 @@ select{
 /* Product detail  page*/
 
 .productImageBox{
+  margin-top: 8rem;
   display: flex;
   padding: 4rem 8rem;
   gap: 2rem;
