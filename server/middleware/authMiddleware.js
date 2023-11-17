@@ -8,7 +8,6 @@ const authMiddleware = asyncHandler(async(req,res,next)=>{
     
     const token = req.header("authorization").split(" ")[1];
 
-
     const decryptedToken = jwt.verify(token,process.env.SECRET_KEY);
 
     
