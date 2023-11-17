@@ -156,7 +156,7 @@ main{
 
 
 .registerSection, .loginSection{
-  margin-top: 6rem;
+  
   height: 67vh;
   display: flex;
   justify-content: center;
@@ -165,7 +165,7 @@ main{
 
 
 .registerBox, .loginBox{
-  
+  margin-top: 6rem;
   width: 30vw;
   gap: 1rem;
   display: flex;
@@ -213,8 +213,10 @@ input{
 
 
 .alert{
+  margin-top: 3rem;
   position: relative;
   left: 45rem;
+  top: 8rem;
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
   border: 1px solid transparent;
