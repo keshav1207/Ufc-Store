@@ -156,7 +156,7 @@ main{
 
 
 .registerSection, .loginSection{
-  
+  margin-top: 6rem;
   height: 67vh;
   display: flex;
   justify-content: center;
