@@ -5,6 +5,7 @@ import Login from "./login";
 import ProtectedPage from "../components/ProtectedPage";
 import Category from "./category";
 import Product_Detail from "./product_detail";
+import AddProductPage from "./addProduct";
 
 
 const Router = () => {
@@ -35,6 +36,12 @@ const Router = () => {
     {
       path: "/product",
       element: < Product_Detail/>,
+     
+    },
+
+    {
+      path: "/addproduct",
+      element: < AddProductPage/>,
      
     },
 

@@ -155,7 +155,7 @@ main{
 }
 
 
-.registerSection, .loginSection{
+.registerSection, .loginSection, .NewProductSection{
   
   height: 67vh;
   display: flex;
@@ -164,8 +164,8 @@ main{
 }
 
 
-.registerBox, .loginBox{
-  margin-top: 6rem;
+.registerBox, .loginBox, .NewProductBox{
+  margin-top: 12rem;
   width: 30vw;
   gap: 1rem;
   display: flex;
@@ -179,7 +179,7 @@ main{
 
 }
 
-.registerForm, .loginForm{
+.registerForm, .loginForm, .NewProductForm{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -435,5 +435,7 @@ select{
   list-style: circle;
   margin-bottom: 1rem;
 }
+
+
 
 
