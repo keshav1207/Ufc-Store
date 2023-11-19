@@ -20,27 +20,74 @@ export default function AddProductForm(){
                 <form className="NewProductForm">
 
                 
+                <div className="addProductField">
+                    <label htmlFor={nameId}>Product Name</label>
+                    <input type="text" id={nameId}/>
+                </div>
 
-                <label htmlFor={nameId}>Name</label>
-                <input type="text" id={nameId}/>
+                <div className="addProductField">
+                    <label htmlFor={priceId}>Product Price</label>
+                    <input type="text" id={priceId}/>
+                </div>
 
-                <label htmlFor={priceId}>Price</label>
-                <input type="text" id={priceId}/>
+                <div className="addProductField">
+                     <label >Product Category</label>
 
-                <label htmlFor={categoryId}>Category</label>
-                <input type="text" id={categoryId}/>
+                     <div className="radioBtns">
 
-                <label htmlFor={featuresId}>New Features</label>
-                <input type="text" id={featuresId}/>
+                    
+                     <div className="radioBtn">
+                        <label htmlFor="Apparel" >Apparel</label>
+                        <input type="radio" id= "Apparel" name="Apparel" value="Apparel"/>
+                     </div>
 
-                <label htmlFor={commentsId}>Comments</label>
-                <input type="text" id={commentsId}/>
+                     <div className="radioBtn">
+                        <label htmlFor="Accessories" >Accessories</label>
+                        <input type="radio" id= "Accessories" name="Accessories" value="Accessories"/>
+                     </div>
+
+
+                     <div className="radioBtn">
+                        <label htmlFor="Equipment" >Equipment</label>
+                        <input type="radio" id= "Equipment" name="Equipment" value="Equipment"/>
+                    </div>   
+
+                        
+                     </div>
+
+
+                    
+                    
+                   
+                </div>
+
+                <div className="addProductField">
+                    <label htmlFor={featuresId}>New Features</label>
+                    <input type="text" id={featuresId}/>
+                </div>
+
+                <div className="addProductField comment ">
+                    <label htmlFor={commentsId}>Comments</label>
+                    <input type="textarea" id={commentsId}/>
+
+                </div>
+
+
+                <div className="addProductField">
+                    <label htmlFor={imagesId}>Product Images</label>
+                    <input type="file" id={imagesId}/>
+
+                </div>
+
             
-                <label htmlFor={imagesId}>Add Images</label>
-                <input type="file" id={imagesId}/>
+
+                <button type="submit">Add</button>
 
 
                 </form>
+
+                
+               
 
             </div>
 

@@ -157,7 +157,7 @@ main{
 
 .registerSection, .loginSection, .NewProductSection{
   
-  height: 67vh;
+  height: 67%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,7 +166,7 @@ main{
 
 .registerBox, .loginBox, .NewProductBox{
   margin-top: 12rem;
-  width: 30vw;
+  width: 30%;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -436,6 +436,44 @@ select{
   margin-bottom: 1rem;
 }
 
+
+/* addProductForm component*/
+
+.addProductField{
+  display: flex;
+  gap:2rem;
+}
+
+.NewProductForm{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.comment input{
+  width: 25rem ;
+  height: 10rem;
+}
+
+.NewProductBox{
+  margin-bottom: 2rem;
+}
+
+.radioBtns{
+  display: flex;
+  gap: 1rem;
+}
+
+.radioBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#Apparel, #Equipment, #Accessories{
+  width: 1rem;
+}
 
 
 
