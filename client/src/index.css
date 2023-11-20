@@ -179,7 +179,7 @@ main{
 
 }
 
-.registerForm, .loginForm, .NewProductForm{
+.registerForm, .loginForm{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -439,9 +439,15 @@ select{
 
 /* addProductForm component*/
 
-.addProductField{
-  display: flex;
-  gap:2rem;
+label{
+  display: inline-block;
+  width: 10rem;
+}
+
+
+.NewProductBox{
+  
+  margin-bottom: 2rem;
 }
 
 .NewProductForm{
@@ -450,29 +456,46 @@ select{
   gap: 2rem;
 }
 
-.comment input{
-  width: 25rem ;
+textarea{
+  width: 20rem;
   height: 10rem;
-}
-
-.NewProductBox{
-  margin-bottom: 2rem;
 }
 
 .radioBtns{
   display: flex;
-  gap: 1rem;
+
+  
 }
 
+.formField{
+  display: flex;
+}
 .radioBtn{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  width: 10rem;
+  
+  
 }
 
-#Apparel, #Equipment, #Accessories{
-  width: 1rem;
+
+
+
+input[type=radio] {
+  height: 1rem;
+}
+
+
+.addProductBtn{
+  align-self: center;
+  margin-top: 2rem;
+  background-color: black;
+  color: white;
+  border-radius: 0.85rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 
