@@ -32,9 +32,9 @@ export const LoginUser = async function(payload){
 // Get Current User
 export const CurrentUser = async function(){
     try {
-        console.log("Calling currentuser axios function");
+        
         const response = await axiosInstance.get("http://localhost:5000/api/users/get-user-info");
-        console.log(`The response is ${response.data}`);
+        
         return response.data;
         
     } catch (error) {
