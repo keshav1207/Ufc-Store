@@ -1,4 +1,5 @@
-import { useId } from "react"
+import { useId,useState } from "react"
+
 
 export default function AddProductForm(){
     //Generating unique ids
@@ -12,6 +13,21 @@ export default function AddProductForm(){
     const featuresId = useId();
 
 
+    function handleSubmit(e) {
+        // Prevent the browser from reloading the page
+        e.preventDefault();
+    
+        // Read the form data
+        const form = e.target;
+        const formData = new FormData(form);
+    
+        
+    
+        // Or you can work with it as a plain object:
+        const formJson = Object.fromEntries(formData.entries());
+        console.log(formJson);
+    }
+
     return(
         <>
 
@@ -21,18 +37,18 @@ export default function AddProductForm(){
             
 
                 <h1>New product form</h1>
-                <form className="NewProductForm">
+                <form className="NewProductForm" onSubmit={handleSubmit}>
 
                     <div className="formField">
                         <label htmlFor={nameId}>Product Name</label>
-                        <input type="text" id={nameId}/>
+                        <input type="text" id={nameId} name="Name" />
                     </div>
                    
 
 
                     <div className="formField">
                         <label htmlFor={priceId}>Product Price</label>
-                        <input type="text" id={priceId}/>
+                        <input type="text" id={priceId}  name="Price"/>
                     </div>
                   
 
@@ -47,18 +63,18 @@ export default function AddProductForm(){
                                     
                     <div className="radioBtn">
                     <label htmlFor={apparelcategoryId} >Apparel</label>
-                    <input type="radio" id= {apparelcategoryId} name="category" value="Apparel"/>
+                    <input type="radio" id= {apparelcategoryId} name="category" value="Apparel" />
                     </div>
 
                     <div className="radioBtn">
                     <label htmlFor={accessoriescategoryId} >Accessories</label>
-                    <input type="radio" id= {accessoriescategoryId} name="category" value="Accessories"/>
+                    <input type="radio" id= {accessoriescategoryId} name="category" value="Accessories" />
                     </div>
 
 
                     <div className="radioBtn">
                     <label htmlFor={equipmentcategoryId} >Equipment</label>
-                    <input type="radio" id= {equipmentcategoryId} name="category" value="Equipment"/>
+                    <input type="radio" id= {equipmentcategoryId} name="category" value="Equipment" />
                     </div>   
 
 
@@ -72,21 +88,21 @@ export default function AddProductForm(){
 
                         <div className="formField">
                             <label htmlFor={featuresId}>New Features</label>
-                            <textarea id={featuresId}/>  
+                            <textarea id={featuresId} name="Features"/>  
 
                         </div>
                    
 
                     <div className="formField">
                         <label htmlFor={commentsId}>Comments</label>
-                        <textarea id={commentsId}/>
+                        <textarea id={commentsId} name="Comments" />
 
                     </div>
               
 
                     <div className="formField">
                         <label htmlFor={imagesId}>Product Images</label>
-                        <input type="file" id={imagesId}/>
+                        <input type="file" id={imagesId}  name="images"/>
                     </div>
                   
                 
