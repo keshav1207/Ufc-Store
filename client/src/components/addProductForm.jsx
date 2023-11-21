@@ -1,4 +1,6 @@
 import { useId,useState } from "react"
+import { AddNewProduct } from "../apicalls/addProduct";
+
 
 
 export default function AddProductForm(){
@@ -14,6 +16,7 @@ export default function AddProductForm(){
 
 
     function handleSubmit(e) {
+        (async() =>{
         // Prevent the browser from reloading the page
         e.preventDefault();
     
@@ -26,6 +29,11 @@ export default function AddProductForm(){
         // Or you can work with it as a plain object:
         const formJson = Object.fromEntries(formData.entries());
         console.log(formJson);
+
+        const response = await AddNewProduct(formData);
+        console.log(`the response is: ${response}`);
+
+        })    
     }
 
     return(
