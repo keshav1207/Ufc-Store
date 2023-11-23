@@ -5,6 +5,7 @@ const app = express();
 const cors =  require('cors');
 const bodyParser = require('body-parser')
 const userRoute = require('./routes/userRoute')
+const addProductRoute = require('./routes/addProductRoute')
 require('dotenv').config();
 const port = process.env.PORT|5000
 
@@ -34,6 +35,8 @@ app.use(cors(corsOptions));
 
 
 app.use('/api/users', userRoute);
+app.use('/api/addProduct', addProductRoute);
+
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
 
