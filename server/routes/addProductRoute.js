@@ -10,14 +10,26 @@ router.post('/', asyncHandler( async function(req, res, next) {
         const {name,price,features,comments,images,category} = req.body;
 
         //Finding ID of category selected
-        const categorySelected = await Category.findOne({name: category});
-        const categoryId = categorySelected._id;
+        try {
+                const categorySelected = await Category.findOne({name: category});
+                const categoryId = categorySelected._id;    
+        } catch (error) {
+                throw new Error("Please select category!"); 
+        }
+        
 
 
         
         //Create product in database
-        await Product.create({name:name,price:price,features:features,comments:comments,images:images, category:categoryId});
-        res.json({msg:"Product added to store"});
+        try {
+                await Product.create({name:name,price:price,features:features,comments:comments,images:images, category:categoryId});
+                res.json({success:true,msg:"Product added to store"});
+        } catch (error) {
+               throw new Error("Error! Please try again!"); 
+        }
+        
+
+
 }));
 
 module.exports = router;
