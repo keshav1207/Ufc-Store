@@ -40,11 +40,6 @@ app.use('/api/addProduct', addProductRoute);
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
 
-
-
-
-
-
 // error handler
 app.use(function(err, req, res, next) {
   res.status(500).json({
