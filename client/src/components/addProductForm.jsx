@@ -1,5 +1,6 @@
-import { useId,useState } from "react"
+import { useId,useState,useEffect } from "react"
 import { AddNewProduct } from "../apicalls/addProduct";
+import Alert from "./alert";
 
 
 
@@ -13,6 +14,38 @@ export default function AddProductForm(){
     const accessoriescategoryId = useId();
     const commentsId = useId();
     const featuresId = useId();
+
+
+    const[isAlert,setAlert] = useState(false);
+    const[isSuccess,setSuccess] = useState(true);
+
+   
+   
+    function showAlert(){
+      setAlert(true);
+    }
+
+   function successType(){
+    setSuccess(true);
+    }
+
+   function errorType(){
+    setSuccess(false);
+    }
+
+
+   //Adding the auto-dismiss feature on the alert message components
+
+   useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 10000);
+  },[showAlert]);
+
+
+  //This response state will used as a prop to display  messages in the alert forms
+
+    const[response,setResponse] = useState("");
 
 
     function handleSubmit(e) {
@@ -32,9 +65,23 @@ export default function AddProductForm(){
           // Or you can work with it as a plain object:
           const formJson = Object.fromEntries(formData.entries());
           console.log(formJson);
-        const response = await AddNewProduct(formJson);
-        console.log(`the response is: ${response}`);
+          const response = await AddNewProduct(formJson);
+           
 
+          if(response.success){
+             
+            setResponse(response.msg); 
+           
+            successType();
+            showAlert();
+          }
+
+          else{
+            setResponse(response);
+            errorType();
+            showAlert();
+          }
+         
         
 
         })();  
@@ -43,8 +90,13 @@ export default function AddProductForm(){
         e.currentTarget.reset();
     }
 
+
+   
+
     return(
         <>
+        {isAlert?(isSuccess?<Alert type={'success'} message={response}/>:<Alert type={'warning'} message={response}/>)
+        :null}
 
         <div className="NewProductSection">
             <div className="NewProductBox">
@@ -56,14 +108,14 @@ export default function AddProductForm(){
 
                     <div className="formField">
                         <label htmlFor={nameId}>Product Name</label>
-                        <input type="text" id={nameId} name="Name" />
+                        <input type="text" id={nameId} name="name" />
                     </div>
                    
 
 
                     <div className="formField">
                         <label htmlFor={priceId}>Product Price</label>
-                        <input type="text" id={priceId}  name="Price"/>
+                        <input type="text" id={priceId}  name="price" placeholder="$5"/>
                     </div>
                   
 
@@ -103,14 +155,14 @@ export default function AddProductForm(){
 
                         <div className="formField">
                             <label htmlFor={featuresId}>New Features</label>
-                            <textarea id={featuresId} name="Features"/>  
+                            <textarea id={featuresId} name="features"/>  
 
                         </div>
                    
 
                     <div className="formField">
                         <label htmlFor={commentsId}>Comments</label>
-                        <textarea id={commentsId} name="Comments" />
+                        <textarea id={commentsId} name="comments" />
 
                     </div>
               
