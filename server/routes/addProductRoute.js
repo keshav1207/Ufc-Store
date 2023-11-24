@@ -10,9 +10,10 @@ router.post('/', asyncHandler( async function(req, res, next) {
         const {name,price,features,comments,images,category} = req.body;
 
         //Finding ID of category selected
+        var categoryId;
         try {
                 const categorySelected = await Category.findOne({name: category});
-                const categoryId = categorySelected._id;    
+                 categoryId = categorySelected._id;    
         } catch (error) {
                 throw new Error("Please select category!"); 
         }
