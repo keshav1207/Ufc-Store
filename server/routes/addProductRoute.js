@@ -3,6 +3,8 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
+const Multer = require("multer");
+const cloudinary = require( '../config/cloudinaryConfig');
 
 /* Create new product. */
 router.post('/', asyncHandler( async function(req, res, next) {
