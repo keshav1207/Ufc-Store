@@ -109,28 +109,29 @@ export default function AddProductForm(){
             <div className="NewProductBox">
 
                 <div className="tabs">
+                  {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
                     <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>
                     <button className= {visible==2?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(2)}>Images</button>
                 </div>
 
-                <h1>New product details</h1>
+                {visible==1?(<h1>New product details</h1>):(<h1>New product images</h1>)}
                 <form className="NewProductForm" onSubmit={handleSubmit}>
 
-                    <div className="formField">
+                    <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>
                         <input type="text" id={nameId} name="name" />
                     </div>
                    
 
 
-                    <div className="formField">
+                    <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={priceId}>Product Price</label>
                         <input type="text" id={priceId}  name="price" placeholder="$5"/>
                     </div>
                   
 
 
-                    <div className="formField">
+                    <div className={visible==1?("formField"):("formfield hidden")}>
                     <div className="inline">
                     <label >Product Category</label>
                     
@@ -163,23 +164,30 @@ export default function AddProductForm(){
 
                     
 
-                        <div className="formField">
+                        <div className={visible==1?("formField"):("formfield hidden")}>
                             <label htmlFor={featuresId}>New Features</label>
                             <textarea id={featuresId} name="features"/>  
 
                         </div>
                    
 
-                    <div className="formField">
+                    <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={commentsId}>Comments</label>
                         <textarea id={commentsId} name="comments" />
+
+                    </div>
+
+
+                    <div className={visible==2?("formField"):("formfield hidden")}>
+                        <label htmlFor={imagesId}>Images</label>
+                        <input type="file" id={imagesId} name="images" />
 
                     </div>
               
 
                   
                 
-                <button type="submit"  className="addProductBtn">Add Product</button>
+                <button type="submit"  className={visible==1?("addProductBtn"):("addProductBtn hidden")}>Add Product</button>
 
 
                 </form>

@@ -521,3 +521,7 @@ input[type=radio] {
   
 }
 
+.hidden{
+  display: none;
+}
+
