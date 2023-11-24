@@ -500,5 +500,24 @@ input[type=radio] {
   margin-bottom: 1rem;
 }
 
+.tabs{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
+.TabBtn{
+  align-self: center;
+  background-color:rgb(235,235,228);
+  color: black;
+  padding: 0.5rem;
+  font-size: 1rem;
+  
+}
+
+.TabBtnActive{
+  
+  background-color:white;
+  
+}
 

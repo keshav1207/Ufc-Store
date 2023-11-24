@@ -91,6 +91,13 @@ export default function AddProductForm(){
     }
 
 
+   //State to manage visibility  of the 2 tabs
+   const[visible,setvisible] = useState(1);
+
+   function handleClick(index){
+    setvisible(index);
+   }
+
    
 
     return(
@@ -101,9 +108,12 @@ export default function AddProductForm(){
         <div className="NewProductSection">
             <div className="NewProductBox">
 
-            
+                <div className="tabs">
+                    <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>
+                    <button className= {visible==2?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(2)}>Images</button>
+                </div>
 
-                <h1>New product form</h1>
+                <h1>New product details</h1>
                 <form className="NewProductForm" onSubmit={handleSubmit}>
 
                     <div className="formField">
@@ -167,10 +177,6 @@ export default function AddProductForm(){
                     </div>
               
 
-                    <div className="formField">
-                        <label htmlFor={imagesId}>Product Images</label>
-                        <input type="file" id={imagesId}  name="images"/>
-                    </div>
                   
                 
                 <button type="submit"  className="addProductBtn">Add Product</button>
