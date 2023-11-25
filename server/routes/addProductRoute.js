@@ -5,11 +5,21 @@ const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
 const Multer = require("multer");
 const cloudinary = require( '../config/cloudinaryConfig');
+const upload = require('../middleware/multerMiddleware');
 
 /* Create new product. */
-router.post('/', asyncHandler( async function(req, res, next) {
-        console.log(req.body);
-        const {name,price,features,comments,images,category} = req.body;
+router.post('/', upload.single("file"),asyncHandler( async function(req, res, next) {
+        
+        //Uploading image to cloudinary
+        cloudinary.uploader.upload(req.file.path,{ folder: "Ufc-Store" },function(err,result){
+                if(err){
+                        throw new Error("Image could not be uploaded");
+                }
+
+                console.log("Image Uploaded");
+        })
+
+        const {name,price,features,comments,category} = req.body;
 
         //Finding ID of category selected
         var categoryId;
@@ -25,7 +35,7 @@ router.post('/', asyncHandler( async function(req, res, next) {
         
         //Create product in database
         try {
-                await Product.create({name:name,price:price,features:features,comments:comments,images:images, category:categoryId});
+                await Product.create({name:name,price:price,features:features,comments:comments,category:categoryId});
                 res.json({success:true,msg:"Product added to store"});
         } catch (error) {
                throw new Error("Error! Please try again!"); 
