@@ -48,6 +48,16 @@ export default function AddProductForm(){
     const[response,setResponse] = useState("");
 
 
+
+  // State to hold selected file
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    
+    const handleFileUpload = (event) => {
+      setSelectedFile(event.target.files[0]);
+    };
+
+
     function handleSubmit(e) {
       
 
@@ -64,7 +74,11 @@ export default function AddProductForm(){
       
           // Or you can work with it as a plain object:
           const formJson = Object.fromEntries(formData.entries());
+
+          //Add image file
+          formData.append('file', selectedFile);
           console.log(formJson);
+
           const response = await AddNewProduct(formJson);
            
 
@@ -115,7 +129,7 @@ export default function AddProductForm(){
                 </div>
 
                 {visible==1?(<h1>New product details</h1>):(<h1>New product images</h1>)}
-                <form className="NewProductForm" onSubmit={handleSubmit}>
+                <form className="NewProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>
@@ -180,7 +194,7 @@ export default function AddProductForm(){
 
                     <div className={visible==2?("formField"):("formfield hidden")}>
                         <label htmlFor={imagesId}>Images</label>
-                        <input type="file" id={imagesId} name="images" />
+                        <input type="file" onChange={handleFileUpload} id={imagesId} name="file" />
 
                     </div>
               
