@@ -11,13 +11,13 @@ const upload = require('../middleware/multerMiddleware');
 router.post('/', upload.single("file"),asyncHandler( async function(req, res, next) {
         
         //Uploading image to cloudinary
-        cloudinary.uploader.upload(req.file.path,{ folder: "Ufc-Store" },function(err,result){
-                if(err){
-                        throw new Error("Image could not be uploaded");
-                }
+        const result = await cloudinary.uploader.upload(req.file.path,{ folder: "Ufc-Store" });
 
-                console.log("Image Uploaded");
-        })
+        //The delivery URL is available in the "secure_url" of the result
+
+        const deliveryUrl = result.secure_url;
+
+
 
         const {name,price,features,comments,category} = req.body;
 
@@ -35,7 +35,7 @@ router.post('/', upload.single("file"),asyncHandler( async function(req, res, ne
         
         //Create product in database
         try {
-                await Product.create({name:name,price:price,features:features,comments:comments,category:categoryId});
+                await Product.create({name:name,price:price,features:features,comments:comments,category:categoryId,images:deliveryUrl});
                 res.json({success:true,msg:"Product added to store"});
         } catch (error) {
                throw new Error("Error! Please try again!"); 
