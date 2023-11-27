@@ -2,12 +2,13 @@ import CategoryHeader from "./categoryHeader"
 import DropdownFilter from "./dropdownFilter"
 import ProductsGrid from "./productsGrid"
 
-export default function DisplayCategory(){
+export default function DisplayCategory({category}){
+    
     return(
         <>
 
         < div className="Categorycontainer">
-            <CategoryHeader category={"Accessories"}/> 
+            <CategoryHeader categorySelected={category}/> 
 
             
             <DropdownFilter/>

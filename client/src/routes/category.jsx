@@ -4,8 +4,11 @@ import NavBar from '../components/navbar'
 import DisplayCategory from '../components/displayCategory'
 
 import '../index.css'
+import { useParams } from 'react-router-dom'
 
 export default function Category(){
+    const {categoryName} = useParams();
+   
     return(
         <>
 
@@ -15,7 +18,7 @@ export default function Category(){
 
         <NavBar/>
 
-        <DisplayCategory/>
+        <DisplayCategory category={categoryName}/>
 
 
         <Footer/>

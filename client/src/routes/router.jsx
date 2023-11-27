@@ -28,7 +28,7 @@ const Router = () => {
     },
 
     {
-      path: "/category",
+      path: "/categories/:categoryName",
       element: < Category/>,
      
     },

@@ -4,16 +4,17 @@ import ApparelHeaderPic from "../assets/ApparelHeaderPic.webp";
 
 
 export default function CategoryHeader(props){
+    console.log(props);
     let image,header, paragraph;
 
-    if(props.category == "Apparel"){
+    if(props.categorySelected == "apparel"){
         header = "UFC T-SHIRTS, JERSEYS, GEAR";
         paragraph = "From UFC t-shirts to durable UFC jerseys, get your hands on the very latest MMA apparel. Browse our selection of official UFC gear.Shop Now!"
         image = AccessoriesHeaderPic;
         
 
 
-    }else if(props.category == "Equipment"){
+    }else if(props.categorySelected == "equipment"){
         header = "UFC EQUIPMENT";
         paragraph = "If you're an MMA fan and looking to buy some high-quality equipment, look no further than the official UFC store. Offering the latest and greatest in UFC equipment including full body training, the official UFC store will have everything you need for your next training session. From official MMA gloves to MMA mouth guards, get your gear today!"
         image = EquipmentHeaderPic;
