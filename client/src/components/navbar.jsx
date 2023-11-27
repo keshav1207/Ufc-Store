@@ -4,6 +4,7 @@ import {  CiUser } from "react-icons/ci";
 import {  AiOutlineSearch } from "react-icons/ai";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
 import ufclogo from "../assets/logo.avif"
+import { Link } from 'react-router-dom';
 
 export default function NavBar (){
     return(
@@ -15,9 +16,9 @@ export default function NavBar (){
         </div>
 
         <div className="menu">
-            <h4>APPAREL</h4>
-            <h4>ACCESSORIES</h4>
-            <h4>EQUIPMENT</h4>
+            <Link to={"/categories/apparel"}>APPAREL</Link>
+            <Link to={"/categories/accessories"}>ACCESORIES</Link>
+            <Link to={"/categories/equipment"}>EQUIPMENT</Link>
 
         </div>
 
