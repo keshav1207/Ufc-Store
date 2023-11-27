@@ -11,7 +11,10 @@ export default function NavBar (){
         <div className="navBar">
 
         <div className="logo">
+        <Link to={'/'}>
         <img src={ufclogo}  alt="logo" id="logo"/>
+        </Link>
+        
 
         </div>
 
