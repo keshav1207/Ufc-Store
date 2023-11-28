@@ -35,8 +35,15 @@ const productSchema = new mongoose.Schema({
         default: [],
         required:true,
     },
+
+    },
+
+    //set timestamps: true, Mongoose will add two properties of type Date to your schema createdAT 
+        // & updateAT
+        
+        {timestamps: true}
     
-});
+);
 
 productSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object
