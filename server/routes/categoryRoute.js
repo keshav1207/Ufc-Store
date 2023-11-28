@@ -5,13 +5,14 @@ const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
 
 //Get all the products from a category
-router.get('/:categoryName',asyncHandler( async function(req, res, next) {
+router.get('/:categoryName/:optionalFilter?',asyncHandler( async function(req, res, next) {
     
+    const optionalFilter = req.params['optionalFilter']|| null;
     const categoryName = req.params['categoryName'];
     
     //Finding category selected id
     
-    const categorySelected = await Category.findOne({name: categoryName}).exec();
+    const categorySelected = await Category.findOne({name: categoryName}).sort(optionalFilter).exec();
     const categoryId = categorySelected._id; 
 
 
