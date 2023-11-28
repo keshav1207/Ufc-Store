@@ -19,9 +19,9 @@ export default function NavBar (){
         </div>
 
         <div className="menu">
-            <Link to={"/categories/apparel"}>APPAREL</Link>
-            <Link to={"/categories/accessories"}>ACCESORIES</Link>
-            <Link to={"/categories/equipment"}>EQUIPMENT</Link>
+            <Link to={"/categories/Apparel"}>APPAREL</Link>
+            <Link to={"/categories/Accessories"}>ACCESORIES</Link>
+            <Link to={"/categories/Equipment"}>EQUIPMENT</Link>
 
         </div>
 

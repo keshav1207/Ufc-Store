@@ -13,7 +13,7 @@ export default function DisplayCategory({category}){
             
             <DropdownFilter/>
              
-             <ProductsGrid/>
+             <ProductsGrid categorySelected={category}/>
 
         </div>
 

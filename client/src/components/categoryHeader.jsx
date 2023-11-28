@@ -4,7 +4,7 @@ import ApparelHeaderPic from "../assets/ApparelHeaderPic.webp";
 
 
 export default function CategoryHeader(props){
-    console.log(props);
+    
     let image,header, paragraph;
 
     if(props.categorySelected == "apparel"){
