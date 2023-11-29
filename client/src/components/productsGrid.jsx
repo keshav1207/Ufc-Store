@@ -1,4 +1,4 @@
-import pic from "../assets/LeatherDuffel.webp"
+
 import { getCategoryProducts } from "../apicalls/getCategoryProducts"
 import { useEffect, useState } from "react";
 
@@ -51,10 +51,6 @@ export default function ProductsGrid(props){
                 
                 }
                 
-                
-        
-            
-
         </div>
 
         
