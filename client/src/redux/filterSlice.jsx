@@ -4,7 +4,7 @@ const initialState = {
     filter: [],
   }
 
-  export const filterSlice = createSlice({
+  const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
@@ -33,9 +33,9 @@ const initialState = {
       },
       
     },
-  })
+  });
   
   // Action creators are generated for each case reducer function
-  export const { NewtoOld, OldtoNew, AZ, ZA, LowtoHigh, HightoLow } = filterSlice.actions
+  export const { NewtoOld, OldtoNew, AZ, ZA, LowtoHigh, HightoLow } = filterSlice.actions;
   
-  export default filterSlice.reducer
+  export default filterSlice.reducer;
