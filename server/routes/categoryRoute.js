@@ -36,7 +36,7 @@ router.get('/:categoryName/:optionalFilter?',asyncHandler( async function(req, r
 
     //Using the id to find the products
     
-    const products = await Product.find({category:categoryId}).sort(sortArguments).select("name price  images").exec();
+    const products = await Product.find({category:categoryId}).sort(sortArguments).select("name price  images ").exec();
 
    
    
