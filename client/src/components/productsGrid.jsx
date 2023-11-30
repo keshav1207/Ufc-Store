@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function ProductsGrid(props){
     
     const filter = useSelector((state) => state.filter.filter);
-    console.log(filter);
+   
 
         const[myarray,setArray] = useState(null);
 

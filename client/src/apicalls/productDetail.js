@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const ProductDetail = async function(){
+export const ProductDetail = async function(productId){
     try {
-        
-        const response = await axios.get("http://localhost:5000/api/product/:productId");
+        console.log("Axios activated");
+        const response = await axios.get(`http://localhost:5000/api/product/${productId}`);
         
         return response.data;
         
