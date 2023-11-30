@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 const authMiddleware = asyncHandler(async(req,res,next)=>{
-    console.log("aUTH MID FUCTION");
+    
     
     const token = req.header("authorization").split(" ")[1];
 
