@@ -334,10 +334,12 @@ select{
   
 }
 
-.product{
+.product, .ProductsGrid a{
   background-color: #f0f2f5;
   
 }
+
+
 
 .picture img{
   width: 100%;
