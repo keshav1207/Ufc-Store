@@ -1,5 +1,4 @@
-import smallPic1 from "../assets/mouthgard1.webp"
-import smallPic2 from "../assets/mouthgard2.avif"
+
 import { ProductDetail } from "../apicalls/productDetail"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -58,7 +57,7 @@ export default function DisplayProduct(){
 
             <div className="textbox">
                 <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
-                <h4>${productInfo?(productInfo.price):("...Loading")}</h4>
+                <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
                 <button id="AddToCartBtn">Add to Cart</button>
 
             </div>

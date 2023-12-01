@@ -26,7 +26,7 @@ export default function ProductsGrid(props){
             };
 
             fetchData();
-        },[filter]);
+        },[props.categorySelected,filter]);
 
 
 

@@ -533,3 +533,11 @@ input[type=radio] {
   display: none;
 }
 
+
+/* Manage Product page*/
+.productSection{
+  margin-top: 9rem;
+  height: 67%;
+  padding: 1rem;
+  
+}
