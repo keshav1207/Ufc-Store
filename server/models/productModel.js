@@ -36,6 +36,12 @@ const productSchema = new mongoose.Schema({
         required:true,
     },
 
+    // This is used to delete the images from Cloudinary in case we delete the produt
+    cloudinaryPublicId: {
+        type: String,
+        required:true,
+    },
+
     },
 
     //set timestamps: true, Mongoose will add two properties of type Date to your schema createdAT 

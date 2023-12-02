@@ -17,7 +17,7 @@ router.post('/', upload.single("file"),asyncHandler( async function(req, res, ne
 
         const deliveryUrl = result.secure_url;
 
-
+        const public_Id = result.public_id;
 
         const {name,price,features,comments,category} = req.body;
 
@@ -35,7 +35,7 @@ router.post('/', upload.single("file"),asyncHandler( async function(req, res, ne
         
         //Create product in database
         try {
-                await Product.create({name:name,price:price,features:features,comments:comments,category:categoryId,images:deliveryUrl});
+                await Product.create({name:name,price:price,features:features,comments:comments,category:categoryId,images:deliveryUrl,cloudinaryPublicId: public_Id});
                 res.json({success:true,msg:"Product added to store"});
         } catch (error) {
                throw new Error("Error! Please try again!"); 
