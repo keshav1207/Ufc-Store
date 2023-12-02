@@ -19,5 +19,25 @@ router.get('/:productId',asyncHandler( async function(req, res, next) {
 
 }))
 
+// Delete product
+router.delete('/:productId',asyncHandler( async function(req, res, next) {
+    
+        //Get product Id from params
+        const productId = req.params['productId'];
+
+    
+        const deletedProduct = await Product.findByIdAndDelete(productId);
+
+        if(!deletedProduct){
+                throw new Error("Product Not found");
+        }
+
+        res.json({success:true, data: deletedProduct});
+        
+
+}))
+
+
+
 
 module.exports = router;
