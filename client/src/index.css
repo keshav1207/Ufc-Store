@@ -541,3 +541,45 @@ input[type=radio] {
   padding: 1rem;
   
 }
+
+.products{
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.productLine{
+  display: grid;
+  grid-template-columns: 0.25fr 0.75fr 0.25fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.productLine img{
+  width: 5rem;
+  border: 1px dotted black;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.manageProductHeading{
+    font-weight: bold;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.editBtn, .deleteBtn{
+   align-self: center;
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+ 
+}
