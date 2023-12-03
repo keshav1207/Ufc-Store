@@ -78,6 +78,7 @@ const[deleteModal, setDeleteModal] = useState(false);
         <div><b>Images</b></div>
         <div><b>Name</b></div>
         <div><b>Price</b></div>
+        <div><b>Category</b></div>
 
         </div>
 
@@ -88,6 +89,7 @@ const[deleteModal, setDeleteModal] = useState(false);
                         <img src={item.images[0]}/>
                         <div>{item.name}</div>
                         <div>${item.price}</div>
+                        <div>{item.category.name}</div>
                         <div className="buttons">
                         <button className="editBtn">Edit</button>
                         <button className="deleteBtn" onClick={handleDelete}  value={item._id}>Delete</button>
