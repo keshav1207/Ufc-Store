@@ -7,7 +7,10 @@ const Product = require("../models/productModel");
 //Get all the products from database
 router.get('/',asyncHandler( async function(req, res, next) {
 
-    const allProducts = await Product.find().exec();
+    console.log("express js activation");
+    const allProducts = await Product.find().populate('category').exec();
+
+    console.log(allProducts);
 
     res.json({success:true, data: allProducts});
 

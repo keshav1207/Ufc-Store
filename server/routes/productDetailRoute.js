@@ -22,9 +22,24 @@ router.get('/:productId',asyncHandler( async function(req, res, next) {
 
 // Delete product based on ID
 router.delete('/:productId',asyncHandler( async function(req, res, next) {
+
+        console.log("Backend activated delete")
     
         //Get product Id from params
         const productId = req.params['productId'];
+
+        
+
+        // Get cloudinary Public Id stored in mongoDB
+        const result = await Product.findById(productId).select('-_id cloudinaryPublicId').exec();
+
+        const publicId = result. cloudinaryPublicId;
+
+        //Delete Product from Cloudinary
+        const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
+        console.log(cloudinaryResult);
+
+
 
         // Delete product from MongoDB
         const deletedProduct = await Product.findByIdAndDelete(productId);
@@ -33,9 +48,6 @@ router.delete('/:productId',asyncHandler( async function(req, res, next) {
                 throw new Error("Product Not found");
         }
 
-
-
-        
 
         res.json({success:true, data: deletedProduct});
         
