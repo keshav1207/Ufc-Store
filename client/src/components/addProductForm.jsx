@@ -1,4 +1,4 @@
-import { useId,useState,useEffect } from "react"
+import { useId,useState,useEffect,useRef } from "react"
 import { AddNewProduct } from "../apicalls/addProduct";
 import Alert from "./alert";
 
@@ -50,11 +50,26 @@ export default function AddProductForm(){
 
 
   // State to hold selected file
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFiles, setSelectedFiles] = useState([]);
 
     
     const handleFileUpload = (event) => {
-      setSelectedFile(event.target.files[0]);
+      //Use spread operator to copy the state into a  new array
+      const currentFiles = [...selectedFiles];
+
+      //Convert the fileslist to an Array
+      const newFiles = Array.from(event.target.files);
+      
+
+      //Add each file to our currentFiles variable
+        newFiles.forEach(file => {
+          currentFiles.push(file)
+        });
+
+        setSelectedFiles(currentFiles);
+        hiddenFileInput.current.value = null;
+        
+    
     };
 
 
@@ -70,14 +85,24 @@ export default function AddProductForm(){
           const form = e.target;
           const formData = new FormData(form);
       
+          //Delete the original files key captured by the formdata above
+          formData.delete("files");
           
-      
-          // Or you can work with it as a plain object:
-          const formJson = Object.fromEntries(formData.entries());
+          
+          //Upload image files
+          const selectFilesArray = [...selectedFiles]
+          for(var i=0; i < selectFilesArray.length; i++){
+            
+            formData.append(`file-${i}`, selectFilesArray[i]);
+          }
+          
 
-          //Add image file
-          formData.append('file', selectedFile);
+          // Convert it into an object:
+          const formJson = Object.fromEntries(formData.entries());
+          
+          
           console.log(formJson);
+          
 
           const response = await AddNewProduct(formJson);
            
@@ -102,6 +127,7 @@ export default function AddProductForm(){
 
         //clear inputs
         e.currentTarget.reset();
+        setSelectedFiles([]);
     }
 
 
@@ -112,6 +138,23 @@ export default function AddProductForm(){
     setvisible(index);
    }
 
+
+  //This ref will be used to clear the file input name 
+  const hiddenFileInput = useRef(null);
+
+//Function to handle the removal of images from selectedFiles
+   function handleDelete(index){
+    const files = [...selectedFiles];
+    files.splice(index,1);
+    setSelectedFiles(files);
+
+    //Clear file Input after deleting last image
+    if(files.length==0)
+    hiddenFileInput.current.value = null;
+   }
+
+
+   
    
 
     return(
@@ -191,10 +234,29 @@ export default function AddProductForm(){
 
                     </div>
 
+                    
+                    <div className={visible==2?("selectedImages"):(" selectedImages hidden")}>
+                        {selectedFiles?(selectedFiles.map((file,index)=>(
+                            <div className= "selectedImages" key={index}>
+
+                            <div className="selectedImageContainer">
+                            <img className="selectedImage" src={URL.createObjectURL(file)} />
+                            {/* Check ()=> handleDelete(index) */}
+                            <button className="deleteImageBtn" onClick={() => handleDelete(index)}>X</button>
+                            </div>
+                            
+                            </div>
+                            
+                        )
+
+                        )): ("...Loading")}
+                        
+
+                    </div>
 
                     <div className={visible==2?("formField"):("formfield hidden")}>
                         <label htmlFor={imagesId}>Images</label>
-                        <input type="file" onChange={handleFileUpload} id={imagesId} name="file" />
+                        <input type="file" multiple onChange={handleFileUpload} id={imagesId} ref={hiddenFileInput} name="files" />
 
                     </div>
               

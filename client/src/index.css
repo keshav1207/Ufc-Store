@@ -534,6 +534,34 @@ input[type=radio] {
   display: none;
 }
 
+.selectedImages{
+  display: flex;
+  gap: 0.15rem;
+  padding: 1rem;
+}
+
+.selectedImageContainer{
+  position: relative;
+}
+
+
+
+.selectedImage{
+  width: 4rem;
+  height: auto;
+  border: 1px  solid black;
+}
+
+.deleteImageBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  border: 1px solid black;
+  
+  
+}
+
 
 /* Manage Product page*/
 .productSection{
