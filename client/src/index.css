@@ -536,9 +536,11 @@ input[type=radio] {
 
 .selectedImages{
   display: flex;
-  gap: 0.15rem;
+  gap: 0.5rem;
   padding: 1rem;
 }
+
+
 
 .selectedImageContainer{
   position: relative;

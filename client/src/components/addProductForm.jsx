@@ -60,10 +60,28 @@ export default function AddProductForm(){
       //Convert the fileslist to an Array
       const newFiles = Array.from(event.target.files);
       
+      
+      
 
       //Add each file to our currentFiles variable
         newFiles.forEach(file => {
-          currentFiles.push(file)
+
+        // Limit the number of images that can be uploaded to 5
+          if(currentFiles.length >= 5){
+        alert('You can only upload up to 5 images.');
+        setSelectedFiles(currentFiles);
+        hiddenFileInput.current.value = null;
+        return;
+        }
+
+        //Check if image is already uploaded
+        if(!currentFiles.some(item => item.name == file.name)){
+          currentFiles.push(file);
+        }
+        else{
+          alert("Image already uploaded!")
+        }
+        
         });
 
         setSelectedFiles(currentFiles);
@@ -143,7 +161,8 @@ export default function AddProductForm(){
   const hiddenFileInput = useRef(null);
 
 //Function to handle the removal of images from selectedFiles
-   function handleDelete(index){
+   function handleDelete(event,index){
+    event.preventDefault();
     const files = [...selectedFiles];
     files.splice(index,1);
     setSelectedFiles(files);
@@ -235,17 +254,17 @@ export default function AddProductForm(){
                     </div>
 
                     
-                    <div className={visible==2?("selectedImages"):(" selectedImages hidden")}>
+                    <div className={visible==2?("selectedImages"):(" hidden")}>
                         {selectedFiles?(selectedFiles.map((file,index)=>(
-                            <div className= "selectedImages" key={index}>
+                            
 
-                            <div className="selectedImageContainer">
+                            <div className="selectedImageContainer"key={index}>
                             <img className="selectedImage" src={URL.createObjectURL(file)} />
                             {/* Check ()=> handleDelete(index) */}
-                            <button className="deleteImageBtn" onClick={() => handleDelete(index)}>X</button>
+                            <button className="deleteImageBtn" onClick={(event) => handleDelete(event,index)}>X</button>
                             </div>
                             
-                            </div>
+                           
                             
                         )
 
