@@ -166,7 +166,7 @@ export default function AddProductForm(){
     const files = [...selectedFiles];
     files.splice(index,1);
     setSelectedFiles(files);
-
+    
     //Clear file Input after deleting last image
     if(files.length==0)
     hiddenFileInput.current.value = null;
@@ -183,7 +183,7 @@ export default function AddProductForm(){
 
         <div className="NewProductSection">
             <div className="NewProductBox">
-
+              <button className="closeFormBtn">X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
                     <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>

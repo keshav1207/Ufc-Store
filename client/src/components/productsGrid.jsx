@@ -48,7 +48,7 @@ export default function ProductsGrid(props){
                 <Link to={`/products/${item._id}`}   key={item._id}>
                     <div className="product">
                         <div className="picture">
-                    <img src= {item.images} alt="" />
+                    <img src= {item.images[0]} alt="" />
                 </div>
 
                 <div className="info" >
