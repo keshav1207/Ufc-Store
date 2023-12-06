@@ -173,6 +173,13 @@ export default function AddProductForm(){
    }
 
 
+
+   function handleClose(e){
+    e.preventDefault();
+    // To add function to change addFormVisibility
+   }
+
+
    
    
 
@@ -183,7 +190,7 @@ export default function AddProductForm(){
 
         <div className="NewProductSection">
             <div className="NewProductBox">
-              <button className="closeFormBtn">X</button>
+              <button className="closeFormBtn" onClick={handleClose}>X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
                     <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>
