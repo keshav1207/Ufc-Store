@@ -4,11 +4,11 @@ const initialState = {
     addProductFormVisib: false,
   }
 
-  const addProductFormVisibSlice = createSlice({
-    name: 'addProductFormVisib',
+  const addProductFormSlice = createSlice({
+    name: 'addProductForm',
     initialState,
     reducers: {
-        addProductFormVisibToggle: (state) => {
+        addProductFormToggle: (state) => {
         state.addProductFormVisib = !state.addProductFormVisib;
       },
 
@@ -17,6 +17,6 @@ const initialState = {
   });
   
   // Action creators are generated for each case reducer function
-  export const {addProductFormVisibToggle } =   addProductFormVisibSlice.actions
+  export const {addProductFormToggle } =   addProductFormSlice.actions
   
-  export default addProductFormVisibSlice.reducer;
+  export default addProductFormSlice.reducer;

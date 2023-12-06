@@ -5,7 +5,7 @@ import Login from "./login";
 import ProtectedPage from "../components/ProtectedPage";
 import Category from "./category";
 import Product_Detail from "./product_detail";
-import AddProductPage from "./addProduct";
+
 import ManageProductsPage from "./manageProducts";
 
 
@@ -40,12 +40,7 @@ const Router = () => {
      
     },
 
-    {
-      path: "/addproduct",
-      element: < AddProductPage/>,
-     
-    },
-
+   
     {
       path: "/manageproduct",
       element: < ManageProductsPage/>,

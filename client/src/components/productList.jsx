@@ -1,10 +1,16 @@
 import { useEffect,useState} from "react"
 import { getAllProducts } from "../apicalls/getAllProducts"
 import { DeleteProduct } from "../apicalls/productDetail";
+import AddProductForm from "../components/addProductForm"
+import  { useSelector}  from 'react-redux';
+import  {useDispatch}  from 'react-redux';
+import {addProductFormToggle} from '../redux/addProductFormSlice';
 
 
 export default function ProductList(){
-
+    const dispatch = useDispatch();
+    const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
+    
     //Create a state to hold the productInfo fetched from database
     const [productInfo, setProductInfo] = useState(null);
 
@@ -58,6 +64,9 @@ const[deleteModal, setDeleteModal] = useState(false);
         <div className="productSection">
         
         <div className="manageProductHeading">Manage Products Page</div>
+        
+        <div className= {addProductFormVisibility?("overlay"):("overlay hideOverlay")}></div>
+        {addProductFormVisibility?(<AddProductForm/>):(null)}
 
         <div className= {deleteModal?("modal"):("modal hideModal")}>
             <p>Do you want to delete this product?</p>
@@ -69,7 +78,7 @@ const[deleteModal, setDeleteModal] = useState(false);
 
         <div className= {deleteModal?("overlay"):("overlay hideOverlay")}></div>
        
-        <button className="addProductBtn">Add New Product</button>
+        <button className="addProductBtn" onClick={()=>dispatch(addProductFormToggle())}>Add New Product</button>
 
         <div className="products">
 

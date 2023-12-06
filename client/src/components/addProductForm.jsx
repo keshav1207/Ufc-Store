@@ -1,10 +1,20 @@
 import { useId,useState,useEffect,useRef } from "react"
 import { AddNewProduct } from "../apicalls/addProduct";
 import Alert from "./alert";
+import  {useDispatch}  from 'react-redux';
+import {addProductFormToggle} from '../redux/addProductFormSlice';
+
+
 
 
 
 export default function AddProductForm(){
+  
+ 
+  
+  const dispatch = useDispatch();
+
+  
     //Generating unique ids
     const imagesId = useId();
     const nameId = useId();
@@ -92,9 +102,12 @@ export default function AddProductForm(){
 
 
     function handleSubmit(e) {
+
       
 
         (async() =>{
+
+          
         
           // Prevent the browser from reloading the page
           e.preventDefault();
@@ -145,6 +158,7 @@ export default function AddProductForm(){
 
         //clear inputs
         e.currentTarget.reset();
+        dispatch(addProductFormToggle())
         setSelectedFiles([]);
     }
 
@@ -176,7 +190,11 @@ export default function AddProductForm(){
 
    function handleClose(e){
     e.preventDefault();
-    // To add function to change addFormVisibility
+  
+    
+    dispatch(addProductFormToggle());
+   
+    
    }
 
 
