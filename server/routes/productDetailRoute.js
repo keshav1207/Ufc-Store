@@ -23,7 +23,7 @@ router.get('/:productId',asyncHandler( async function(req, res, next) {
 // Delete product based on ID
 router.delete('/:productId',asyncHandler( async function(req, res, next) {
 
-        console.log("Backend activated delete")
+        
     
         //Get product Id from params
         const productId = req.params['productId'];
@@ -37,8 +37,7 @@ router.delete('/:productId',asyncHandler( async function(req, res, next) {
 
         //Delete Product from Cloudinary
         const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
-        console.log(cloudinaryResult);
-
+        
 
 
         // Delete product from MongoDB

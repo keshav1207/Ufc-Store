@@ -38,7 +38,8 @@ const productSchema = new mongoose.Schema({
 
     // This is used to delete the images from Cloudinary in case we delete the produt
     cloudinaryPublicId: {
-        type: String,
+        type: Array,
+        default: [],
         required:true,
     },
 
