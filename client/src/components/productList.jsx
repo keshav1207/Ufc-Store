@@ -2,6 +2,7 @@ import { useEffect,useState} from "react"
 import { getAllProducts } from "../apicalls/getAllProducts"
 import { DeleteProduct } from "../apicalls/productDetail";
 import AddProductForm from "../components/addProductForm"
+import EditProductForm from "../components/editProductForm"
 import  { useSelector}  from 'react-redux';
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';

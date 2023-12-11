@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import filterReducer from './filterSlice'
 import addProductFormReducer from './addProductFormSlice'
-import editReducer from './editSlice';
+import editProductIdReducer from './editProductIdSlice';
 
 export const store = configureStore({
   reducer: {
     filter: filterReducer,
     addProductForm: addProductFormReducer,
-    editProduct: editReducer,
+    editProductId: editProductIdReducer,
   },
   
     

@@ -4,8 +4,8 @@ const initialState = {
     productId: null,
   }
 
-  const editSlice = createSlice({
-    name: 'editProduct',
+  const editProductIdSlice = createSlice({
+    name: 'editProductId',
     initialState,
     reducers: {
         addproductSelected: (state,action) => {
@@ -17,6 +17,6 @@ const initialState = {
   });
   
   // Action creators are generated for each case reducer function
-  export const {addproductSelected } = editSlice.actions;
+  export const {addproductSelected } = editProductIdSlice.actions;
   
-  export default editSlice.reducer;
+  export default editProductIdSlice.reducer;
