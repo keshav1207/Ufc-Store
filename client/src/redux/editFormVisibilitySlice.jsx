@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    editFormVisibility: false,
+    editFormVisibilityValue: false,
   }
 
   const editFormVisibilitySlice = createSlice({
@@ -9,7 +9,7 @@ const initialState = {
     initialState,
     reducers: {
         editFormToggle: (state) => {
-        state.editFormVisibility = !state.editFormVisibility;
+        state.editFormVisibilityValue = !state.editFormVisibilityValue;
       },
 
       

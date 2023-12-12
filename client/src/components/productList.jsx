@@ -6,11 +6,14 @@ import EditProductForm from "../components/editProductForm"
 import  { useSelector}  from 'react-redux';
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
+import { editFormToggle } from "../redux/editFormVisibilitySlice";
+import { addproductSelected } from "../redux/editProductIdSlice";
 
 
 export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
+    const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
     
     //Create a state to hold the productInfo fetched from database
     const [productInfo, setProductInfo] = useState(null);
@@ -58,6 +61,18 @@ const[deleteModal, setDeleteModal] = useState(false);
     }
 
 
+    function handleEdit(e){
+        e.preventDefault();
+
+        //Toggle edit form
+        dispatch(editFormToggle());
+
+        //Save product Id to redux
+        dispatch(addproductSelected(e.target.value));
+
+    }
+
+
 
 
     return(
@@ -68,6 +83,9 @@ const[deleteModal, setDeleteModal] = useState(false);
         
         <div className= {addProductFormVisibility?("overlay"):("overlay hideOverlay")}></div>
         {addProductFormVisibility?(<AddProductForm/>):(null)}
+
+        <div className= {editProductFormVisiblity?("overlay"):("overlay hideOverlay")}></div>
+        {editProductFormVisiblity?(<EditProductForm/>):(null)}
 
         <div className= {deleteModal?("modal"):("modal hideModal")}>
             <p>Do you want to delete this product?</p>
@@ -101,7 +119,7 @@ const[deleteModal, setDeleteModal] = useState(false);
                         <div>${item.price}</div>
                         <div>{item.category.name}</div>
                         <div className="buttons">
-                        <button className="editBtn">Edit</button>
+                        <button className="editBtn"  value={item._id} onClick={handleEdit}>Edit</button>
                         <button className="deleteBtn" onClick={handleDelete}  value={item._id}>Delete</button>
                         </div>
                         

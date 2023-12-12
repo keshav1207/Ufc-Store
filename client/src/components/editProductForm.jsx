@@ -1,9 +1,11 @@
 import { useId,useState,useEffect,useRef } from "react"
 import Alert from "./alert";
-
+import { editFormToggle } from "../redux/editFormVisibilitySlice";
+import  {useDispatch}  from 'react-redux';
 
 export default function EditProductForm(){
-    
+
+  const dispatch = useDispatch();
 
   
     //Generating unique ids
@@ -122,9 +124,8 @@ export default function EditProductForm(){
    function handleClose(e){
     e.preventDefault();
   
-    // Add Dispatch edit product toggle
-    
-   
+    //  Dispatch edit product toggle
+    dispatch(editFormToggle());
     
    }
 
