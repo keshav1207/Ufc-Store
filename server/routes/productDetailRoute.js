@@ -13,7 +13,7 @@ router.get('/:productId',asyncHandler( async function(req, res, next) {
     
 
         //Get product Info from MongoDB
-        const productInfo = await Product.findById(productId).exec();
+        const productInfo = await Product.findById(productId).populate('category').exec();
        
 
         res.json({success:true, data: productInfo});
