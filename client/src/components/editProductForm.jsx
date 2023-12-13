@@ -1,11 +1,34 @@
 import { useId,useState,useEffect,useRef } from "react"
-import Alert from "./alert";
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import  {useDispatch}  from 'react-redux';
+import  { useSelector}  from 'react-redux';
+import { ProductDetail } from "../apicalls/productDetail";
 
 export default function EditProductForm(){
 
   const dispatch = useDispatch();
+
+  const editProductId = useSelector((state) => state.editProductId.productId);
+
+  const[productInfo,setProductInfo] = useState(null);
+
+
+  useEffect(() => {
+
+    const fetchData =  async ()=>{
+      try {
+          const response = await ProductDetail(editProductId);
+          setProductInfo(response);
+          
+
+      } catch (error) {
+          console.log(error);
+      }
+     
+  };
+
+  fetchData();
+  },[editProductId]);
 
   
     //Generating unique ids
@@ -17,38 +40,6 @@ export default function EditProductForm(){
     const accessoriescategoryId = useId();
     const commentsId = useId();
     const featuresId = useId();
-
-
-    const[isAlert,setAlert] = useState(false);
-    const[isSuccess,setSuccess] = useState(true);
-
-   
-   
-    function showAlert(){
-      setAlert(true);
-    }
-
-   function successType(){
-    setSuccess(true);
-    }
-
-   function errorType(){
-    setSuccess(false);
-    }
-
-
-   //Adding the auto-dismiss feature on the alert message components
-
-   useEffect(() => {
-    setTimeout(() => {
-      setAlert(false);
-    }, 10000);
-  },[showAlert]);
-
-
-  //This response state will used as a prop to display  messages in the alert forms
-
-    const[response,setResponse] = useState("");
 
 
 
@@ -152,14 +143,14 @@ export default function EditProductForm(){
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>
-                        <input type="text" id={nameId} name="name" />
+                        <input type="text" id={nameId} name="name" value={productInfo?(productInfo.data.name):("")} />
                     </div>
                    
 
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={priceId}>Product Price</label>
-                        <input type="text" id={priceId}  name="price" placeholder="$5"/>
+                        <input type="text" id={priceId}  name="price" value={productInfo?(productInfo.data.price):("")}/>
                     </div>
                   
 
@@ -174,18 +165,18 @@ export default function EditProductForm(){
                                     
                     <div className="radioBtn">
                     <label htmlFor={apparelcategoryId} >Apparel</label>
-                    <input type="radio" id= {apparelcategoryId} name="category" value="Apparel" />
+                    <input type="radio" id= {apparelcategoryId} name="category" value="Apparel" checked={productInfo?(productInfo.data.category.name == "Apparel"?(true):(false)):("")}/>
                     </div>
 
                     <div className="radioBtn">
                     <label htmlFor={accessoriescategoryId} >Accessories</label>
-                    <input type="radio" id= {accessoriescategoryId} name="category" value="Accessories" />
+                    <input type="radio" id= {accessoriescategoryId} name="category" value="Accessories" checked={productInfo?(productInfo.data.category.name == "Accessories"?(true):(false)):("")} />
                     </div>
 
 
                     <div className="radioBtn">
                     <label htmlFor={equipmentcategoryId} >Equipment</label>
-                    <input type="radio" id= {equipmentcategoryId} name="category" value="Equipment" />
+                    <input type="radio" id= {equipmentcategoryId} name="category" value="Equipment" checked={productInfo?(productInfo.data.category.name == "Equipment"?(true):(false)):("")} />
                     </div>   
 
 
@@ -199,14 +190,14 @@ export default function EditProductForm(){
 
                         <div className={visible==1?("formField"):("formfield hidden")}>
                             <label htmlFor={featuresId}>New Features</label>
-                            <textarea id={featuresId} name="features"/>  
+                            <textarea id={featuresId} name="features" value={productInfo?(productInfo.data.features):("")}/>  
 
                         </div>
                    
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={commentsId}>Comments</label>
-                        <textarea id={commentsId} name="comments" />
+                        <textarea id={commentsId} name="comments" value={productInfo?(productInfo.data.comments):("")}/>
 
                     </div>
 
