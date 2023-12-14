@@ -13,12 +13,31 @@ export default function EditProductForm(){
   const[productInfo,setProductInfo] = useState(null);
 
 
+  const [inputValues, setInputValues] = useState({
+    name: "",
+    price: "",
+    features:  "",
+    comments: "",
+    category:""
+  });
+
   useEffect(() => {
 
     const fetchData =  async ()=>{
       try {
           const response = await ProductDetail(editProductId);
           setProductInfo(response);
+          setSelectedFiles(response.data.images)
+
+
+          setInputValues((prevInputValues) => ({
+            ...prevInputValues,
+            name: response.data.name,
+            price: response.data.price,
+            features: response.data.features,
+            comments: response.data.comments,
+            category: response.data.category.name,
+          }));
           
 
       } catch (error) {
@@ -44,6 +63,7 @@ export default function EditProductForm(){
 
 
   // State to hold selected file
+ 
     const [selectedFiles, setSelectedFiles] = useState([]);
 
     
@@ -121,13 +141,70 @@ export default function EditProductForm(){
    }
 
 
+   function handleSubmit(e) {
+
+    (async() =>{
+
+      // Prevent the browser from reloading the page
+      e.preventDefault();
+
+      // Read the form data
+      const form = e.target;
+      const formData = new FormData(form);
+  
+      //Delete the original files key captured by the formdata above
+      formData.delete("files");
+      
+      
+      //Upload image files
+      const selectFilesArray = [...selectedFiles]
+      
+      for(var i=0; i < selectFilesArray.length; i++){
+
+        if(typeof selectFilesArray[i] === "string"){
+          formData.append(`existing-${i}`, selectFilesArray[i]);
+        }
+
+        else{
+          formData.append(`file-${i}`, selectFilesArray[i]);
+        }
+        
+      }
+      
+
+      // Convert it into an object:
+      const formJson = Object.fromEntries(formData.entries());
+      
+      
+      console.log(formJson);
+      
+      // Update for edit route
+      //const response = await AddNewProduct(formJson);
+
+    })();
+
+  }
+
+  
+ 
+
+  
+
+
+  function handleInputChange(e){
+    const { name, value } = e.target;
+     // Update the state with the new value for the specific input
+     setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      [name]: value,
+    }));
+  }
    
    
 
     return(
         <>
-        {isAlert?(isSuccess?<Alert type={'success'} message={response}/>:<Alert type={'warning'} message={response}/>)
-        :null}
+        
 
         <div className="NewProductSection">
             <div className="NewProductBox">
@@ -139,18 +216,18 @@ export default function EditProductForm(){
                 </div>
 
                 {visible==1?(<h1> Product details</h1>):(<h1>Product images</h1>)}
-                <form className="NewProductForm"  encType="multipart/form-data">
+                <form className="NewProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>
-                        <input type="text" id={nameId} name="name" value={productInfo?(productInfo.data.name):("")} />
+                        <input type="text" id={nameId} name="name" onChange={handleInputChange} value= {inputValues.name} />
                     </div>
                    
 
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={priceId}>Product Price</label>
-                        <input type="text" id={priceId}  name="price" value={productInfo?(productInfo.data.price):("")}/>
+                        <input type="text" id={priceId}  name="price" onChange={handleInputChange} value={inputValues.price}/>
                     </div>
                   
 
@@ -165,18 +242,18 @@ export default function EditProductForm(){
                                     
                     <div className="radioBtn">
                     <label htmlFor={apparelcategoryId} >Apparel</label>
-                    <input type="radio" id= {apparelcategoryId} name="category" value="Apparel" checked={productInfo?(productInfo.data.category.name == "Apparel"?(true):(false)):("")}/>
+                    <input type="radio" id= {apparelcategoryId} name="category" onChange={handleInputChange} value="Apparel" checked={inputValues?(inputValues.category == "Apparel"?(true):(false)):("")}/>
                     </div>
 
                     <div className="radioBtn">
                     <label htmlFor={accessoriescategoryId} >Accessories</label>
-                    <input type="radio" id= {accessoriescategoryId} name="category" value="Accessories" checked={productInfo?(productInfo.data.category.name == "Accessories"?(true):(false)):("")} />
+                    <input type="radio" id= {accessoriescategoryId} name="category" onChange={handleInputChange} value="Accessories" checked={inputValues?(inputValues.category == "Accessories"?(true):(false)):("")} />
                     </div>
 
 
                     <div className="radioBtn">
                     <label htmlFor={equipmentcategoryId} >Equipment</label>
-                    <input type="radio" id= {equipmentcategoryId} name="category" value="Equipment" checked={productInfo?(productInfo.data.category.name == "Equipment"?(true):(false)):("")} />
+                    <input type="radio" id= {equipmentcategoryId} name="category" onChange={handleInputChange} value="Equipment" checked={inputValues?(inputValues.category == "Equipment"?(true):(false)):("")} />
                     </div>   
 
 
@@ -190,30 +267,29 @@ export default function EditProductForm(){
 
                         <div className={visible==1?("formField"):("formfield hidden")}>
                             <label htmlFor={featuresId}>New Features</label>
-                            <textarea id={featuresId} name="features" value={productInfo?(productInfo.data.features):("")}/>  
+                            <textarea id={featuresId} name="features" onChange={handleInputChange} value={inputValues.features}/>  
 
                         </div>
                    
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={commentsId}>Comments</label>
-                        <textarea id={commentsId} name="comments" value={productInfo?(productInfo.data.comments):("")}/>
+                        <textarea id={commentsId} name="comments" onChange={handleInputChange} value={inputValues.comments}/>
 
                     </div>
 
                     
                     <div className={visible==2?("selectedImages"):(" hidden")}>
                         {selectedFiles?(selectedFiles.map((file,index)=>(
-                            
+                        
+                              <div className="selectedImageContainer"key={index}>
 
-                            <div className="selectedImageContainer"key={index}>
-                            <img className="selectedImage" src={URL.createObjectURL(file)} />
-                            {/* Check ()=> handleDelete(index) */}
-                            <button className="deleteImageBtn" onClick={(event) => handleDelete(event,index)}>X</button>
-                            </div>
+                            {typeof file === "string"?(<img className="selectedImage" src={file} />):(<img className="selectedImage" src={URL.createObjectURL(file)} />)}
+                              {/* Check ()=> handleDelete(index) */}
+                              <button className="deleteImageBtn" onClick={(event) => handleDelete(event,index)}>X</button>
+                              </div>
                             
-                           
-                            
+ 
                         )
 
                         )): ("...Loading")}
