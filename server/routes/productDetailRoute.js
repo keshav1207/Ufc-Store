@@ -33,10 +33,14 @@ router.delete('/:productId',asyncHandler( async function(req, res, next) {
         // Get cloudinary Public Id stored in mongoDB
         const result = await Product.findById(productId).select('-_id cloudinaryPublicId').exec();
 
-        const publicId = result. cloudinaryPublicId;
+        const publicIds = result. cloudinaryPublicId;
+        console.log(publicIds);
 
-        //Delete Product from Cloudinary
-        const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
+        // //Delete Product from Cloudinary
+        for(const Id of publicIds){
+                const cloudinaryResult = await cloudinary.uploader.destroy(Id);
+        }
+   
         
 
 
