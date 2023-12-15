@@ -9,6 +9,8 @@ const addProductRoute = require('./routes/addProductRoute')
 const categoryRoute = require("./routes/categoryRoute")
 const productDetailRoute = require("./routes/productDetailRoute")
 const getAllProductsRoute = require("./routes/getAllProductsRoute")
+const editProductRoute = require("./routes/editProductRoute")
+
 
 require('dotenv').config();
 const port = process.env.PORT|5000
@@ -42,6 +44,7 @@ app.use('/api/users', userRoute);
 app.use('/api/addProduct', addProductRoute);
 app.use('/api/categories', categoryRoute);
 app.use('/api/product', productDetailRoute);
+app.use('/api/editProduct', editProductRoute);
 app.use('/api/manageProducts',getAllProductsRoute);
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
