@@ -10,7 +10,7 @@ export default function EditProductForm(){
 
   const editProductId = useSelector((state) => state.editProductId.productId);
 
-  const[productInfo,setProductInfo] = useState(null);
+ 
 
 
   const [inputValues, setInputValues] = useState({
@@ -26,7 +26,6 @@ export default function EditProductForm(){
     const fetchData =  async ()=>{
       try {
           const response = await ProductDetail(editProductId);
-          setProductInfo(response);
           setSelectedFiles(response.data.images)
 
 
