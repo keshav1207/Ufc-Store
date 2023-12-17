@@ -3,6 +3,7 @@ import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import  {useDispatch}  from 'react-redux';
 import  { useSelector}  from 'react-redux';
 import { ProductDetail } from "../apicalls/productDetail";
+import { EditProduct } from "../apicalls/editProduct";
 
 export default function EditProductForm(){
 
@@ -177,8 +178,11 @@ export default function EditProductForm(){
       
       console.log(formJson);
       
-      // Update for edit route
-      //const response = await AddNewProduct(formJson);
+      
+      const response = await EditProduct(editProductId,formJson);
+      console.log(response);
+
+      dispatch(editFormToggle());
 
     })();
 

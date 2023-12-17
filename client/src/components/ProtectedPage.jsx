@@ -9,11 +9,13 @@ export default function ProtectedPage({children}){
     const validateToken = async () => {
     
         try {
+            
             const response = await CurrentUser();
-            console.log(response.success);
+            
+            console.log(response);
             if(response.success){
-            console.log("validate token success");
             setUser(response.success);
+
             }
     
             else{
@@ -32,7 +34,10 @@ export default function ProtectedPage({children}){
 
     useEffect(()=>{
         if(localStorage.getItem("token")){
+           
             validateToken();
+           
+            
         }
 
         else{

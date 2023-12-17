@@ -1,9 +1,9 @@
-import axios from 'axios';
+import { axiosMultiFormInstance } from "./axiosMultiFormInstance";
 
-export const EditProduct = async function(productId){
+export const EditProduct = async function(productId,payload){
     try {
         
-        const response = await axios.put(`http://localhost:5000/api/editProduct/${productId}`);
+        const response = await axiosMultiFormInstance.put(`http://localhost:5000/api/editProduct/${productId}`,payload);
         
         return response.data;
         

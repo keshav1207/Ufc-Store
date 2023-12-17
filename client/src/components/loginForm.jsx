@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(){
 
+  const[logIn,setLogIn] = useState(0);
+
     //Generating unique ids
    
     const emailId = useId();
@@ -77,6 +79,7 @@ export default function LoginForm(){
 
            successType();
             showAlert();
+            setLogIn(1);
 
             
   
@@ -99,7 +102,7 @@ export default function LoginForm(){
       if(localStorage.getItem("token")){
         navigate("/");
       }
-  },[]);
+  },[logIn]);
 
     return(
         <>
