@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CurrentUser } from "../apicalls/users";
+import { GetUser} from '../apicalls/getUser'
 import { useNavigate } from "react-router-dom";
 
 export default function ProtectedPage({children}){
@@ -9,8 +9,8 @@ export default function ProtectedPage({children}){
     const validateToken = async () => {
     
         try {
-            
-            const response = await CurrentUser();
+            const {currentUser} = GetUser();
+            const response = currentUser;
             
             console.log(response);
             if(response.success){
@@ -33,7 +33,7 @@ export default function ProtectedPage({children}){
 
 
     useEffect(()=>{
-        if(localStorage.getItem("token")){
+        if(localStorage.getItem('token')){
            
             validateToken();
            

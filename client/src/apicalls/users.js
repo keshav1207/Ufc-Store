@@ -1,4 +1,9 @@
-import { axiosInstance } from "./axiosInstance";
+import axiosInstance ,{ setAuthToken } from "./axiosInstance";
+import  {useDispatch,useSelector}  from 'react-redux';
+import { saveToken } from "../redux/jwtSlice";
+
+
+
 
 
 //Register User
@@ -17,9 +22,20 @@ export const RegisterUser= async function(payload){
 
 // Login User
 export const LoginUser = async function(payload){
+    const dispatch = useDispatch();
+   
     try {
+
+        
         const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
-        localStorage.setItem('token', response.data.token);
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+
+        dispatch(saveToken(token));
+
+        setAuthToken(token);
+        
+        
         return response.data.msg;
     } catch (error) {
         if(error.response){
@@ -29,19 +45,3 @@ export const LoginUser = async function(payload){
 }
 
 
-// Get Current User
-export const CurrentUser = async function(){
-    try {
-        
-        console.log("axios currentUser function");
-        const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
-        console.log(`axios response is ${response}`);
-        return response.data;
-        
-    } catch (error) {
-        console.log("axios currentUser function error");
-        if(error.response){
-            return `${error.response.data.msg}`
-        } 
-    }
-}
