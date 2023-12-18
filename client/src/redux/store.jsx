@@ -3,6 +3,7 @@ import filterReducer from './filterSlice'
 import addProductFormReducer from './addProductFormSlice'
 import editProductIdReducer from './editProductIdSlice';
 import editFormVisibilityReducer from './editFormVisibilitySlice'
+import jwtReducer from './jwtSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     addProductForm: addProductFormReducer,
     editProductId: editProductIdReducer,
     editFormVisibility: editFormVisibilityReducer,
+    token: jwtReducer,
   },
   
     
