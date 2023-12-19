@@ -2,12 +2,17 @@ import '../index.css'
 import { useId, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Alert from './alert';
-import { LoginUser } from '../apicalls/users';
 import { useNavigate } from "react-router-dom";
+import axiosInstance  from "../apicalls/axiosInstance";
+import { setAuthToken } from "../apicalls/axiosInstance"
+import  {useDispatch}  from 'react-redux';
+import { saveToken } from "../redux/jwtSlice";
 
 export default function LoginForm(){
 
+  const dispatch = useDispatch();
   const[logIn,setLogIn] = useState(0);
+ 
 
     //Generating unique ids
    
@@ -48,6 +53,9 @@ export default function LoginForm(){
         password:""
       });
 
+
+     
+
       const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevState) => ({
@@ -60,11 +68,36 @@ export default function LoginForm(){
 
         const[response,setResponse] = useState("");
 
+        const LoginUser = async (payload) => { 
+        try {
+    
+          
+          const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
+          const token = response.data.token;
+          localStorage.setItem('token', token);
+  
+          dispatch(saveToken(token));
+  
+          setAuthToken(token);
+
+          return response.data.msg;
+        
+          
+      } catch (error) {
+          if(error.response){
+              return (error.response.data.msg);
+          } 
+      }
+      }
+      
+
       function submitForm(event){
+       
         (async() =>{
           try {
             event.preventDefault();
-            const response = await LoginUser(formData);
+            const data = await LoginUser(formData);
+            const response =  data;
             console.log(`the response is: ${response}`)
             setResponse(response);
             

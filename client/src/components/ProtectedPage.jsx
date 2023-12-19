@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetUser} from '../apicalls/getUser'
+import  GetUser from '../apicalls/getUser'
 import { useNavigate } from "react-router-dom";
 
 export default function ProtectedPage({children}){
