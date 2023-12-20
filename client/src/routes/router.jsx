@@ -2,10 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./home";
 import Register from "./register";
 import Login from "./login";
-import ProtectedPage from "../components/ProtectedPage";
+import {ProtectedPage} from "../components/ProtectedPage";
 import Category from "./category";
 import Product_Detail from "./product_detail";
-
 import ManageProductsPage from "./manageProducts";
 
 

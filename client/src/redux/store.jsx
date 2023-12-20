@@ -11,7 +11,7 @@ export const store = configureStore({
     addProductForm: addProductFormReducer,
     editProductId: editProductIdReducer,
     editFormVisibility: editFormVisibilityReducer,
-    token: jwtReducer,
+    jwt: jwtReducer,
   },
   
     

@@ -29,5 +29,5 @@ export default function GetUser(){
     };
 
 
-    return {data};
+    return data;
 }

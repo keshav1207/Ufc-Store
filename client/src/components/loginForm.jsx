@@ -75,9 +75,11 @@ export default function LoginForm(){
           const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
           const token = response.data.token;
           localStorage.setItem('token', token);
-  
+          console.log("Before dispatch(saveToken)");
+          console.log(token);
           dispatch(saveToken(token));
-  
+          console.log("After dispatch(saveToken)");
+          console.log('Token dispatched:', token);
           setAuthToken(token);
 
           return response.data.msg;

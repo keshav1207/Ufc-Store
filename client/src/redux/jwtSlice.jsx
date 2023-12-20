@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    token: "",
+    token: null,
   }
 
   const jwtSlice = createSlice({
-    name: 'token',
+    name: 'jwt',
     initialState,
     reducers: {
         saveToken: (state,action) => {
