@@ -5,12 +5,11 @@ import Alert from './alert';
 import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
-import  {useDispatch}  from 'react-redux';
-import { saveToken } from "../redux/jwtSlice";
+
 
 export default function LoginForm(){
 
-  const dispatch = useDispatch();
+  
   const[logIn,setLogIn] = useState(0);
  
 
@@ -75,11 +74,9 @@ export default function LoginForm(){
           const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
           const token = response.data.token;
           localStorage.setItem('token', token);
-          console.log("Before dispatch(saveToken)");
-          console.log(token);
-          dispatch(saveToken(token));
-          console.log("After dispatch(saveToken)");
-          console.log('Token dispatched:', token);
+          
+         
+          
           setAuthToken(token);
 
           return response.data.msg;

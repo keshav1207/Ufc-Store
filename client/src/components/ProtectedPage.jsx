@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
-import  {useSelector}  from 'react-redux';
+
 
 export  function ProtectedPage({children}){
     const [user,setUser] = useState(false);
     const navigate = useNavigate();
 
     
-    const token = useSelector((state) => state.jwt.token);
-    console.log(token);
+    const token = localStorage.getItem('token');
+    
 
     const getUser = async () => {
         try {
@@ -54,6 +54,7 @@ export  function ProtectedPage({children}){
 
 
     useEffect(()=>{
+        
         if(localStorage.getItem('token')){
            
             validateToken();

@@ -1,11 +1,11 @@
 import { useEffect ,useState} from "react";
 import axiosInstance ,{ setAuthToken } from "./axiosInstance";
-import  {useSelector}  from 'react-redux';
+
 
 
 export default function GetUser(){
     const [data, setData] = useState(null);
-    const token = useSelector((state) => state.token.token);
+    const token = localStorage.getItem('token');
     useEffect(()=>{
         fetchData();
     },[]);
