@@ -65,7 +65,7 @@ export  function ProtectedPage({children}){
             navigate("/login");
         }
         
-    },[]);
+    },[token]);
 
 
     return(

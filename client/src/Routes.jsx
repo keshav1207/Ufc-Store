@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./home";
-import Register from "./register";
-import Login from "./login";
-import {ProtectedPage} from "../components/ProtectedPage";
-import Category from "./category";
-import Product_Detail from "./product_detail";
-import ManageProductsPage from "./manageProducts";
+import Home from "./pages/home";
+import Register from "./pages/register";
+import Login from "./pages/login";
+import {ProtectedPage} from "./components/ProtectedPage";
+import Category from "./pages/category";
+import Product_Detail from "./pages/product_detail";
+import ManageProductsPage from "./pages/manageProducts";
 
 
 const Router = () => {
