@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 
 export default function SearchResultsPage(){
     const {searchQuery} =  useParams();
-    const [numberOfProducts, setNumberOfProducts] = useState(null);
+    const [numberOfProducts, setNumberOfProducts] = useState(0);
     
     useEffect(()=>{
 
@@ -19,6 +19,7 @@ export default function SearchResultsPage(){
                 const results = await getSearchResults(searchQuery);
                 if(results.data.length>0){
                     setNumberOfProducts(results.data.length);
+                    
                 }
                 else{
                     setNumberOfProducts(0);
@@ -43,7 +44,7 @@ export default function SearchResultsPage(){
 
         <NavBar/>
 
-        <DisplaySearchResults numberOfProductsFound={numberOfProducts}  data ={searchQuery.toUpperCase()}/>
+        <DisplaySearchResults numberOfProductsFound={numberOfProducts}  querydata ={searchQuery.toUpperCase()}/>
 
 
         <Footer/>
