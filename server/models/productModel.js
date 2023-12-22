@@ -36,7 +36,7 @@ const productSchema = new mongoose.Schema({
         required:true,
     },
 
-    // This is used to delete the images from Cloudinary in case we delete the produt
+    // This is used to delete the images from Cloudinary in case we delete the product
     cloudinaryPublicId: {
         type: Array,
         default: [],
@@ -56,6 +56,10 @@ productSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object
       return `/products/${this._id}`;
       })
+
+
+//Create a text index to do the text search for the searchResultsPage
+productSchema.index({name: 'text'});
 
 const Product = mongoose.model("products", productSchema);
 

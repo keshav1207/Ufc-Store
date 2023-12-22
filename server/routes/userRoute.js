@@ -38,7 +38,7 @@ router.post('/register', asyncHandler( async function(req, res, next) {
 
   /* Login to user account. */
 router.post('/login', asyncHandler(async function(req,res,next){
-    
+   
     //Verify if user exist
     const userExist = await User.findOne({ email: req.body.email }).exec();
     if(!userExist){
@@ -65,7 +65,7 @@ router.post('/login', asyncHandler(async function(req,res,next){
 
     // Create Json web token and send it to user
     
-    const token = jwt.sign({userId: userExist._id},process.env.SECRET_KEY,{ expiresIn: '1d' });
+    const token = jwt.sign({userId: userExist._id},process.env.SECRET_KEY,{expiresIn: '1d'});
 
     
     
@@ -79,9 +79,9 @@ router.post('/login', asyncHandler(async function(req,res,next){
 
 /* Get user information. */
 
-router.get('/get-user-info',authMiddleware,asyncHandler(async(req,res)=>{
-
-    console.log("router function")
+router.get('/getUserInfo',authMiddleware,asyncHandler(async(req,res)=>{
+   
+    
     const user = await User.findById(req.body.userId).exec();
 
     if(!user){

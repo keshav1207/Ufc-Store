@@ -6,14 +6,27 @@ require('dotenv').config();
 const authMiddleware = asyncHandler(async(req,res,next)=>{
     
     
-    const token = req.header("authorization").split(" ")[1];
 
-    const decryptedToken = jwt.verify(token,process.env.SECRET_KEY);
+   
+    const token = req.header("authorization").split(" ")[1];
+   
+    
+    
+    
+    try {
+        const decryptedToken = jwt.verify(token,process.env.SECRET_KEY);
+       
+    
+        req.body.userId = decryptedToken.userId;
+
+        next() ;  
+    } catch (error) {
+        console.log(error.message);
+    }
+    
 
     
-    req.body.userId = decryptedToken.userId;
-
-    next() ;  
+    
 })
 
 module.exports = authMiddleware;
