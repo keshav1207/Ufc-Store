@@ -3,9 +3,36 @@ import Footer from '../components/footer'
 import NavBar from '../components/navbar'
 import '../index.css'
 import DisplaySearchResults from '../components/displaySearchResults'
+import { getSearchResults } from '../apicalls/getSearchResults'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 export default function SearchResultsPage(){
+    const {searchQuery} =  useParams();
+    const [numberOfProducts, setNumberOfProducts] = useState(null);
     
+    useEffect(()=>{
+
+        const fetchData = async() =>{
+            try {
+                
+                const results = await getSearchResults(searchQuery);
+                if(results.data.length>0){
+                    setNumberOfProducts(results.data.length);
+                }
+                else{
+                    setNumberOfProducts(0);
+                }
+                
+            } catch (error) {
+                console.log(error);
+            }
+
+        };
+
+        fetchData();
+        
+    },[])
    
     return(
         <>
@@ -16,7 +43,7 @@ export default function SearchResultsPage(){
 
         <NavBar/>
 
-        <DisplaySearchResults/>
+        <DisplaySearchResults numberOfProductsFound={numberOfProducts}  data ={searchQuery.toUpperCase()}/>
 
 
         <Footer/>

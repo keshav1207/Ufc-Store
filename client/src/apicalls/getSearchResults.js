@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const getSearchResults = async function(query){
+export const getSearchResults = async function(searchQuery){
     try {
        
-        const response = await axios.get(`http://localhost:5000/api/searchResults/${query}`);
+        const response = await axios.get(`http://localhost:5000/api/searchResults/${searchQuery}`);
         
         return response.data;
         

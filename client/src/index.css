@@ -693,3 +693,17 @@ input[type=radio] {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+
+/* Search Results page*/
+.ResultsContainer{
+  margin-top: 8rem;
+  height: 67%;
+  padding: 1rem 4rem;
+  display: flex;
+ flex-direction: column;
+}
+
+.ResultsHeading{
+  text-align: center;
+}
