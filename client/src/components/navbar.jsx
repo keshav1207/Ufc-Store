@@ -5,8 +5,16 @@ import {  AiOutlineSearch } from "react-icons/ai";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
 import ufclogo from "../assets/logo.avif"
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function NavBar (){
+
+    const [results,setResults] = useState("");
+
+    const handleInputChange = (event) => {
+        setResults(event.target.value);
+      };
+
     return(
         <div className="navBar">
 
@@ -31,10 +39,15 @@ export default function NavBar (){
 
        <div className="search">
             <form >
-                <input name='search' placeholder = "Search Store"/>
+                <input name='search' placeholder = "Search Store" value={results} onChange={handleInputChange}/>
             </form>
 
+
+            <Link to={`/searchResults/${results}`}>
+
             <AiOutlineSearch id="navSvg"/>
+
+            </Link>
        </div>
 
        <div className="user">
