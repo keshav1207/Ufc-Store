@@ -4,14 +4,34 @@ const asyncHandler = require("express-async-handler");
 
 const Product = require("../models/productModel");
 
-router.get('/:searchQuery',asyncHandler( async function(req, res, next) {
+router.get('/:searchQuery/:optionalFilter?',asyncHandler( async function(req, res, next) {
 
-    const searchQuery = req.params['searchQuery'];
+    const optionalFilter = req.params['optionalFilter']|| null;
 
-    const searchResults = await Product.find({ $text: { $search: searchQuery } }).exec();
+    const searchQuery = req.params.searchQuery;
 
 
-    res.json({success:true, data: searchResults});
+    let sortArguments;
+    if(optionalFilter){
+        const arrayArguments = optionalFilter.split(","); 
+        const fieldName = arrayArguments[0].toString();
+        const number = parseInt(arrayArguments[1])
+      
+        sortArguments =  { [fieldName]:number};
+    }else{
+         sortArguments = {"createdAt":1};
+    }
+
+    const searchResults = await Product.find({ $text: { $search: searchQuery } }).sort(sortArguments).exec();
+
+   
+    if(searchResults.length == 0){
+        res.json({success:false, data:{msg:"Not found"}}); 
+    }
+    else{
+        res.json({success:true, data: searchResults});
+    }
+    
 
 
 }))
