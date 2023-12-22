@@ -4,7 +4,7 @@ import NavBar from '../components/navbar'
 import '../index.css'
 import DisplaySearchResults from '../components/displaySearchResults'
 
-export default function searchResults(){
+export default function SearchResultsPage(){
     
    
     return(

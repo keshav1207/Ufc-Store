@@ -6,6 +6,7 @@ import {ProtectedPage} from "./components/ProtectedPage";
 import Category from "./pages/categoryPage";
 import Product_Detail from "./pages/product_detailPage";
 import ManageProductsPage from "./pages/manageProductsPage";
+import SearchResultsPage from "./pages/searchResultsPage";
 
 
 const Router = () => {
@@ -43,6 +44,12 @@ const Router = () => {
     {
       path: "/manageproduct",
       element: < ManageProductsPage/>,
+     
+    },
+
+    {
+      path: "/searchResults/:searchQuery",
+      element: < SearchResultsPage/>,
      
     },
 
