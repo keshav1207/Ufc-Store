@@ -7,6 +7,11 @@ import Category from "./pages/categoryPage";
 import Product_Detail from "./pages/product_detailPage";
 import ManageProductsPage from "./pages/manageProductsPage";
 import SearchResultsPage from "./pages/searchResultsPage";
+import AboutUsPage from "./pages/aboutUsPage";
+import ContactUsPage from "./pages/contactUsPage";
+import CookiePolicyPage from "./pages/cookiePolicyPage";
+import PrivatePolicyPage from "./pages/privatePolicyPage";
+import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
 
 
 const Router = () => {
@@ -50,6 +55,36 @@ const Router = () => {
     {
       path: "/searchResults/:searchQuery",
       element: < SearchResultsPage/>,
+     
+    },
+
+    {
+      path: "/aboutUs",
+      element: < AboutUsPage/>,
+     
+    },
+
+    {
+      path: "/contactUs",
+      element: < ContactUsPage/>,
+     
+    },
+
+    {
+      path: "/cookiePolicy",
+      element: < CookiePolicyPage/>,
+     
+    },
+
+    {
+      path: "/privatePolicy",
+      element: < PrivatePolicyPage/>,
+     
+    },
+
+    {
+      path: "/shippingsAndReturns",
+      element: < ShippingsAndReturnsPage/>,
      
     },
 
