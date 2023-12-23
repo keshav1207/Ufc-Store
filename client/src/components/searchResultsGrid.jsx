@@ -19,6 +19,7 @@ export default function SearchResultsGrid({textSearched}){
                 try {
                     const response = await getSearchResults(textSearched,filter);
                     setArray(response.data);
+                   
                 } catch (error) {
                     console.log(error);
                 }
@@ -26,7 +27,7 @@ export default function SearchResultsGrid({textSearched}){
             };
 
             fetchData();
-        },[filter]);
+        },[filter,textSearched]);
 
 
 
@@ -56,7 +57,7 @@ export default function SearchResultsGrid({textSearched}){
                 </Link>
                        
 
-                ))):(<p>Loading...</p>)
+                ))):(<h3>Please try another keyword</h3>)
                 
                 
                 }

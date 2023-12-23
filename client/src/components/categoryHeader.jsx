@@ -3,18 +3,20 @@ import EquipmentHeaderPic from "../assets/EquipmentHeaderPic.webp";
 import ApparelHeaderPic from "../assets/ApparelHeaderPic.webp";
 
 
-export default function CategoryHeader(props){
-    
+export default function CategoryHeader({categorySelected}){
+
+    console.log(categorySelected);
+
     let image,header, paragraph;
 
-    if(props.categorySelected == "apparel"){
+    if(categorySelected == "Apparel"){
         header = "UFC T-SHIRTS, JERSEYS, GEAR";
         paragraph = "From UFC t-shirts to durable UFC jerseys, get your hands on the very latest MMA apparel. Browse our selection of official UFC gear.Shop Now!"
         image = AccessoriesHeaderPic;
         
 
 
-    }else if(props.categorySelected == "equipment"){
+    }else if(categorySelected == "Equipment"){
         header = "UFC EQUIPMENT";
         paragraph = "If you're an MMA fan and looking to buy some high-quality equipment, look no further than the official UFC store. Offering the latest and greatest in UFC equipment including full body training, the official UFC store will have everything you need for your next training session. From official MMA gloves to MMA mouth guards, get your gear today!"
         image = EquipmentHeaderPic;
@@ -40,7 +42,7 @@ export default function CategoryHeader(props){
             </div>
 
             <div className="CatHeaderImg">
-                <img src={image} alt={props.category} />
+                <img src={image} alt={categorySelected} />
 
             </div>
 

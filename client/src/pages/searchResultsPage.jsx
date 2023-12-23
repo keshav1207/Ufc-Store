@@ -33,7 +33,7 @@ export default function SearchResultsPage(){
 
         fetchData();
         
-    },[])
+    },[searchQuery])
    
     return(
         <>

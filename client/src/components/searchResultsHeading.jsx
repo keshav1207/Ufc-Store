@@ -1,5 +1,6 @@
 
 export default function SearchResultsHeading({productsTotal, textSearched}){
+  
     
 return(
     <>
