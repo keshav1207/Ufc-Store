@@ -13,7 +13,7 @@ export default function GetUser(){
     const fetchData = async() =>{  
         try {
         
-            console.log("axios currentUser function");
+            
            
             setAuthToken(token);
             const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
@@ -21,7 +21,7 @@ export default function GetUser(){
             setData(response.data) ;
             
         } catch (error) {
-            console.log("axios currentUser function error");
+           
             if(error.response){
                 setData(`${error.response.data.msg}`) ;
             } 

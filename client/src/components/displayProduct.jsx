@@ -38,7 +38,7 @@ export default function DisplayProduct(){
         else{
             setImageSelected(0);
         }
-        console.log(imageSelected,numberOfImages);
+      
        
        
       };

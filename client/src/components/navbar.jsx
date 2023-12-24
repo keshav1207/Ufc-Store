@@ -5,7 +5,8 @@ import {  AiOutlineSearch } from "react-icons/ai";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
 import ufclogo from "../assets/logo.avif"
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
 
 export default function NavBar (){
 
@@ -31,6 +32,33 @@ export default function NavBar (){
                 navigate(`/searchResults/${results}`);
             }
     }
+
+    const[userName, setUserName] = useState(null);
+    const token = localStorage.getItem('token');
+
+    const fetchData = async() =>{  
+        try {
+        
+            
+           
+            setAuthToken(token);
+            const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+            console.log(`axios response is ${JSON.stringify(response.data.data.name)}`);
+            setUserName(response.data.data.name) ;
+            
+        } catch (error) {
+           
+            if(error.response){
+                console.log(`${error.response.data.msg}`) ;
+            } 
+        }
+    };
+
+    useEffect(()=>{
+        fetchData();
+    },[]);
+
+
 
     return(
         <div className="navBar">
@@ -64,7 +92,9 @@ export default function NavBar (){
        </div>
 
        <div className="user">
-            <CiUser id="navSvg"/>
+
+        {userName?(<div>{userName}</div>):( <CiUser id="navSvg"/>)}
+           
        </div>
 
        <div className="cart">
