@@ -4,7 +4,7 @@ import {  CiUser } from "react-icons/ci";
 import {  AiOutlineSearch } from "react-icons/ai";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
 import ufclogo from "../assets/logo.avif"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function NavBar (){
@@ -12,8 +12,25 @@ export default function NavBar (){
     const [results,setResults] = useState("");
 
     const handleInputChange = (event) => {
+          
         setResults(event.target.value);
       };
+
+    const handleSubmit = (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    }
+
+    const navigate = useNavigate();
+
+
+    const handleKeyPress = (event) => {
+        console.log(results);
+            if(event.key == 'Enter' && results != ""){
+                 
+                navigate(`/searchResults/${results}`);
+            }
+    }
 
     return(
         <div className="navBar">
@@ -38,16 +55,12 @@ export default function NavBar (){
      
 
        <div className="search">
-            <form >
-                <input name='search' placeholder = "Search Store" value={results} onChange={handleInputChange}/>
+            <form onSubmit={handleSubmit} >
+                <input name='search' placeholder = "Search Store" value={results} onChange={handleInputChange} onKeyDown={handleKeyPress} />
             </form>
 
-
-            <Link to={`/searchResults/${results}`}>
-
-            <AiOutlineSearch id="navSvg"/>
-
-            </Link>
+        {results != ""?(<Link to={`/searchResults/${results}`}><AiOutlineSearch id="navSvg"/></Link>):(<AiOutlineSearch id="navSvg"/>)}
+            
        </div>
 
        <div className="user">

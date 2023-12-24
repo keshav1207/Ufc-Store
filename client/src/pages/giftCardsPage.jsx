@@ -1,21 +1,20 @@
-import CookiePolicyInfo from "../components/cookiePolicyInfo"
 import Banner from '../components/banner'
 import Footer from '../components/footer'
 import NavBar from '../components/navbar'
+import GiftCardsInfo from '../components/giftCardsInfo'
 
-export default function CookiePolicyPage(){
+export default function GiftCardsPage(){
     return(
         <>
-
-        <main>
+         <main>
         <Banner/>
         <NavBar/>
-        <CookiePolicyInfo/>
+        <GiftCardsInfo/>
         <Footer/>
         </main>
-
+        
         </>
 
-
     )
+
 }
