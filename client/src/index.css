@@ -413,7 +413,7 @@ select{
 
 
 .bigPic {
-  width: 50%;
+  display: flex;
   border: dotted 1px black;
 
 
@@ -425,7 +425,16 @@ select{
 
 }
 
+.arrows{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: grey;
+}
+
 .textbox{
+  
   background-color:  #fff ;
   padding: 2rem;
   gap: 2rem;

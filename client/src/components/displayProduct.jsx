@@ -2,6 +2,7 @@
 import { ProductDetail } from "../apicalls/productDetail"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { GoArrowLeft,GoArrowRight } from "react-icons/go";
 export default function DisplayProduct(){
 
 
@@ -14,6 +15,34 @@ export default function DisplayProduct(){
     //Create state to hold the array of features
     const [featuresArray, setFeatures] = useState([]);
 
+    const[numberOfImages, setNumberOfImages] = useState(0)
+    const[imageSelected, setImageSelected] = useState(0);
+
+
+    const leftClick = () => {
+        
+        if(imageSelected > 0){
+            setImageSelected((previmageSelected)=> previmageSelected -1);
+        }
+        else{
+            setImageSelected(numberOfImages-1);
+        }
+        
+      };
+
+      const rightClick = () => {
+        
+        if(imageSelected < numberOfImages-1){
+            setImageSelected((previmageSelected)=> previmageSelected +1);
+        }
+        else{
+            setImageSelected(0);
+        }
+        console.log(imageSelected,numberOfImages);
+       
+       
+      };
+
     useEffect(()=>{
             const fetchData =  async ()=>{
                 try {
@@ -22,6 +51,8 @@ export default function DisplayProduct(){
 
                     // We split the features using the delimetre newline before storing it in the featuresArray
                     setFeatures(response.data.features.split("\n"));
+
+                    setNumberOfImages(response.data.images.length);
                    
                     console.log(productInfo)
 
@@ -49,7 +80,22 @@ export default function DisplayProduct(){
             </div>
 
             <div className="bigPic">
-                <img  src= {productInfo?(productInfo.images[0]):("...Loading")} alt="" />
+
+                {/* Add condition that product need to have more than one product for arrows to appear */}
+                {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={leftClick}>
+                <GoArrowLeft />
+                </div>):(null)
+                ):( null)}
+                
+
+                <div>
+                <img  src= {productInfo?(productInfo.images[imageSelected]):("...Loading")} alt="" />
+                </div>
+                
+                {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={rightClick}>
+                <GoArrowRight />
+                </div>):(null)
+                ):( null)}
                 
 
             </div>
