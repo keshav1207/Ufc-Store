@@ -113,7 +113,8 @@ export default function NavBar (){
 
        <div className="user">
 
-        {loading?(<div>...Loading</div>):(userName?(<div>{userName}</div>):(<Link to={'/login'}><CiUser id="navSvg"/></Link> ))}
+   
+        {loading?(<div>...Loading</div>):(userName?(<Link to={"/userDetails"}><div>{userName}</div></Link>):(<Link to={'/login'}><CiUser id="navSvg"/></Link> ))}
 
         
            

@@ -13,6 +13,7 @@ import CookiePolicyPage from "./pages/cookiePolicyPage";
 import PrivatePolicyPage from "./pages/privatePolicyPage";
 import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
 import GiftCardsPage from "./pages/giftCardsPage";
+import UserDetailsPage from "./pages/userDetailsPage";
 
 
 const Router = () => {
@@ -91,6 +92,12 @@ const Router = () => {
     {
       path: "/giftCards",
       element: < GiftCardsPage/>,
+     
+    },
+
+    {
+      path: "/userDetails",
+      element: < UserDetailsPage/>,
      
     },
 

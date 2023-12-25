@@ -1,6 +1,7 @@
 import Banner from '../components/banner'
 import Footer from '../components/footer'
 import NavBar from '../components/navbar'
+import UserDetails from '../components/userDetails'
 
 export default function UserDetailsPage(){
     return(
@@ -8,7 +9,7 @@ export default function UserDetailsPage(){
          <main>
         <Banner/>
         <NavBar/>
-        
+        <UserDetails/>
         <Footer/>
         </main>
         
