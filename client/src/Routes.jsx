@@ -19,7 +19,7 @@ const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<ProtectedPage>  <Home/> </ProtectedPage> ,    
+      element:<Home/>  ,    
     },
 
     {

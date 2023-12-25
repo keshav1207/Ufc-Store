@@ -35,28 +35,48 @@ export default function NavBar (){
 
     const[userName, setUserName] = useState(null);
     const token = localStorage.getItem('token');
+    console.log('Token:', token);
+    const[loading,setLoading] = useState(false);
 
-    const fetchData = async() =>{  
-        try {
-        
+
+    useEffect( () => {
+
+        const fetchData = async() =>{  
+            try {
+                
+                
+                setAuthToken(token);
+                console.log("Before axios");
+                setLoading(true);
+                const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+                setLoading(false);
+                console.log("After axios");
+                
+                
+                
+                setUserName(response.data.data.name) ;
+                
+            } catch (error) {
+               
+                if(error.response){
+                    console.log(`${error.response.data.msg}`) ;
+                } 
+            }
             
-           
-            setAuthToken(token);
-            const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
-            console.log(`axios response is ${JSON.stringify(response.data.data.name)}`);
-            setUserName(response.data.data.name) ;
-            
-        } catch (error) {
-           
-            if(error.response){
-                console.log(`${error.response.data.msg}`) ;
-            } 
+        };
+
+
+        if(token){
+            fetchData();
         }
-    };
+        
+       
+       
+    },[])
 
-    useEffect(()=>{
-        fetchData();
-    },[]);
+       
+
+    
 
 
 
@@ -93,7 +113,9 @@ export default function NavBar (){
 
        <div className="user">
 
-        {userName?(<div>{userName}</div>):( <CiUser id="navSvg"/>)}
+        {loading?(<div>...Loading</div>):(userName?(<div>{userName}</div>):(<Link to={'/login'}><CiUser id="navSvg"/></Link> ))}
+
+        
            
        </div>
 
