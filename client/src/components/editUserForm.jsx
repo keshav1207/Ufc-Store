@@ -1,12 +1,12 @@
-
-import { useId , useState, useEffect} from "react";
+import { useId , useState, useEffect, useRef} from "react";
 import { useDispatch } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
 
 
+
 export default function EditUserForm({userInformation}){
   const dispatch = useDispatch();
-    console.log(userInformation);
+    
 
     const nameId = useId();
     const emailId = useId();
@@ -17,6 +17,7 @@ export default function EditUserForm({userInformation}){
         name: "",
         email: "" ,
         password:  "",
+        profilePicture:"",
         
         
       });
@@ -27,6 +28,7 @@ export default function EditUserForm({userInformation}){
                     ...prevInputValues,
                     name: userInformation.name,
                     email: userInformation.email,
+                    profilePicture: userInformation.profilePicture,
                     
                     
                   }));
@@ -49,6 +51,37 @@ export default function EditUserForm({userInformation}){
         dispatch(editUserFormToggle());
     }
   
+
+    //This ref will be used to clear the file input name 
+    const hiddenFileInput = useRef(null);
+
+
+    const [selectedImage, setSelectedImage] = useState([]);
+
+    
+    const handleFileUpload = (event) => {
+      
+      //Convert the filelist to an Array
+      const ImageArray = Array.from(event.target.files);
+
+      setSelectedImage(ImageArray);
+      
+        
+        
+    };
+
+
+    const handleDelete = (event) => {
+      event.preventDefault();
+
+      setSelectedImage([])
+
+       //Clear file Input after deleting  image
+      hiddenFileInput.current.value = null;
+      
+    }
+
+    
 
     return(
         <>
@@ -78,10 +111,28 @@ export default function EditUserForm({userInformation}){
       
 <div className="formField">
      <label htmlFor= {pictureId}>Picture</label>
-      <input type="file" name="picture" id={pictureId} />
+      <input type="file" name="picture" id={pictureId} onChange={handleFileUpload}  ref={hiddenFileInput}/>
 
 </div>  
 
+
+    <div className="selectedImages">
+                        {selectedImage?(selectedImage.map((file,index)=>(
+                        
+                              <div className="selectedImageContainer"key={index}>
+
+                            {typeof file === "string"?(<img className="selectedImage" src={file} />):(<img className="selectedImage" src={URL.createObjectURL(file)} />)}
+                              {/* Check ()=> handleDelete(index) */}
+                              <button className="deleteImageBtn" onClick={handleDelete} >X</button>
+                              </div>
+                            
+ 
+                        )
+
+                        )): ("...Loading")}
+                        
+
+     </div>
 
      
 

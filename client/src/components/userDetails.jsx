@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EditUserForm from "./editUserForm";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
 export default function UserDetails(){
-
+    const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const [data,setData] = useState(null);
     const dispatch = useDispatch();
     const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibilityValue);
-    
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
 
     useEffect( () => {
 
@@ -38,8 +38,11 @@ export default function UserDetails(){
         if(token){
             fetchData();
         }
+        else{
+            navigate('/login');
+        }
       
-    },[])
+    },[token, isLoggedOut])
 
 
     console.log(data);
@@ -48,6 +51,13 @@ export default function UserDetails(){
        dispatch(editUserFormToggle());
        
       };
+
+      const handleLogOut = () => {
+        localStorage.removeItem('token');
+        setIsLoggedOut(true);
+        
+       };
+      
 
 
     return(
@@ -58,7 +68,7 @@ export default function UserDetails(){
 
                     <button className="editBtn" onClick={handleEdit}>Edit details</button>
 
-                    <button className="LogOutBtn">Log out</button>
+                    <button className="LogOutBtn" onClick={handleLogOut}>Log out</button>
 
                     {data?(data.role == 'admin'?(<Link to={'/manageproduct'}><button className="manageBtn"> Go to Manage Products Page</button></Link>):(null)):(null)}
                     
