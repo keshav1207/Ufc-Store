@@ -1,9 +1,11 @@
 
 import { useId , useState, useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { editUserFormToggle } from "../redux/editUserFormVisibility";
 
 
 export default function EditUserForm({userInformation}){
-
+  const dispatch = useDispatch();
     console.log(userInformation);
 
     const nameId = useId();
@@ -41,6 +43,11 @@ export default function EditUserForm({userInformation}){
     }));
         
       }
+
+
+    function handleClose(){
+        dispatch(editUserFormToggle());
+    }
   
 
     return(
@@ -48,7 +55,7 @@ export default function EditUserForm({userInformation}){
            
            <div className="editUserBox">
           
-          <button className="closeFormBtn" >X</button>
+          <button className="closeFormBtn" onClick={handleClose}>X</button>
 
           <h1>Edit User details</h1>
            <form className="editUserForm" encType="multipart/form-data" >

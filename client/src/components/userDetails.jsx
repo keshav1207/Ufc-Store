@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
 import { Link } from "react-router-dom";
 import EditUserForm from "./editUserForm";
+import { useDispatch, useSelector } from "react-redux";
+import { editUserFormToggle } from "../redux/editUserFormVisibility";
 export default function UserDetails(){
+
     const token = localStorage.getItem('token');
     const [data,setData] = useState(null);
+    const dispatch = useDispatch();
+    const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibilityValue);
     
 
     useEffect( () => {
@@ -40,7 +45,7 @@ export default function UserDetails(){
     console.log(data);
 
     const handleEdit = () => {
-        
+       dispatch(editUserFormToggle());
        
       };
 
@@ -95,9 +100,11 @@ export default function UserDetails(){
 
            
         </div>
-        <EditUserForm userInformation={data}/>
-        
-        
+       
+           
+        <div className= {editForm?("overlay"):("overlay hideOverlay")}></div>
+        {editForm?( <EditUserForm userInformation={data}/>):(null)}
+   
         
         </>
     )
