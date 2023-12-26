@@ -561,7 +561,7 @@ input[type=radio] {
 }
 
 
-.addProductBtn{
+.addProductBtn, .editUserBtn{
   align-self: center;
   margin-top: 2rem;
   background-color: black;
@@ -571,6 +571,7 @@ input[type=radio] {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
+
 
 .tabs{
   width: 100%;
@@ -669,7 +670,7 @@ input[type=radio] {
   gap: 1rem;
 }
 
-.editBtn, .deleteBtn{
+.editBtn, .deleteBtn, .manageBtn, .LogOutBtn{
    align-self: center;
   background-color: black;
   color: white;
@@ -744,4 +745,58 @@ input[type=radio] {
 
 .ResultsHeading{
   text-align: center;
+}
+
+
+/* User details page*/
+
+.container{
+  margin-top: 8rem;
+  height: 67%;
+  padding: 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+}
+
+.userButtons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfo{
+  display: flex;
+  gap: 1rem;
+
+}
+
+.userDetails{
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+  margin-top: 1.5rem;
+
+}
+
+.editUserForm{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.editUserBox{
+    left: 37%;
+    bottom: 30%;
+    margin-bottom: 2rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
+    z-index: 2;
 }

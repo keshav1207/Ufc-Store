@@ -35,7 +35,6 @@ export default function NavBar (){
 
     const[userName, setUserName] = useState(null);
     const token = localStorage.getItem('token');
-    console.log('Token:', token);
     const[loading,setLoading] = useState(false);
 
 
@@ -46,11 +45,11 @@ export default function NavBar (){
                 
                 
                 setAuthToken(token);
-                console.log("Before axios");
+                
                 setLoading(true);
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
                 setLoading(false);
-                console.log("After axios");
+               
                 
                 
                 

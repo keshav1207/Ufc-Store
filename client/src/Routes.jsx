@@ -50,7 +50,7 @@ const Router = () => {
    
     {
       path: "/manageproduct",
-      element: < ManageProductsPage/>,
+      element: <ProtectedPage>< ManageProductsPage/> </ProtectedPage>,
      
     },
 
