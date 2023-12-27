@@ -26,7 +26,7 @@ router.get('/:searchQuery/:optionalFilter?',asyncHandler( async function(req, re
 
    
     if(searchResults.length == 0){
-        res.json({success:false, data:{msg:"Not found"}}); 
+        res.json({success:false, data:false}); 
     }
     else{
         res.json({success:true, data: searchResults});

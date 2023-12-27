@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
 require('dotenv').config();
 const authMiddleware = require('../middleware/authMiddleware');
+const cloudinary = require( '../config/cloudinaryConfig');
+const upload = require('../middleware/multerMiddleware');
 
 /* Create user account. */
 router.post('/register', asyncHandler( async function(req, res, next) {
@@ -96,6 +98,41 @@ router.get('/getUserInfo',authMiddleware,asyncHandler(async(req,res)=>{
     });
 
 }));
+
+/* Edit user information. */
+
+router.put('/editUserInfo',upload.single('picture'),authMiddleware,asyncHandler(async(req,res)=>{
+
+
+   
+    const{name,email,password} = req.body;
+
+    if(password){
+        const saltRounds = 10;
+        //Hash Password
+        const hashedPassword =  await bcrypt.hash(userPassword, saltRounds);
+        userPassword = hashedPassword;
+        const user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email, password:userPassword}).exec();
+    }
+
+    else{
+        const user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email}).exec();
+    }
+    
+
+    if(!user){
+        throw Error("User not found");
+    }
+
+   return res.
+   json({
+        success: true,
+        msg: "User Information updated successfully",
+        data: user,
+    });
+
+}));
+
 
   module.exports = router;
 
