@@ -6,8 +6,10 @@ import { setAuthTokenMulti } from "../apicalls/axiosMultiFormInstance";
 
 
 
+
 export default function EditUserForm({userInformation}){
   const dispatch = useDispatch();
+  
     
 
     const nameId = useId();
@@ -124,7 +126,11 @@ export default function EditUserForm({userInformation}){
         localStorage.removeItem('token');
       }
 
+      window.location.reload();
+
+      
       dispatch(editUserFormToggle());
+      
 
     })();
 

@@ -2,6 +2,7 @@ import product1 from "../assets/product1.webp"
 import product2 from "../assets/product2.webp"
 import product3 from "../assets/product3.webp"
 import '../index.css'
+import { getNewProducts } from "../apicalls/getNewProducts"
 
 
 export default function ProductDropScreen(){
