@@ -31,8 +31,17 @@ const userSchema = new mongoose.Schema({
 
     profilePicture:{
         type: String,
-        default: "",
-    }
+        default:"",
+    },
+
+    // This is used to delete the profile picture from Cloudinary in case we delete the profile picture
+    cloudinaryPublicId: {
+        type: String,
+        default:"",
+        
+        
+    },
+
     
 
         },

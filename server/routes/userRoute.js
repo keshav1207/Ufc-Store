@@ -103,32 +103,91 @@ router.get('/getUserInfo',authMiddleware,asyncHandler(async(req,res)=>{
 
 router.put('/editUserInfo',upload.single('picture'),authMiddleware,asyncHandler(async(req,res)=>{
 
+    let user, userPicture;
+  
+    const newPicture = req.file;
 
+    // If a new picture was sent or the existing picture was  deleted, this will be type  undefined /undefined. Hence we will need to delete it from cloudinary.
+    const existingPicture = req.body.picture;
+    
+    if( existingPicture == 'undefined'||typeof(existingPicture) == 'undefined'){
+        
+        var publicId = await User.findById(req.body.userId).select('-_id cloudinaryPublicId').exec();
+        publicId = publicId. cloudinaryPublicId;
+
+
+        // In of no profile picture, publicId will be an empty string "", hence no need to delete anything
+        if(publicId !== ""){
+        //Delete image from Cloudinary
+        const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
+
+        //Delete image from mongoDB
+        console.log('before deleting pic');
+        try {
+            userPicture = await User.findByIdAndUpdate(req.body.userId, { profilePicture: "", cloudinaryPublicId: "" }).exec();
+            console.log('after deleting pic');
+          } catch (error) {
+            console.error('Error updating user:', error);
+          }
+        
+       
+        }
+        
+    }
    
-    const{name,email,password} = req.body;
+    const{name,email,password} = req.body; 
+   
 
-    if(password){
+    var deliveryUrlArray = [];
+    var publicIdArray  = [];
+
+    
+
+    if(newPicture){
+        //Uploading image to cloudinary
+
+     const result = await cloudinary.uploader.upload(newPicture.path,{ folder: "Ufc-Store" });
+
+       //The delivery URL is available in the "secure_url" of the result
+       const deliveryUrl = result.secure_url;
+       deliveryUrlArray.push(deliveryUrl);
+
+
+       const public_Id = result.public_id;
+        publicIdArray.push(public_Id);
+
+         userPicture = await User.findByIdAndUpdate(req.body.userId,{ profilePicture: deliveryUrlArray[0], cloudinaryPublicId: publicIdArray[0]}).exec();
+    }
+
+
+    if(password !== ""){
+        
         const saltRounds = 10;
-        //Hash Password
-        const hashedPassword =  await bcrypt.hash(userPassword, saltRounds);
-        userPassword = hashedPassword;
-        const user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email, password:userPassword}).exec();
+        // Hash Password
+        const hashedPassword =  await bcrypt.hash(password, saltRounds);
+       
+
+        const userPassword = hashedPassword;
+
+        console.log('editing  password');
+         user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email, password:userPassword}).exec();
+         console.log('editing done password');
     }
 
     else{
-        const user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email}).exec();
+        console.log('editing no password');
+         user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email}).exec();
+         console.log('editing done  no password');
     }
     
 
-    if(!user){
-        throw Error("User not found");
-    }
+    
 
    return res.
    json({
         success: true,
         msg: "User Information updated successfully",
-        data: user,
+        data: {user,userPicture},
     });
 
 }));
