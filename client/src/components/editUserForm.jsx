@@ -1,6 +1,8 @@
 import { useId , useState, useEffect, useRef} from "react";
 import { useDispatch } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
+import { EditUser } from "../apicalls/users";
+import { setAuthTokenMulti } from "../apicalls/axiosMultiFormInstance";
 
 
 
@@ -56,7 +58,10 @@ export default function EditUserForm({userInformation}){
     const hiddenFileInput = useRef(null);
 
 
-    const [selectedImage, setSelectedImage] = useState([]);
+    const [selectedImage, setSelectedImage] = useState([userInformation.profilePicture]);
+
+
+    
 
     
     const handleFileUpload = (event) => {
@@ -81,17 +86,59 @@ export default function EditUserForm({userInformation}){
       
     }
 
+
+
+   function handleSubmit(e) {
     
+   
+
+    (async() =>{
+
+      // Prevent the browser from reloading the page
+      e.preventDefault();
+
+      // Read the form data
+      const form = e.target;
+      const formData = new FormData(form);
+  
+      //Delete the original picture key captured by the formdata above
+      formData.delete('picture');
+
+
+      //Append the image in selectedImage
+      formData.append('picture', selectedImage[0]);
+    
+      // Convert it into an object:
+      const formJson = Object.fromEntries(formData.entries());
+      
+      
+      
+      const token = localStorage.getItem('token');
+     
+
+      setAuthTokenMulti(token);
+
+     
+      const response = await EditUser(formJson);
+      if(formJson.password !== ""){
+        localStorage.removeItem('token');
+      }
+
+      dispatch(editUserFormToggle());
+
+    })();
+
+  }
 
     return(
         <>
            
            <div className="editUserBox">
           
-          <button className="closeFormBtn" onClick={handleClose}>X</button>
+          <button type="button" className="closeFormBtn" onClick={handleClose}>X</button>
 
           <h1>Edit User details</h1>
-           <form className="editUserForm" encType="multipart/form-data" >
+           <form className="editUserForm" encType="multipart/form-data" onSubmit={handleSubmit} >
 
 <div className="formField">
       <label htmlFor= {nameId}>Name</label>
@@ -117,7 +164,7 @@ export default function EditUserForm({userInformation}){
 
 
     <div className="selectedImages">
-                        {selectedImage?(selectedImage.map((file,index)=>(
+                        {selectedImage && selectedImage[0] !== ""?(selectedImage.map((file,index)=>(
                         
                               <div className="selectedImageContainer"key={index}>
 
@@ -129,14 +176,14 @@ export default function EditUserForm({userInformation}){
  
                         )
 
-                        )): ("...Loading")}
+                        )): (null)}
                         
 
      </div>
 
      
 
-      <button type="submit" className="editUserBtn">Save changes</button>
+      <button type="submit" className="editUserBtn" >Save changes</button>
 
 
       </form>

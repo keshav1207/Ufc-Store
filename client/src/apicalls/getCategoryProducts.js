@@ -1,4 +1,4 @@
-import { axiosMultiFormInstance } from "./axiosMultiFormInstance";
+import  axiosMultiFormInstance  from "./axiosMultiFormInstance";
 
         
 

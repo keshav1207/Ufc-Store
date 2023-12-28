@@ -42,7 +42,7 @@ export default function UserDetails(){
             navigate('/login');
         }
       
-    },[token, isLoggedOut])
+    },[token, isLoggedOut,editForm])
 
 
     console.log(data);
@@ -100,9 +100,10 @@ export default function UserDetails(){
 
             <div className="userInfo">
                 {data?(data.profilePicture?(<><div>Profile Picture:</div>
-                <div>{data.profilePicture}</div></>):(null)):(null)}
+                <div><img src={data.profilePicture} alt="profile picture" /></div></>):(null)):(null)}
 
             </div>
+            
             
 
 

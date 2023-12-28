@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosMultiFormInstance = axios.create({
+ const axiosMultiFormInstance = axios.create({
    
      headers: { 
         "Content-Type": "multipart/form-data" 
@@ -8,6 +8,15 @@ export const axiosMultiFormInstance = axios.create({
     }
         
 });
+
+export const setAuthTokenMulti = (token) => {
+    // Set the Authorization header in the Axios instance
+    axiosMultiFormInstance.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
+  };
+
+
+
+  export default axiosMultiFormInstance;
 
 
 
