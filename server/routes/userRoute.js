@@ -131,10 +131,10 @@ router.put('/editUserInfo',upload.single('picture'),authMiddleware,asyncHandler(
         const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
 
         //Delete image from mongoDB
-        console.log('before deleting pic');
+        
         try {
             userPicture = await User.findByIdAndUpdate(req.body.userId, { profilePicture: "", cloudinaryPublicId: "" }).exec();
-            console.log('after deleting pic');
+            
           } catch (error) {
             console.error('Error updating user:', error);
           }
@@ -178,15 +178,15 @@ router.put('/editUserInfo',upload.single('picture'),authMiddleware,asyncHandler(
 
         const userPassword = hashedPassword;
 
-        console.log('editing  password');
+        
          user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email, password:userPassword}).exec();
-         console.log('editing done password');
+        
     }
 
     else{
-        console.log('editing no password');
+       
          user = await User.findByIdAndUpdate(req.body.userId,{name:name, email:email}).exec();
-         console.log('editing done  no password');
+         
     }
     
 
