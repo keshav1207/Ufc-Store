@@ -24,6 +24,15 @@ router.post('/register', asyncHandler( async function(req, res, next) {
         let userName = req.body.name;
         let userEmail = req.body.email;
         let userPassword = req.body.password;
+        var userRole;
+        if(req.body.email == 'admin@gmail.com'){
+            userRole = "admin"
+        }
+
+        else{
+            userRole = "user"
+        }
+        
         const saltRounds = 10;
 
         //Hash Password
@@ -32,7 +41,7 @@ router.post('/register', asyncHandler( async function(req, res, next) {
 
 
         // Create new user
-        await User.create({name: userName,email: userEmail,password :userPassword});
+        await User.create({name: userName,email: userEmail,password :userPassword, role: userRole});
         
         res.send("User created successfully!")
     }
