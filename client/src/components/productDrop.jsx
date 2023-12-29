@@ -1,11 +1,30 @@
-import product1 from "../assets/product1.webp"
-import product2 from "../assets/product2.webp"
-import product3 from "../assets/product3.webp"
+
 import '../index.css'
 import { getNewProducts } from "../apicalls/getNewProducts"
+import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
 
 
 export default function ProductDropScreen(){
+    const[data,setData] = useState(null);
+
+    useEffect(()=>{
+        const fetchData =  async ()=>{
+            try {
+                const response = await getNewProducts();
+                setData(response.data);
+               
+            } catch (error) {
+                console.log(error);
+            }
+           
+        };
+
+        fetchData();
+    },[])
+
+   
+
 return(
     <>
      <div className="productDrop">
@@ -13,9 +32,30 @@ return(
     <p>NEW PRODUCT DROPS</p>
 
     <div className="productBox">
-    <img src={product1} alt="product1" />
-    <img src={product2} alt="product2" />
-    <img src={product3} alt="product3" />
+
+    {data?(data.map((item,index)=>(
+
+<Link to={`/products/${item._id}`}   key={item._id}>
+    <div className="product">
+        <div className="picture">
+    <img src= {item.images[0]} alt="" />
+</div>
+
+<div className="info" >
+    
+    <div className="productName">{item.name.toUpperCase().substring(0,30)}  </div>
+    <div className="productPrice">${item.price}</div>
+</div>
+    </div>
+
+</Link>
+       
+
+))):(<p>Loading...</p>)
+
+
+}
+    
 
     </div>
     </div>

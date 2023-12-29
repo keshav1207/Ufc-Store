@@ -120,7 +120,6 @@ main{
 }
 
 .productDrop{
-  width: 100%;
  
   margin-top: 10rem;
   display: flex;
@@ -130,6 +129,16 @@ main{
 }
 
 
+.productBox{
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 3rem;
+}
+
+.productBox a{
+  background-color: #f0f2f5;
+}
 
 
 .productDrop p {
