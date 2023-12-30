@@ -4,13 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import EditUserForm from "./editUserForm";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
+import { useJwtAuth } from '../hooks/useJwtAuth';
 export default function UserDetails(){
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+    
     const [data,setData] = useState(null);
     const dispatch = useDispatch();
     const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibilityValue);
     const [isLoggedOut, setIsLoggedOut] = useState(false);
+    const { jwtToken } = useJwtAuth();
 
     useEffect( () => {
 
@@ -18,7 +20,7 @@ export default function UserDetails(){
             try {
                 
                 
-                setAuthToken(token);
+                setAuthToken(jwtToken);
                 
                 
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
@@ -35,17 +37,17 @@ export default function UserDetails(){
         };
 
 
-        if(token){
+        if(jwtToken){
             fetchData();
         }
         else{
             navigate('/login');
         }
       
-    },[token, isLoggedOut,editForm])
+    },[jwtToken, isLoggedOut,editForm])
 
 
-    console.log(data);
+ 
 
     const handleEdit = () => {
        dispatch(editUserFormToggle());

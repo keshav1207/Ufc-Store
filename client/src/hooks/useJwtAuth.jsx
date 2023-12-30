@@ -1,7 +1,9 @@
-import jwt from 'jsonwebtoken';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import axiosInstance  from "../apicalls/axiosInstance";
+import { setAuthToken } from "../apicalls/axiosInstance"
+
 
 
 
@@ -9,17 +11,26 @@ import { useNavigate } from 'react-router-dom';
 
 export const useJwtAuth = () => {
 //Purpose of this custom hook is to check for JWT token and check whether its expired and if so, then delete JWT and redirects to Log in page
-const [jwtToken, setJwtToken] = useState(localStorage.getItem('jwtToken'));
-const isTokenExpired = (token) => {
+const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
+
+console.log(`jwtToken in customhook is ${jwtToken}`);
+
+const isTokenExpired = async(jwtToken) => {
     try {
-      const decodedToken = jwt.decode(token);
-      if (decodedToken.exp < Date.now() / 1000) {
+      setAuthToken(jwtToken);
+      const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+      console.log(response.data);
+      
+      if (response.data.error == "Token expired") {
+
         // Token has expired
         return true;
       }
       // Token is still valid
+     
       return false;
     } catch (error) {
+      console.log('reloaded');
       // Handle decoding errors
       console.error('Error decoding JWT:', error);
       return true; // Assume expired on error
@@ -28,16 +39,26 @@ const isTokenExpired = (token) => {
 
   };
 
-const navigate = useNavigate()
-
-  useEffect(() => {
-    if (jwtToken && isTokenExpired(jwtToken)) {
-      localStorage.removeItem('jwtToken');
+  const checkTokenExpiration = async () => {
+    if (jwtToken && (await isTokenExpired(jwtToken))) {
+      localStorage.removeItem('token');
       setJwtToken(null);
-      navigate('/login')
       
     }
-  }, [jwtToken]);
+  };
+
+
+
+  
+    useEffect(() => {
+      const checkTokenInterval = setInterval(() => {
+        checkTokenExpiration();
+      }, 60000); // Check every 60 seconds, adjust as needed
+    
+      // Cleanup function to clear the interval when the component unmounts
+      return () => clearInterval(checkTokenInterval);
+    }, [jwtToken]);
+ 
 
 
   return { jwtToken};

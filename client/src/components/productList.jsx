@@ -8,12 +8,15 @@ import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import { addproductSelected } from "../redux/editProductIdSlice";
+import {  useNavigate } from "react-router-dom";
+import { useJwtAuth } from '../hooks/useJwtAuth';
 
 
 export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
     const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
+  
     
     //Create a state to hold the productInfo fetched from database
     const [productInfo, setProductInfo] = useState(null);
@@ -28,10 +31,23 @@ export default function ProductList(){
         }
     }
 
+
+
     useEffect(()=> {
     fetchData();
         
     },[deleteProduct])
+
+
+//Check if token is expired and redirect to login page
+const { jwtToken } = useJwtAuth();
+const navigate = useNavigate();
+useEffect(()=> {
+    if(!jwtToken){
+        navigate('/login');
+    }
+        
+    },[jwtToken])
 
 
 

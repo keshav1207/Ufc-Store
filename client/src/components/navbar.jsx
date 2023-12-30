@@ -7,10 +7,15 @@ import ufclogo from "../assets/logo.avif"
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
+import { useJwtAuth } from '../hooks/useJwtAuth';
 
 export default function NavBar (){
 
     const [results,setResults] = useState("");
+
+    const { jwtToken } = useJwtAuth();
+
+ 
 
     const handleInputChange = (event) => {
           
@@ -34,7 +39,7 @@ export default function NavBar (){
     }
 
     const[userName, setUserName] = useState(null);
-    const token = localStorage.getItem('token');
+  
     const[loading,setLoading] = useState(false);
 
 
@@ -44,7 +49,7 @@ export default function NavBar (){
             try {
                 
                 
-                setAuthToken(token);
+                setAuthToken(jwtToken);
                 
                 setLoading(true);
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
@@ -56,22 +61,27 @@ export default function NavBar (){
                 setUserName(response.data.data.name) ;
                 
             } catch (error) {
-               
+                setLoading(false);
                 if(error.response){
-                    console.log(`${error.response.data.msg}`) ;
+                    console.log(`${error.response.data.error}`) ;
                 } 
             }
             
         };
 
 
-        if(token){
+        if(jwtToken){
             fetchData();
         }
+
+        else{
+            setUserName("");
+        }
+       
         
        
        
-    },[])
+    },[jwtToken])
 
        
 
