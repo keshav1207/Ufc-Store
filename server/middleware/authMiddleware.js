@@ -18,10 +18,16 @@ const authMiddleware = asyncHandler(async(req,res,next)=>{
        
     
         req.body.userId = decryptedToken.userId;
-
+       
         next() ;  
     } catch (error) {
         console.log(error.message);
+        if (error.message ==="jwt expired") {
+            return res.status(401).json({ error: "Token expired" });
+        } else {
+            
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
     }
     
 
