@@ -1,8 +1,13 @@
 
 import { ProductDetail } from "../apicalls/productDetail"
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { GoArrowLeft,GoArrowRight } from "react-icons/go";
+import { AddToCart } from "../apicalls/addToCart";
+import { useJwtAuth } from '../hooks/useJwtAuth';
+import axiosInstance from "../apicalls/axiosInstance";
+import { setAuthToken } from "../apicalls/axiosInstance"
+
 export default function DisplayProduct(){
 
 
@@ -17,6 +22,9 @@ export default function DisplayProduct(){
 
     const[numberOfImages, setNumberOfImages] = useState(0)
     const[imageSelected, setImageSelected] = useState(0);
+    
+
+    
 
 
     const leftClick = () => {
@@ -63,7 +71,47 @@ export default function DisplayProduct(){
             };
 
             fetchData();
+           
         },[]);
+
+
+        const { jwtToken } = useJwtAuth();
+        const[userId, setUserId] = useState(null);
+        
+        
+        useEffect(()=>{
+            const fetchUserId =  async ()=>{
+                try {
+                    const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
+                   setUserId(response.data.data._id);
+                
+
+                } catch (error) {
+                    console.log(error);
+                }
+               
+            };
+
+          if(jwtToken){
+            fetchUserId()
+          }
+           
+        },[jwtToken]);
+
+
+        const navigate = useNavigate();
+        async function addToCart(){
+           setAuthToken(jwtToken);
+            if(userId){
+                const result = await AddToCart(userId,productInfo._id);
+                console.log(result);
+
+            }
+            else{
+                navigate('/login');
+            }
+
+        }
 
     return(
         <>
@@ -104,7 +152,7 @@ export default function DisplayProduct(){
             <div className="textbox">
                 <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
                 <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
-                <button id="AddToCartBtn">Add to Cart</button>
+                <button id="AddToCartBtn" onClick={addToCart}>Add to Cart</button>
 
             </div>
 
