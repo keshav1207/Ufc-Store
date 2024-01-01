@@ -54,29 +54,32 @@ export default function CartContent(){
     return(
         <>
         <div className="productSection">
-        <div className="CartProducts">Products in Cart</div>
+        {userId?(<div className="CartProducts">Products in Cart</div>):(<div className="CartProducts">Cart empty</div>)}
+        
 
         <div className="products">
-        <div className="productLine">
+        <div className="productLineCart">
 
             <div><b>Images</b></div>
             <div><b>Name</b></div>
             <div><b>Price</b></div>
             <div><b>Category</b></div>
+            <div><b>Quantity</b></div>
 
         </div>
 
         {productInfo?(productInfo.map((item,index)=>(
 
-                <div className="productLine" key={index}>
+                <div className="productLineCart" key={index}>
 
-                <img src={item.images[0]}/>
-                <div>{item.name}</div>
-                <div>${item.price}</div>
-                <div>{item.category.name}</div>
+                <img src={item.productInfo.images[0]}/>
+                <div>{item.productInfo.name}</div>
+                <div>${item.productInfo.price}</div>
+                <div>{item.productInfo.category.name}</div>
+                <div>{item.quantity}</div>
                 <div className="buttons">
                 
-                <button className="deleteBtn"   value={item._id}>Delete</button>
+                <button className="deleteBtn"   value={item.productInfo._id}>Delete</button>
                 </div>
                 
                 </div>

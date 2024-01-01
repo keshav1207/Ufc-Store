@@ -820,3 +820,19 @@ input[type=radio] {
 
 }
 
+.productLineCart{
+  display: grid;
+  grid-template-columns: 0.25fr 0.75fr 0.25fr 0.25fr 0.25fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.productLineCart img{
+  width: 5rem;
+  border: 1px dotted black;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
