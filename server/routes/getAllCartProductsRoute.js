@@ -7,9 +7,9 @@ const Product = require("../models/productModel");
 
 router.get('/:userId',asyncHandler( async function(req, res, next) {
     
-    //Get user Id from params
-    const productId = req.params['userId'];
 
+    //Get user Id from params
+    const userId = req.params['userId'];
 
 
     //Get user cart
@@ -18,21 +18,23 @@ router.get('/:userId',asyncHandler( async function(req, res, next) {
 
     // If cart has no products, return false
         if(cartArray.length == 0){
+            
             res.json({success:false});
        }
 
     
     else{
+        
         var productsArray = []
         for(let i = 0; i < cartArray.length ; i++){
-        const productInfo = await Product.findById().exec();
-        productsArray.push(productInfo);
+        const productInfo = await Product.findById(cartArray[i].id).populate('category').exec();
+
+        productsArray.push({productInfo:productInfo, quantity:cartArray[i].count});
 
         }
     }
 
-  
-   
+
 
     res.json({success:true, data: productsArray});
 

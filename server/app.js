@@ -13,6 +13,7 @@ const editProductRoute = require("./routes/editProductRoute")
 const searchResultsRoute = require("./routes/getSearchResults")
 const getNewProductsRoute = require("./routes/getNewProductsRoute")
 const addToCartRoute = require("./routes/addToCartRoute")
+const getAllCartProductsRoute = require("./routes/getAllCartProductsRoute")
 
 
 require('dotenv').config();
@@ -52,6 +53,7 @@ app.use('/api/manageProducts',getAllProductsRoute);
 app.use('/api/searchResults',searchResultsRoute);
 app.use('/api/newProducts',getNewProductsRoute);
 app.use('/api/addToCart',addToCartRoute);
+app.use('/api/cart',getAllCartProductsRoute);
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
