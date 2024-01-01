@@ -130,7 +130,10 @@ export default function NavBar (){
        </div>
 
        <div className="cart">
+        <Link to={'/cart'}>
             <AiOutlineShoppingCart id="navSvg"/>
+        </Link>
+           
        </div>
 
        </div>
