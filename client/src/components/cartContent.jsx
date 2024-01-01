@@ -3,13 +3,14 @@ import { getAllCartProducts } from "../apicalls/getAllCartProducts"
 import { useJwtAuth } from "../hooks/useJwtAuth";
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
-
+import { DeleteFromCart } from "../apicalls/deleteFromCart";
 
 export default function CartContent(){
 
     const { jwtToken } = useJwtAuth();
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
+    
     
     useEffect(()=>{
         const fetchUserId =  async ()=>{
@@ -32,6 +33,19 @@ export default function CartContent(){
     },[jwtToken]);
 
 
+    async function deleteProduct(e){
+        try {
+            const productId = e.target.value;
+            const response =  await DeleteFromCart(userId,productId);
+            console.log(response);
+           
+        } catch (error) {
+            console.log(error);
+        }
+       
+    }
+
+
 
 
     useEffect(()=>{
@@ -49,7 +63,15 @@ export default function CartContent(){
             fetchData()
         }
       
-    },[userId])
+    },[userId,deleteProduct])
+
+
+
+   
+
+   
+
+  
 
     return(
         <>
@@ -79,7 +101,7 @@ export default function CartContent(){
                 <div>{item.quantity}</div>
                 <div className="buttons">
                 
-                <button className="deleteBtn"   value={item.productInfo._id}>Delete</button>
+                <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}>Delete</button>
                 </div>
                 
                 </div>

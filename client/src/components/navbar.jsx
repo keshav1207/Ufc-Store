@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
 import { useJwtAuth } from '../hooks/useJwtAuth';
+import { getAllCartProducts } from '../apicalls/getAllCartProducts';
 
 export default function NavBar (){
 
@@ -53,6 +54,7 @@ export default function NavBar (){
                 
                 setLoading(true);
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+                setUserId(response.data.data._id);
                 setLoading(false);
                
                 
@@ -83,6 +85,38 @@ export default function NavBar (){
        
     },[jwtToken])
 
+    const[userId, setUserId] = useState(null);
+    const [productInfo, setProductInfo] = useState(null);
+    const [quantity, setQuantity] = useState(0);
+
+
+    useEffect(()=>{
+        const fetchData = async()=>{
+            try {
+                const response = await getAllCartProducts(userId);
+                console.log(response.data);
+                setProductInfo(response.data);
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if(userId){
+            fetchData()
+        }
+      
+    },[userId])
+
+
+    useEffect(() => {
+        if (productInfo) {
+            var count = 0;
+            productInfo.forEach((item) => {
+                count += item.quantity;
+            });
+            setQuantity(count);
+        }
+    }, [productInfo]);
        
 
     
@@ -131,6 +165,7 @@ export default function NavBar (){
 
        <div className="cart">
         <Link to={'/cart'}>
+            <div className='NoOfProductsInCart'>{quantity?(quantity):(null)}</div>
             <AiOutlineShoppingCart id="navSvg"/>
         </Link>
            

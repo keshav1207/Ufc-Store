@@ -87,8 +87,20 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   
   
+}
+
+.NoOfProductsInCart{
+  color: black;
+  position: absolute;
+  top: 1.25rem;
+  right: 0;
+  border:  1px solid  red;
+  border-radius: 50%;
+  background-color: red;
+
 }
 
 .search{
