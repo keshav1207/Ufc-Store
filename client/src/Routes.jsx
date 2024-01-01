@@ -14,6 +14,7 @@ import PrivatePolicyPage from "./pages/privatePolicyPage";
 import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
 import GiftCardsPage from "./pages/giftCardsPage";
 import UserDetailsPage from "./pages/userDetailsPage";
+import CartPage from "./pages/cartPage";
 
 
 const Router = () => {
@@ -98,6 +99,12 @@ const Router = () => {
     {
       path: "/userDetails",
       element: < UserDetailsPage/>,
+     
+    },
+
+    {
+      path: "/cart",
+      element: < CartPage/>,
      
     },
 

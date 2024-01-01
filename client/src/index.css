@@ -811,3 +811,12 @@ input[type=radio] {
     box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
     z-index: 2;
 }
+
+/* Cart page*/
+.CartProducts{
+  font-weight: bold;
+    text-align: center;
+    font-size: 3rem;
+
+}
+

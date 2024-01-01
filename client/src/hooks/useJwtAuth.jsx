@@ -13,7 +13,7 @@ export const useJwtAuth = () => {
 //Purpose of this custom hook is to check for JWT token and check whether its expired and if so, then delete JWT and redirects to Log in page
 const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
 
-console.log(`jwtToken in customhook is ${jwtToken}`);
+
 
 const isTokenExpired = async(jwtToken) => {
     try {
@@ -30,7 +30,7 @@ const isTokenExpired = async(jwtToken) => {
      
       return false;
     } catch (error) {
-      console.log('reloaded');
+      
       // Handle decoding errors
       console.error('Error decoding JWT:', error);
       return true; // Assume expired on error
