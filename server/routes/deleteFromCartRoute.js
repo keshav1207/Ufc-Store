@@ -18,24 +18,12 @@ router.delete('/:userId/:productId',asyncHandler( async function(req, res, next)
 
     var updatedCart;
    
-        //  Reduce product count by 1
-        
-         updatedCart = cartArray.map(function(object){
-                
-                if(object.id == productId){
-                    
-                    return{...object, count: object.count -1};
-                }
-
-                return object
-        })
-
-        //Exclude products which have a count of zero
-
-        updatedCart = updatedCart.filter(obj => obj.count != 0);
+        //  Remove specific product from cart
+      
+        updatedCart = cartArray.filter(obj => obj.id != productId);
 
         
-    
+    console.log(updatedCart);
 
 
     //Update user cart in database
