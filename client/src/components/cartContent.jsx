@@ -5,6 +5,7 @@ import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import { DeleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function CartContent(){
 
@@ -110,7 +111,11 @@ export default function CartContent(){
                   
         ))):(null)}
 
+        
+
 </div>
+
+<Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
 
 </div>
 

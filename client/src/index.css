@@ -693,7 +693,7 @@ input[type=radio] {
   gap: 1rem;
 }
 
-.editBtn, .deleteBtn, .manageBtn, .LogOutBtn{
+.editBtn, .deleteBtn, .manageBtn, .LogOutBtn, .Btn{
    align-self: center;
   background-color: black;
   color: white;
