@@ -4,6 +4,7 @@ import { useJwtAuth } from "../hooks/useJwtAuth";
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import { DeleteFromCart } from "../apicalls/deleteFromCart";
+import { MdDeleteOutline } from "react-icons/md";
 
 export default function CartContent(){
 
@@ -101,7 +102,7 @@ export default function CartContent(){
                 <div>{item.quantity}</div>
                 <div className="buttons">
                 
-                <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}>Delete</button>
+                <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
                 </div>
                 
                 </div>
