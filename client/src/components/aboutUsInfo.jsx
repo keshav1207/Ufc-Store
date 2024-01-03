@@ -1,5 +1,6 @@
 import AboutUsPic from "../assets/about-us.png"
 
+
 export default function AboutUsInfo(){
     return(
         <div className="footerLinksInfo">
@@ -11,7 +12,7 @@ export default function AboutUsInfo(){
 
         <br></br>
         <img src={AboutUsPic} alt="AboutUsPicture" />
-        
+      
         
         </div>
 
