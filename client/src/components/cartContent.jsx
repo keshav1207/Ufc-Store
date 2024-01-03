@@ -35,20 +35,11 @@ export default function CartContent(){
     },[jwtToken]);
 
 
-    async function deleteProduct(e){
-        try {
-            const productId = e.target.value;
-            const response =  await DeleteFromCart(userId,productId);
-            console.log(response);
-           
-        } catch (error) {
-            console.log(error);
-        }
-       
-    }
+    const [deleteAlert, setDeleteAlert] = useState(false);
 
+   
 
-
+   
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -65,11 +56,32 @@ export default function CartContent(){
             fetchData()
         }
       
-    },[userId,deleteProduct])
+    },[userId,deleteAlert])
 
 
 
-   
+    async function deleteProduct(e){
+        try {
+            // target refers to the DOM element that triggers an event. 
+            //Otherwise, currentTarget refers to the DOM element that the event listener is listening on. In this case, we need to use currentTarget
+            const productId = e.currentTarget.value;
+            
+            const response =  await DeleteFromCart(userId,productId);
+            console.log(response);
+            setDeleteAlert(true);
+
+
+        // Reset deleteAlert to false after a delay (e.g., 1 second)
+        setTimeout(() => {
+            setDeleteAlert(false);
+        }, 1000);
+           
+        } catch (error) {
+            console.log(error);
+        }
+       
+    }
+
 
    
 
