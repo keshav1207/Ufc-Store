@@ -41,6 +41,8 @@ export default function CartContent(){
 
    
     const [qtyArray, setQtyArray] = useState([]);
+    const [priceArray, setPriceArray] = useState([]);
+    const [total, setTotal] = useState(null);
    
 
     useEffect(()=>{
@@ -66,15 +68,24 @@ export default function CartContent(){
 
     useEffect(()=>{
         if(productInfo){
-            var array =[];
+            var array1 =[];
+            var array2 =[];
+            var total = 0;
             (productInfo.map((item,index)=>(
-                array.push(item.quantity)
+                array1.push(item.quantity),
+                array2.push(item.productInfo.price),
+                total += item.quantity * item.productInfo.price
             )))
     
-            setQtyArray(array);
+            setQtyArray(array1);
+            setPriceArray(array2);
+            setTotal(total);
         }
        
     },productInfo)
+
+
+    
 
 
 
@@ -161,7 +172,7 @@ export default function CartContent(){
                 <div>${item.productInfo.price}</div>
                 <div>{item.productInfo.category.name}</div>
                 <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="QuantitySvg" /></button> <div >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="QuantitySvg" /></button> </div>
-                <div>${qtyArray[index] * item.productInfo.price }</div>
+                <div>${qtyArray[index] * priceArray[index] }</div>
                 <div className="buttons">         
                 
                 <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
@@ -179,6 +190,15 @@ export default function CartContent(){
 </div>
 
 <Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
+
+<div>
+
+    <h1>Order details</h1>
+    <p>Sub Total  {total?(<p>{total}</p>):(null)}</p>
+    <p>Tax</p>
+    <button className="Btn">Pay</button>
+</div>
+
 
 </div>
 
