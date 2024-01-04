@@ -70,16 +70,16 @@ export default function CartContent(){
         if(productInfo){
             var array1 =[];
             var array2 =[];
-            
+            var total = 0;
             (productInfo.map((item,index)=>(
                 array1.push(item.quantity),
-                array2.push(item.productInfo.price)
-              
+                array2.push(item.productInfo.price),
+                total += item.quantity * item.productInfo.price
             )))
     
             setQtyArray(array1);
             setPriceArray(array2);
-            
+            setTotal(total);
         }
        
     },productInfo)
@@ -204,7 +204,11 @@ export default function CartContent(){
 
 </div>
 
+<div className="cartBtns">
 <Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
+<button className="Btn">Clear Cart</button>
+</div>
+
 
 <div className="orderForm">
 

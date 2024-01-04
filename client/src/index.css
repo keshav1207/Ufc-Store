@@ -894,6 +894,15 @@ input[type=radio] {
   gap: 1rem;
 }
 
+.cartBtns{
+ position: relative;
+  left: 50%;
+  right: 50%;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
 /* Checkout page*/
 
 .checkout-container{
