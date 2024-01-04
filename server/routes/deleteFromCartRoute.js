@@ -17,13 +17,13 @@ router.delete('/:userId/:productId',asyncHandler( async function(req, res, next)
 
 
     var updatedCart;
+
    
         //  Remove specific product from cart
       
-        updatedCart = cartArray.filter(obj => obj.id != productId);
+        updatedCart = cartArray.filter(obj => obj.id !== productId);
 
-        
-    console.log(updatedCart);
+
 
 
     //Update user cart in database
