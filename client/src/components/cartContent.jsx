@@ -5,6 +5,8 @@ import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import { DeleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
+import { CiSquareMinus } from "react-icons/ci";
+import { CiSquarePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 export default function CartContent(){
@@ -38,7 +40,7 @@ export default function CartContent(){
     const [deleteAlert, setDeleteAlert] = useState(false);
 
    
-
+    const [qtyArray, setQtyArray] = useState([]);
    
 
     useEffect(()=>{
@@ -47,6 +49,9 @@ export default function CartContent(){
                 const response = await getAllCartProducts(userId);
                 console.log(response.data);
                 setProductInfo(response.data);
+
+         
+                
                 
             } catch (error) {
                 console.log(error);
@@ -57,6 +62,19 @@ export default function CartContent(){
         }
       
     },[userId,deleteAlert])
+
+
+    useEffect(()=>{
+        if(productInfo){
+            var array =[];
+            (productInfo.map((item,index)=>(
+                array.push(item.quantity)
+            )))
+    
+            setQtyArray(array);
+        }
+       
+    },productInfo)
 
 
 
@@ -83,7 +101,34 @@ export default function CartContent(){
     }
 
 
+   function handleIncrement(index, originalValue){
+        let newValue = originalValue + 1;
+        setQtyArray(prev => {
+            const newArray = [...prev];
+            // Update the value at the specified index
+            newArray[index] = newValue;
+            // Return the new array
+            return newArray;
+        })
+       
+   }
+
+   function handleDecrement(index, originalValue){
+    let newValue = originalValue -1 ;
+    if(newValue < 0){
+        newValue = 0;
+    }
+    setQtyArray(prev => {
+        const newArray = [...prev];
+        // Update the value at the specified index
+        newArray[index] = newValue;
+        // Return the new array
+        return newArray;
+    })
    
+}
+
+
 
   
 
@@ -97,10 +142,13 @@ export default function CartContent(){
         <div className="productLineCart">
 
             <div><b>Images</b></div>
+            
             <div><b>Name</b></div>
             <div><b>Price</b></div>
             <div><b>Category</b></div>
             <div><b>Quantity</b></div>
+            <div><b>Subtotal</b></div>
+
 
         </div>
 
@@ -112,13 +160,16 @@ export default function CartContent(){
                 <div>{item.productInfo.name}</div>
                 <div>${item.productInfo.price}</div>
                 <div>{item.productInfo.category.name}</div>
-                <div>{item.quantity}</div>
-                <div className="buttons">
+                <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="QuantitySvg" /></button> <div >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="QuantitySvg" /></button> </div>
+                <div>${qtyArray[index] * item.productInfo.price }</div>
+                <div className="buttons">         
                 
                 <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
                 </div>
                 
                 </div>
+
+                
                 
                   
         ))):(null)}

@@ -834,7 +834,7 @@ input[type=radio] {
 
 .productLineCart{
   display: grid;
-  grid-template-columns: 0.25fr 0.75fr 0.25fr 0.25fr 0.25fr 1fr;
+  grid-template-columns: 0.25fr 0.75fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr;
   gap: 1rem;
   align-items: center;
   justify-content: center;
@@ -847,6 +847,30 @@ input[type=radio] {
   border: 1px dotted black;
   margin-top: 1rem;
   margin-bottom: 0.25rem;
+}
+
+
+.QuantitySvg{
+  font-size: 1.5rem;
+  color: black;
+ margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+
+}
+
+.incrementBtn, .decrementBtn{
+  border: none;
+  color: none;
+  background: none;
+  
+}
+
+.qtyBtns{
+  display: flex;
+  align-items: center;
+  
 }
 
 /* Checkout page*/
