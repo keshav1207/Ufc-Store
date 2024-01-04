@@ -70,19 +70,34 @@ export default function CartContent(){
         if(productInfo){
             var array1 =[];
             var array2 =[];
-            var total = 0;
+            
             (productInfo.map((item,index)=>(
                 array1.push(item.quantity),
-                array2.push(item.productInfo.price),
-                total += item.quantity * item.productInfo.price
+                array2.push(item.productInfo.price)
+              
             )))
     
             setQtyArray(array1);
             setPriceArray(array2);
-            setTotal(total);
+            
         }
        
     },productInfo)
+
+
+    useEffect(()=>{
+        if(priceArray.length > 0){
+            
+            var total = 0;
+            for(let i = 0 ; i<priceArray.length ; i ++){
+                total += priceArray[i] * qtyArray[i]
+            }
+    
+            
+            setTotal(total);
+        }
+       
+    },qtyArray)
 
 
     
@@ -126,8 +141,8 @@ export default function CartContent(){
 
    function handleDecrement(index, originalValue){
     let newValue = originalValue -1 ;
-    if(newValue < 0){
-        newValue = 0;
+    if(newValue < 1){
+        newValue = 1;
     }
     setQtyArray(prev => {
         const newArray = [...prev];
@@ -191,12 +206,12 @@ export default function CartContent(){
 
 <Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
 
-<div>
+<div className="orderForm">
 
     <h1>Order details</h1>
-    <p>Sub Total  {total?(<p>{total}</p>):(null)}</p>
-    <p>Tax</p>
-    <button className="Btn">Pay</button>
+    <div className="orderFormLine"> <div>Sub Total</div>  {total?(<div>${total}</div>):(null)}</div>
+    <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
+    <button className="Btn">Pay {total?(<div>${total}</div>):(null)}</button>
 </div>
 
 

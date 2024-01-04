@@ -873,6 +873,27 @@ input[type=radio] {
   
 }
 
+.orderForm{
+  position: relative;
+  left: 50%;
+  right: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 15%;
+  padding: 1rem;
+}
+
+.orderFormLine{
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderForm .Btn{
+  display: flex;
+  gap: 1rem;
+}
+
 /* Checkout page*/
 
 .checkout-container{
