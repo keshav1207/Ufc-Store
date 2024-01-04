@@ -8,6 +8,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { ClearCart } from "../apicalls/clearCart";
 
 export default function CartContent(){
 
@@ -37,7 +38,7 @@ export default function CartContent(){
     },[jwtToken]);
 
 
-    const [deleteAlert, setDeleteAlert] = useState(false);
+    const [reloadAlert, setReloadAlert] = useState(false);
 
    
     const [qtyArray, setQtyArray] = useState([]);
@@ -63,7 +64,7 @@ export default function CartContent(){
             fetchData()
         }
       
-    },[userId,deleteAlert])
+    },[userId,reloadAlert])
 
 
     useEffect(()=>{
@@ -112,12 +113,12 @@ export default function CartContent(){
             
             const response =  await DeleteFromCart(userId,productId);
             console.log(response);
-            setDeleteAlert(true);
+            setReloadAlert(true);
 
 
         // Reset deleteAlert to false after a delay (e.g., 1 second)
         setTimeout(() => {
-            setDeleteAlert(false);
+            setReloadAlert(false);
         }, 1000);
            
         } catch (error) {
@@ -153,6 +154,25 @@ export default function CartContent(){
     })
    
 }
+
+        async function handleClearCart(){
+            try {
+              
+                
+                const response =  await ClearCart(userId);
+                console.log(response);
+                setReloadAlert(true);
+    
+    
+            // Reset reloadAlert to false after a delay (e.g., 1 second)
+            setTimeout(() => {
+                setReloadAlert(false);
+            }, 1000);
+               
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
 
 
@@ -206,7 +226,7 @@ export default function CartContent(){
 
 <div className="cartBtns">
 <Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
-<button className="Btn">Clear Cart</button>
+<button className="Btn" onClick={handleClearCart}>Clear Cart</button>
 </div>
 
 
@@ -215,7 +235,11 @@ export default function CartContent(){
     <h1>Order details</h1>
     <div className="orderFormLine"> <div>Sub Total</div>  {total?(<div>${total}</div>):(null)}</div>
     <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
-    <button className="Btn">Pay {total?(<div>${total}</div>):(null)}</button>
+   
+   <Link to={'/checkout'}>
+   <button className="Btn">Pay {total?(<div>${total}</div>):(null)}</button>
+   </Link>
+   
 </div>
 
 

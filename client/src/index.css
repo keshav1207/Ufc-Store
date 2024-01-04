@@ -894,6 +894,13 @@ input[type=radio] {
   gap: 1rem;
 }
 
+.orderForm a{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  
+}
+
 .cartBtns{
  position: relative;
   left: 50%;
