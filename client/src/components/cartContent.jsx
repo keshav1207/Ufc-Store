@@ -187,19 +187,24 @@ export default function CartContent(){
                 //Update database for any changes in qty before navigating to checkout page
                 const update = await UpdateCart(userId,qtyArray);
 
-                const stripe = loadStripe( import.meta.env. VITE_STRIPE_PUBLISHABLE_KEY);
+                
+
+            const updatedcart = await getAllCartProducts(userId);
+
+                const stripe =  await loadStripe( import.meta.env. VITE_STRIPE_PUBLISHABLE_KEY);
+                
 
                 const data = {
-                    products: productInfo,
+                    products: updatedcart.data,
                 }
 
                const response = await axios.post('http://localhost:5000/api/create-checkout-session', JSON.stringify(data), {
-            headers: {
+            headers: {                  
                     'Content-Type': 'application/json'
                     }
                 })
 
-                const session =  await response.json();
+                const session =   response.data;
 
                 const result = stripe.redirectToCheckout({
                     sessionId:session.id
