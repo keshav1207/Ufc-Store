@@ -17,6 +17,7 @@ const getAllCartProductsRoute = require("./routes/getAllCartProductsRoute")
 const deleteFromCartRoute = require("./routes/deleteFromCartRoute")
 const clearCartRoute = require("./routes/clearCartRoute")
 const updateCartRoute = require("./routes/updateCartRoute")
+const stripeRoute = require("./routes/stripeRoute")
 
 
 require('dotenv').config();
@@ -60,6 +61,7 @@ app.use('/api/cart',getAllCartProductsRoute);
 app.use('/api/delete',deleteFromCartRoute);
 app.use('/api/clearCart', clearCartRoute);
 app.use('/api/updateCart', updateCartRoute);
+app.use('/api/create-checkout-session', stripeRoute);
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
