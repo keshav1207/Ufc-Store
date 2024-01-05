@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
-router.put('/:userId',asyncHandler( async function(req, res, next){
+router.put('/:userId',asyncHandler( async function(req, res){
     
 
     //Get  User Id from params and productQtyArray from req.body
@@ -25,17 +25,18 @@ router.put('/:userId',asyncHandler( async function(req, res, next){
    
         //  Update product qty in cart
       
-        updatedCart = cartArray.map((item,index) =>{
-                item.count = productQtyArray[index];
-        })
-           
+        // Update product qty in cart
+     updatedCart = cartArray.map((item, index) => ({
+        ...item,
+        count: productQtyArray[index]
+      }));
 
-
+        
     //Update user cart in database
     const result = await User.findByIdAndUpdate(userId,{cart:updatedCart});
 
 
-    res.json(
+    return res.json(
         {success:true,msg:"Cart updated"}
     )
 

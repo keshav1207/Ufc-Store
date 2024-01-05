@@ -57,9 +57,9 @@ app.use('/api/searchResults',searchResultsRoute);
 app.use('/api/newProducts',getNewProductsRoute);
 app.use('/api/addToCart',addToCartRoute);
 app.use('/api/cart',getAllCartProductsRoute);
-app.use('/api/cart/delete',deleteFromCartRoute);
-app.use('/api/cart/clearCart', clearCartRoute);
-app.use('/api/cart/updateCart', updateCartRoute);
+app.use('/api/delete',deleteFromCartRoute);
+app.use('/api/clearCart', clearCartRoute);
+app.use('/api/updateCart', updateCartRoute);
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 

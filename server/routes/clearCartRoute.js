@@ -3,8 +3,8 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
-router.delete('/:userId',asyncHandler( async function(req, res, next){
-    
+router.delete('/:userId',asyncHandler( async function(req, res){
+   
 
     //Get  User Id from params
     
@@ -17,7 +17,7 @@ router.delete('/:userId',asyncHandler( async function(req, res, next){
     const result = await User.findByIdAndUpdate(userId,{cart:[]});
 
 
-    res.json(
+    return res.json(
         {success:true,msg:"Cart Cleared"}
     )
 

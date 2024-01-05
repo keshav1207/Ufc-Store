@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
-router.delete('/:userId/:productId',asyncHandler( async function(req, res, next){
+router.delete('/:userId/:productId',asyncHandler( async function(req, res){
     
 
     //Get product Id and User Id from params
