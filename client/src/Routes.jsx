@@ -15,7 +15,7 @@ import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
 import GiftCardsPage from "./pages/giftCardsPage";
 import UserDetailsPage from "./pages/userDetailsPage";
 import CartPage from "./pages/cartPage";
-import CheckoutPage from "./pages/checkoutPage";
+
 
 
 const Router = () => {

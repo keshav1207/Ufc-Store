@@ -7,7 +7,7 @@ import { DeleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
-import { Link,  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ClearCart } from "../apicalls/clearCart";
 import { UpdateCart } from "../apicalls/updateCart";
 import {loadStripe} from '@stripe/stripe-js';
@@ -20,7 +20,7 @@ export default function CartContent(){
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
   
-   
+   const navigate = useNavigate();
     
     useEffect(()=>{
        
@@ -182,6 +182,17 @@ export default function CartContent(){
             }
         }
 
+
+        async function continueShop(){
+            try {
+                //Update database for any changes in qty before navigating to home page
+                const update = await UpdateCart(userId,qtyArray);
+                navigate('/');
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         async function handlePay(){
             try {
                 //Update database for any changes in qty before navigating to checkout page
@@ -272,7 +283,7 @@ export default function CartContent(){
 </div>
 
 <div className="cartBtns">
-<Link to={'/'}><button className="Btn">Continue Shopping</button></Link>
+<button className="Btn" onClick={continueShop}>Continue Shopping</button>
 <button className="Btn" onClick={handleClearCart}>Clear Cart</button>
 </div>
 
