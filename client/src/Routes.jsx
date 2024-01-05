@@ -15,6 +15,7 @@ import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
 import GiftCardsPage from "./pages/giftCardsPage";
 import UserDetailsPage from "./pages/userDetailsPage";
 import CartPage from "./pages/cartPage";
+import StripeSuccessPage from "./pages/stripeSuccessPage";
 
 
 
@@ -106,6 +107,13 @@ const Router = () => {
     {
       path: "/cart",
       element: < CartPage/>,
+     
+    },
+
+
+    {
+      path: "/success",
+      element: < StripeSuccessPage/>
      
     }
    
