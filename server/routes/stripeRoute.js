@@ -34,8 +34,8 @@ const session = await stripe.checkout.sessions.create({
     payment_method_types:["card"],
     line_items: lineItems,
     mode:"payment",
-    success_url:"http://localhost:5173/",
-    cancel_url:"http://localhost:5173/cart"
+    success_url:"http://localhost:5173/success",
+    cancel_url:"http://localhost:5173/failure"
 })
 
 res.json({id:session.id})
