@@ -7,14 +7,16 @@ import { DeleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ClearCart } from "../apicalls/clearCart";
+import { UpdateCart } from "../apicalls/updateCart";
 
 export default function CartContent(){
 
     const { jwtToken } = useJwtAuth();
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
+    const navigate = useNavigate();
     
     
     useEffect(()=>{
@@ -83,7 +85,7 @@ export default function CartContent(){
             setTotal(total);
         }
        
-    },productInfo)
+    },[productInfo])
 
 
     useEffect(()=>{
@@ -98,7 +100,7 @@ export default function CartContent(){
             setTotal(total);
         }
        
-    },qtyArray)
+    },[qtyArray])
 
 
     
@@ -112,7 +114,9 @@ export default function CartContent(){
             const productId = e.currentTarget.value;
             
             const response =  await DeleteFromCart(userId,productId);
-            console.log(response);
+            const update = await UpdateCart(userId,qtyArray);
+            
+           
             setReloadAlert(true);
 
 
@@ -169,6 +173,18 @@ export default function CartContent(){
                 setReloadAlert(false);
             }, 1000);
                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function handlePay(){
+            try {
+                //Update database for any changes in qty before navigating to checkout page
+                const update = await UpdateCart(userId,qtyArray);
+                navigate('/checkout');
+
+                
             } catch (error) {
                 console.log(error);
             }
@@ -236,10 +252,10 @@ export default function CartContent(){
     <div className="orderFormLine"> <div>Sub Total</div>  {total?(<div>${total}</div>):(null)}</div>
     <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
    
-   <Link to={'/checkout'}>
-   <button className="Btn">Pay {total?(<div>${total}</div>):(null)}</button>
-   </Link>
+  
+   <button className="Btn" onClick={handlePay}>Pay {total?(<div>${total}</div>):(null)}</button>
    
+
 </div>
 
 

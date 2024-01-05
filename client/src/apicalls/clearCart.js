@@ -1,9 +1,9 @@
-import  AxiosInstance  from "axios";
+import axios from "axios";
 
 export const ClearCart = async function(userId){
     try {
         
-        const response = await AxiosInstance.delete(`http://localhost:5000/api/clearCart/${userId}`);
+        const response = await axios.delete(`http://localhost:5000/api/clearCart/${userId}`);
         
         return response.data;
         

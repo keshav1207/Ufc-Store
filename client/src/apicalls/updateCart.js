@@ -1,9 +1,9 @@
-import  AxiosInstance  from "axios";
+import axios from "axios";
 
 export const UpdateCart = async function(userId,payload){
     try {
         
-        const response = await AxiosInstance.put(`http://localhost:5000/api/updateCart/${userId}`,payload);
+        const response = await axios.put(`http://localhost:5000/api/updateCart/${userId}`,payload);
         
         return response.data;
         
