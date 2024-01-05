@@ -107,12 +107,8 @@ const Router = () => {
       path: "/cart",
       element: < CartPage/>,
      
-    },
-    {
-      path: "/checkout",
-      element: < CheckoutPage/>,
-     
-    },
+    }
+   
 
 
   ]);
