@@ -7,10 +7,11 @@ import { DeleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import { ClearCart } from "../apicalls/clearCart";
 import { UpdateCart } from "../apicalls/updateCart";
 import {loadStripe} from '@stripe/stripe-js';
+import axios from "axios";
 
 
 export default function CartContent(){
@@ -18,7 +19,7 @@ export default function CartContent(){
     const { jwtToken } = useJwtAuth();
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
-    const navigate = useNavigate();
+  
    
     
     useEffect(()=>{
@@ -187,7 +188,27 @@ export default function CartContent(){
                 const update = await UpdateCart(userId,qtyArray);
 
                 const stripe = loadStripe( import.meta.env. VITE_STRIPE_PUBLISHABLE_KEY);
-                navigate('/checkout');
+
+                const data = {
+                    products: productInfo,
+                }
+
+               const response = await axios.post('http://localhost:5000/api/create-checkout-session', JSON.stringify(data), {
+            headers: {
+                    'Content-Type': 'application/json'
+                    }
+                })
+
+                const session =  await response.json();
+
+                const result = stripe.redirectToCheckout({
+                    sessionId:session.id
+                })
+
+                if(result.error){
+                    console.log(result.error);
+                }
+
 
                 
             } catch (error) {
