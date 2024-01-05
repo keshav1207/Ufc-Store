@@ -10,6 +10,8 @@ import { CiSquarePlus } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { ClearCart } from "../apicalls/clearCart";
 import { UpdateCart } from "../apicalls/updateCart";
+import {loadStripe} from '@stripe/stripe-js';
+
 
 export default function CartContent(){
 
@@ -17,9 +19,10 @@ export default function CartContent(){
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
     const navigate = useNavigate();
-    
+   
     
     useEffect(()=>{
+       
         const fetchUserId =  async ()=>{
             try {
                 setAuthToken(jwtToken);
@@ -182,6 +185,8 @@ export default function CartContent(){
             try {
                 //Update database for any changes in qty before navigating to checkout page
                 const update = await UpdateCart(userId,qtyArray);
+
+                const stripe = loadStripe( import.meta.env. VITE_STRIPE_PUBLISHABLE_KEY);
                 navigate('/checkout');
 
                 
