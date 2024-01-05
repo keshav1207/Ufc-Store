@@ -919,7 +919,7 @@ input[type=radio] {
   justify-content: center;
   align-items: center;
 }
-.successForm{
+.successForm, .failureForm{
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -930,7 +930,7 @@ input[type=radio] {
  
 }
 
-.successTick img{
+.successTick img , .failureIcon img{
   width: 3rem;
   height: auto;
 }

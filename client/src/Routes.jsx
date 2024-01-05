@@ -16,6 +16,7 @@ import GiftCardsPage from "./pages/giftCardsPage";
 import UserDetailsPage from "./pages/userDetailsPage";
 import CartPage from "./pages/cartPage";
 import StripeSuccessPage from "./pages/stripeSuccessPage";
+import StripeFailurePage from "./pages/stripeFailurePage";
 
 
 
@@ -114,6 +115,13 @@ const Router = () => {
     {
       path: "/success",
       element: < StripeSuccessPage/>
+     
+    },
+
+
+    {
+      path: "/failure",
+      element: < StripeFailurePage/>
      
     }
    
