@@ -8,7 +8,7 @@ router.put('/:userId',asyncHandler( async function(req, res){
 
     //Get  User Id from params and productQtyArray from req.body
     
-    const userId = req.params['userId'];
+    const userId = req.params.userId;
 
     const productQtyArray = req.body;
 

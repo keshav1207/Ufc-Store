@@ -67,11 +67,13 @@ app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
 
 // error handler
-app.use(function(err, req, res, next) {
-  res.status(500).json({
+app.use((err, req, res, next) => {
+
+ return res.status(500).json({
     msg: err.message,
     success: false,
-  }); 
+    stack: err.stack, // Add the stack trace to the response
+  });
 });
 
 module.exports = app;

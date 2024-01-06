@@ -19,7 +19,7 @@ router.get('/:userId',asyncHandler( async function(req, res, next) {
     // If cart has no products, return false
         if(cartArray.length == 0){
             
-            res.json({success:false});
+         return   res.json({success:false});
        }
 
     
@@ -36,7 +36,7 @@ router.get('/:userId',asyncHandler( async function(req, res, next) {
 
 
 
-    res.json({success:true, data: productsArray});
+    return res.json({success:true, data: productsArray});
 
 }))
 
