@@ -7,8 +7,10 @@ import { AddToCart } from "../apicalls/addToCart";
 import { useJwtAuth } from '../hooks/useJwtAuth';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
+import LoadingSpinner from './loadingSpinner';
 
 export default function DisplayProduct(){
+    const [isLoading, setIsLoading] = useState(false);
 
 
     // Getting productId from params
@@ -54,6 +56,7 @@ export default function DisplayProduct(){
     useEffect(()=>{
             const fetchData =  async ()=>{
                 try {
+                    setIsLoading(true);
                     const response = await ProductDetail(productId);
                     setProductInfo(response.data);
 
@@ -61,11 +64,14 @@ export default function DisplayProduct(){
                     setFeatures(response.data.features.split("\n"));
 
                     setNumberOfImages(response.data.images.length);
+
+                    setIsLoading(false);
                    
                     console.log(productInfo)
 
                 } catch (error) {
                     console.log(error);
+                    setIsLoading(false);
                 }
                
             };
@@ -82,12 +88,15 @@ export default function DisplayProduct(){
         useEffect(()=>{
             const fetchUserId =  async ()=>{
                 try {
+                    setIsLoading(true);
                     const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
                    setUserId(response.data.data._id);
+                   setIsLoading(false);
                 
 
                 } catch (error) {
                     console.log(error);
+                    setIsLoading(false);
                 }
                
             };
@@ -103,8 +112,10 @@ export default function DisplayProduct(){
         async function addToCart(){
            setAuthToken(jwtToken);
             if(userId){
+                setIsLoading(true);
                 const result = await AddToCart(userId,productInfo._id);
                 console.log(result);
+                setIsLoading(false);
 
             }
             else{
@@ -116,49 +127,51 @@ export default function DisplayProduct(){
     return(
         <>
 
-        <div className="productImageBox">
+        
+        {isLoading?<LoadingSpinner/>:( <div className="productImageBox">
 
-            <div className="smallPics">
-            {productInfo?(productInfo.images.map((item,index)=>(
-                            <img  src={item}  key={index} />
+<div className="smallPics">
+{productInfo?(productInfo.images.map((item,index)=>(
+                <img  src={item}  key={index} />
 
-                    ))):( null)}
-               
+        ))):( null)}
+   
 
-            </div>
+</div>
 
-            <div className="bigPic">
+<div className="bigPic">
 
-                {/* Add condition that product need to have more than one product for arrows to appear */}
-                {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={leftClick}>
-                <GoArrowLeft />
-                </div>):(null)
-                ):( null)}
-                
+    {/* Add condition that product need to have more than one product for arrows to appear */}
+    {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={leftClick}>
+    <GoArrowLeft />
+    </div>):(null)
+    ):( null)}
+    
 
-                <div>
-                <img  src= {productInfo?(productInfo.images[imageSelected]):("...Loading")} alt="" />
-                </div>
-                
-                {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={rightClick}>
-                <GoArrowRight />
-                </div>):(null)
-                ):( null)}
-                
+    <div>
+    <img  src= {productInfo?(productInfo.images[imageSelected]):("...Loading")} alt="" />
+    </div>
+    
+    {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={rightClick}>
+    <GoArrowRight />
+    </div>):(null)
+    ):( null)}
+    
 
-            </div>
+</div>
 
 
-            <div className="textbox">
-                <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
-                <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
-                <button id="AddToCartBtn" onClick={addToCart}>Add to Cart</button>
+<div className="textbox">
+    <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
+    <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
+    <button id="AddToCartBtn" onClick={addToCart}>Add to Cart</button>
 
-            </div>
+</div>
 
-        </div>
-
-        <div className="featureBox">
+</div>
+)}
+       
+        {isLoading?<LoadingSpinner/>:(<div className="featureBox">
             <div className="comments">
                     <p>{productInfo?(productInfo.comments):("...Loading")}</p>
             </div>
@@ -175,7 +188,9 @@ export default function DisplayProduct(){
 
                     </ul>
             </div>
-        </div>
+        </div>)}
+
+        
 
 
         </>
