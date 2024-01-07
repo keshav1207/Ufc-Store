@@ -5,6 +5,7 @@ import EditUserForm from "./editUserForm";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
 import { useJwtAuth } from '../hooks/useJwtAuth';
+import LoadingSpinner from "./loadingSpinner";
 export default function UserDetails(){
     const navigate = useNavigate();
     
@@ -13,13 +14,14 @@ export default function UserDetails(){
     const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibilityValue);
     const [isLoggedOut, setIsLoggedOut] = useState(false);
     const { jwtToken } = useJwtAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect( () => {
 
         const fetchData = async() =>{  
             try {
                 
-                
+                setIsLoading(true);
                 setAuthToken(jwtToken);
                 
                 
@@ -27,12 +29,15 @@ export default function UserDetails(){
                 
                 setData(response.data.data);
                 
+                
             } catch (error) {
                
                 if(error.response){
                     console.log(`${error.response.data.msg}`) ;
                 } 
             }
+
+            setIsLoading(false);
             
         };
 
@@ -68,16 +73,16 @@ export default function UserDetails(){
 
             <div className="userButtons">
 
-                    <button className="editBtn" onClick={handleEdit}>Edit details</button>
+                    <button className="editBtn" onClick={handleEdit} disabled={isLoading}>Edit details</button>
 
-                    <button className="LogOutBtn" onClick={handleLogOut}>Log out</button>
+                    <button className="LogOutBtn" onClick={handleLogOut} disabled={isLoading}>Log out</button>
 
                     {data?(data.role == 'admin'?(<Link to={'/manageproduct'}><button className="manageBtn"> Go to Manage Products Page</button></Link>):(null)):(null)}
                     
                     
             </div>
 
-            <div className="userDetails">
+           {isLoading?<LoadingSpinner/>:( <div className="userDetails">
             <div className="userInfo">
                 <div>Name:</div>
                 <div>{data?(data.name):(null)}</div>
@@ -109,7 +114,7 @@ export default function UserDetails(){
             
 
 
-            </div>
+            </div>)}
 
            
         </div>

@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
 import { EditUser } from "../apicalls/users";
 import { setAuthTokenMulti } from "../apicalls/axiosMultiFormInstance";
+import LoadingSpinner from "./loadingSpinner";
 
 
 
 
 export default function EditUserForm({userInformation}){
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   
     
@@ -99,6 +101,8 @@ export default function EditUserForm({userInformation}){
       // Prevent the browser from reloading the page
       e.preventDefault();
 
+      setIsLoading(true);
+
       // Read the form data
       const form = e.target;
       const formData = new FormData(form);
@@ -128,6 +132,9 @@ export default function EditUserForm({userInformation}){
 
       window.location.reload();
 
+
+      setIsLoading(false);
+
       
       dispatch(editUserFormToggle());
       
@@ -138,8 +145,7 @@ export default function EditUserForm({userInformation}){
 
     return(
         <>
-           
-           <div className="editUserBox">
+           {isLoading?<LoadingSpinner/>:(<div className="editUserBox">
           
           <button type="button" className="closeFormBtn" onClick={handleClose}>X</button>
 
@@ -194,7 +200,8 @@ export default function EditUserForm({userInformation}){
 
       </form>
 
-           </div>
+           </div>)}
+           
 
           
            
