@@ -1,16 +1,18 @@
-import '../index.css'
+
 import { useId, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Alert from './alert';
 import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
+import LoadingSpinner from './loadingSpinner';
 
 
 export default function LoginForm(){
 
   
   const[logIn,setLogIn] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
  
 
     //Generating unique ids
@@ -70,7 +72,7 @@ export default function LoginForm(){
         const LoginUser = async (payload) => { 
         try {
     
-          
+          setIsLoading(true);
           const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
           const token = response.data.token;
           localStorage.setItem('token', token);
@@ -78,6 +80,8 @@ export default function LoginForm(){
          
           
           setAuthToken(token);
+
+          setIsLoading(false);
 
           return response.data.msg;
         
@@ -143,8 +147,7 @@ export default function LoginForm(){
          
         <div className="loginSection">
 
-        
-        <div className="loginBox">
+        {isLoading ? <LoadingSpinner /> : (<div className="loginBox">
         
         <h1>LOGIN</h1>
 
@@ -161,7 +164,7 @@ export default function LoginForm(){
            <label htmlFor={passwordId} >Password</label>
            <input  required='true ' name="password" id={passwordId} type='password' onChange={handleInputChange} value={formData.password} autoComplete="on"/>
 
-           <button type="submit" className="loginBtn">Login</button>
+           <button type="submit" className="loginBtn" disabled={isLoading}>Login</button>
 
         </form>
 
@@ -169,7 +172,8 @@ export default function LoginForm(){
         Don't have an account? <Link to="/register">Register</Link>
         </span>
 
-        </div>
+        </div>)}
+        
        
         </div>
         

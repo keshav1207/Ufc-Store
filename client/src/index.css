@@ -954,3 +954,11 @@ input[type=radio] {
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }
+
+.spinner-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
