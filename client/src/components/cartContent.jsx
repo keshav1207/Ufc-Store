@@ -196,7 +196,7 @@ export default function CartContent(){
         async function handlePay(){
             try {
                 //Update database for any changes in qty before navigating to checkout page
-                const update = await UpdateCart(userId,qtyArray);
+                await UpdateCart(userId,qtyArray);
 
                 
 
@@ -217,7 +217,7 @@ export default function CartContent(){
 
                 const session =   response.data;
 
-                const result = stripe.redirectToCheckout({
+                const result = await stripe.redirectToCheckout({
                     sessionId:session.id
                 })
 

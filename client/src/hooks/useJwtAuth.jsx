@@ -39,11 +39,21 @@ const isTokenExpired = async(jwtToken) => {
 
   };
 
+  
+
   const checkTokenExpiration = async () => {
-    if (jwtToken && (await isTokenExpired(jwtToken))) {
-      localStorage.removeItem('token');
-      setJwtToken(null);
-      
+    if (jwtToken) {
+      try {
+        const expired = await isTokenExpired(jwtToken);
+
+        if (expired) {
+          localStorage.removeItem('token');
+          setJwtToken(null);
+        }
+      } catch (error) {
+        // Handle errors appropriately
+        console.error('Error checking token expiration:', error);
+      }
     }
   };
 
