@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../apicalls/users';
 import { useState } from 'react';
 import Alert from './alert';
+import LoadingSpinner from './loadingSpinner';
 
 
 export default function RegisterForm(){
+  const [isLoading, setIsLoading] = useState(false);
 
   //Generating unique ids
     const nameId = useId();
@@ -67,22 +69,27 @@ export default function RegisterForm(){
       function submitForm(event){
         (async() =>{
           try {
+
             event.preventDefault();
+            setIsLoading(true);
              const response = await RegisterUser(formData);
              
              setResponse(response);
             
             if(response != "User created successfully!"){
-              
+              setIsLoading(false);
               throw Error(response);
+             
             }
+
+
             //Reset form after submission
             setFormData({name: "",email: "",password:""})
 
            successType();
             showAlert();
 
-            
+              setIsLoading(false);
   
   
           } catch (error) {
@@ -116,7 +123,7 @@ export default function RegisterForm(){
         <div className="registerSection">
 
         
-        <div className="registerBox">
+       {isLoading? <LoadingSpinner/>:( <div className="registerBox">
         
         <h1>CREATE ACCOUNT</h1>
 
@@ -143,7 +150,7 @@ export default function RegisterForm(){
         </span>
         
 
-        </div>
+        </div>)}
        
         </div>
         
