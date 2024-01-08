@@ -5,6 +5,7 @@ import  { useSelector}  from 'react-redux';
 import { ProductDetail } from "../apicalls/productDetail";
 import { EditProduct } from "../apicalls/editProduct";
 import LoadingSpinner from "./loadingSpinner";
+import { reloadToggle } from "../redux/reloadSlice";
 
 export default function EditProductForm(){
 
@@ -192,6 +193,7 @@ export default function EditProductForm(){
       setIsLoading(false);
 
       dispatch(editFormToggle());
+      dispatch(reloadToggle());
 
     })();
 

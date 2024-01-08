@@ -14,10 +14,12 @@ import LoadingSpinner from "./loadingSpinner";
 
 
 
+
 export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
     const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
+    const reloadredux = useSelector((state) => state.reload. value);
     const [isLoading, setIsLoading] = useState(false);
     const [reload, setReload] =  useState(false);
   
@@ -48,7 +50,7 @@ export default function ProductList(){
         }
     fetchData();
         
-    },[reload])
+    },[reload, reloadredux])
 
 
 //Check if token is expired and redirect to login page

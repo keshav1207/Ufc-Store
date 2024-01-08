@@ -4,7 +4,7 @@ import Alert from "./alert";
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
 import LoadingSpinner from "./loadingSpinner";
-
+import { reloadToggle } from "../redux/reloadSlice";
 
 
 
@@ -153,7 +153,7 @@ export default function AddProductForm(){
             showAlert();
           }
          
-        
+          dispatch(reloadToggle());
 
         })();  
 
@@ -163,6 +163,7 @@ export default function AddProductForm(){
         setIsLoading(false);
         dispatch(addProductFormToggle())
         setSelectedFiles([]);
+       
     }
 
 
@@ -196,6 +197,8 @@ export default function AddProductForm(){
   
     
     dispatch(addProductFormToggle());
+
+    
    
     
    }
