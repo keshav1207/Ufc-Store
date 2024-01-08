@@ -12,6 +12,7 @@ import { ClearCart } from "../apicalls/clearCart";
 import { UpdateCart } from "../apicalls/updateCart";
 import {loadStripe} from '@stripe/stripe-js';
 import axios from "axios";
+import LoadingSpinner from './loadingSpinner';
 
 
 export default function CartContent(){
@@ -19,6 +20,7 @@ export default function CartContent(){
     const { jwtToken } = useJwtAuth();
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
   
    const navigate = useNavigate();
     
@@ -26,6 +28,7 @@ export default function CartContent(){
        
         const fetchUserId =  async ()=>{
             try {
+                setIsLoading(true);
                 setAuthToken(jwtToken);
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
                setUserId(response.data.data._id);
@@ -34,6 +37,8 @@ export default function CartContent(){
             } catch (error) {
                 console.log(error);
             }
+
+            setIsLoading(false);
            
         };
 
@@ -55,6 +60,7 @@ export default function CartContent(){
     useEffect(()=>{
         const fetchData = async()=>{
             try {
+                setIsLoading(true);
                 const response = await getAllCartProducts(userId);
                 console.log(response.data);
                 setProductInfo(response.data);
@@ -65,6 +71,8 @@ export default function CartContent(){
             } catch (error) {
                 console.log(error);
             }
+
+            setIsLoading(false);
         }
         if(userId){
             fetchData()
@@ -75,6 +83,7 @@ export default function CartContent(){
 
     useEffect(()=>{
         if(productInfo){
+            setIsLoading(true);
             var array1 =[];
             var array2 =[];
             var total = 0;
@@ -87,6 +96,7 @@ export default function CartContent(){
             setQtyArray(array1);
             setPriceArray(array2);
             setTotal(total);
+            setIsLoading(false);
         }
        
     },[productInfo])
@@ -94,6 +104,7 @@ export default function CartContent(){
 
     useEffect(()=>{
         if(priceArray.length > 0){
+            setIsLoading(true);
             
             var total = 0;
             for(let i = 0 ; i<priceArray.length ; i ++){
@@ -102,6 +113,7 @@ export default function CartContent(){
     
             
             setTotal(total);
+            setIsLoading(false);
         }
        
     },[qtyArray])
@@ -115,12 +127,13 @@ export default function CartContent(){
         try {
             // target refers to the DOM element that triggers an event. 
             //Otherwise, currentTarget refers to the DOM element that the event listener is listening on. In this case, we need to use currentTarget
+            setIsLoading(true);
             const productId = e.currentTarget.value;
             
             const response =  await DeleteFromCart(userId,productId);
             const update = await UpdateCart(userId,qtyArray);
             
-           
+            setIsLoading(false);
             setReloadAlert(true);
 
 
@@ -130,8 +143,11 @@ export default function CartContent(){
         }, 1000);
            
         } catch (error) {
+            setIsLoading(false);
             console.log(error);
         }
+
+        
        
     }
 
@@ -166,12 +182,12 @@ export default function CartContent(){
         async function handleClearCart(){
             try {
               
-                
+                setIsLoading(true)
                 const response =  await ClearCart(userId);
                 console.log(response);
                 setReloadAlert(true);
     
-    
+                setIsLoading(false);
             // Reset reloadAlert to false after a delay (e.g., 1 second)
             setTimeout(() => {
                 setReloadAlert(false);
@@ -179,22 +195,31 @@ export default function CartContent(){
                
             } catch (error) {
                 console.log(error);
+                setIsLoading(false);
             }
+
+            
         }
 
 
         async function continueShop(){
             try {
+                setIsLoading(true);
                 //Update database for any changes in qty before navigating to home page
                 const update = await UpdateCart(userId,qtyArray);
+                setIsLoading(false);
                 navigate('/');
             } catch (error) {
                 console.log(error);
+                setIsLoading(false);
             }
+
         }
 
         async function handlePay(){
             try {
+
+                setIsLoading(true);
                 //Update database for any changes in qty before navigating to checkout page
                 await UpdateCart(userId,qtyArray);
 
@@ -230,6 +255,8 @@ export default function CartContent(){
             } catch (error) {
                 console.log(error);
             }
+
+            setIsLoading(false);
         }
 
 
@@ -237,76 +264,88 @@ export default function CartContent(){
   
 
     return(
+
         <>
-        <div className="productSection">
-        {userId?(<div className="CartProducts">Products in Cart</div>):(<div className="CartProducts">Cart empty</div>)}
-        
 
-        <div className="products">
-        <div className="productLineCart">
+        {isLoading?(<LoadingSpinner/>):(<> {productInfo !== undefined ?( <div>
+       
+       <div className="productSection">
+       {userId?(<div className="CartProducts">Products in Cart</div>):(<div className="CartProducts">Cart empty</div>)}
+       
+       <div className="products">
+       <div className="productLineCart">
 
-            <div><b>Images</b></div>
-            
-            <div><b>Name</b></div>
-            <div><b>Price</b></div>
-            <div><b>Category</b></div>
-            <div><b>Quantity</b></div>
-            <div><b>Subtotal</b></div>
+           <div><b>Images</b></div>
+           
+           <div><b>Name</b></div>
+           <div><b>Price</b></div>
+           <div><b>Category</b></div>
+           <div><b>Quantity</b></div>
+           <div><b>Subtotal</b></div>
 
 
-        </div>
+       </div>
 
-        {productInfo?(productInfo.map((item,index)=>(
+       {productInfo?(productInfo.map((item,index)=>(
 
-                <div className="productLineCart" key={index}>
+               <div className="productLineCart" key={index}>
 
-                <img src={item.productInfo.images[0]}/>
-                <div>{item.productInfo.name}</div>
-                <div>${item.productInfo.price}</div>
-                <div>{item.productInfo.category.name}</div>
-                <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="QuantitySvg" /></button> <div >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="QuantitySvg" /></button> </div>
-                <div>${qtyArray[index] * priceArray[index] }</div>
-                <div className="buttons">         
-                
-                <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
-                </div>
-                
-                </div>
+               <img src={item.productInfo.images[0]}/>
+               <div>{item.productInfo.name}</div>
+               <div>${item.productInfo.price}</div>
+               <div>{item.productInfo.category.name}</div>
+               <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="QuantitySvg" /></button> <div >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="QuantitySvg" /></button> </div>
+               <div>${qtyArray[index] * priceArray[index] }</div>
+               <div className="buttons">         
+               
+               <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
+               </div>
+               
+               </div>
 
-                
-                
-                  
-        ))):(null)}
+               
+               
+                 
+       ))):(<LoadingSpinner/>)}
 
-        
+       
 
 </div>
+       
 
 <div className="cartBtns">
-<button className="Btn" onClick={continueShop}>Continue Shopping</button>
-<button className="Btn" onClick={handleClearCart}>Clear Cart</button>
+<button className="Btn" onClick={continueShop} disabled={isLoading}>Continue Shopping</button>
+<button className="Btn" onClick={handleClearCart} disabled={isLoading}>Clear Cart</button>
 </div>
 
 
 <div className="orderForm">
 
-    <h1>Order details</h1>
-    <div className="orderFormLine"> <div>Sub Total</div>  {total?(<div>${total}</div>):(null)}</div>
-    <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
-   
+   <h1>Order details</h1>
+   <div className="orderFormLine"> <div>Sub Total</div>  {total?(<div>${total}</div>):(null)}</div>
+   <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
   
-   <button className="Btn" onClick={handlePay}>Pay {total?(<div>${total}</div>):(null)}</button>
+ 
+  <button className="Btn" onClick={handlePay}disabled={isLoading}>Pay {total?(<div>${total}</div>):(null)}</button>
+  
+
+</div>
+
+
+</div>
+
    
+       
 
-</div>
+       </div>):(<div className="productSection"> <div className="cartEmpty">Cart Empty</div>  </div>)}
+       </>)}
 
+       
 
-</div>
-
-    
-        
-
-        </>
+            </>
+       
     )
+
+
 }
     

@@ -910,6 +910,15 @@ input[type=radio] {
   gap: 3rem;
 }
 
+.cartEmpty{
+  font-weight: bold;
+  font-size: 3rem;
+  margin-left: 50%;
+  margin-right: 50%;
+  margin-top: 10%;
+  
+}
+
 /* stripe success page*/
 
 .messageContainer{

@@ -12,10 +12,12 @@ import {  useNavigate } from "react-router-dom";
 import { useJwtAuth } from '../hooks/useJwtAuth';
 
 
+
 export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
     const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
+   
   
     
     //Create a state to hold the productInfo fetched from database
@@ -23,12 +25,17 @@ export default function ProductList(){
 
     const fetchData = async()=>{
         try {
+            
             const response = await getAllProducts();
             setProductInfo(response.data);
+            
         } catch (error) {
+            
             console.log(error);
             
         }
+
+       
     }
 
 
@@ -70,8 +77,19 @@ const[deleteModal, setDeleteModal] = useState(false);
         toggleDeleteModal();
     }
 
-    function deleteProduct(){
-        DeleteProduct(deleteProductId);
+    async function deleteProduct(){
+        try {
+       
+        const response  = await DeleteProduct(deleteProductId);
+      
+        
+        
+        } catch (error) {
+            
+            console.log(error);
+            
+        }
+
         toggleDeleteModal();
         
     }
@@ -93,7 +111,7 @@ const[deleteModal, setDeleteModal] = useState(false);
 
     return(
         <>
-        <div className="productSection">
+         <div className="productSection">
         
         <div className="manageProductHeading">Manage Products Page</div>
         
@@ -145,8 +163,10 @@ const[deleteModal, setDeleteModal] = useState(false);
                 ))):(null)}
 
         </div>
+        
 
         </div>
+       
         
       
         </>

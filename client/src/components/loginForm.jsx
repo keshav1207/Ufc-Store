@@ -87,9 +87,11 @@ export default function LoginForm(){
         
           
       } catch (error) {
+        setIsLoading(false);
           if(error.response){
               return (error.response.data.msg);
           } 
+          
       }
       }
       
