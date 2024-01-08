@@ -4,6 +4,7 @@ import addProductFormReducer from './addProductFormSlice'
 import editProductIdReducer from './editProductIdSlice';
 import editFormVisibilityReducer from './editFormVisibilitySlice'
 import editUserFormVisibilityReducer from './editUserFormVisibility';
+import reloadReducer from './reloadSlice';
 
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     editProductId: editProductIdReducer,
     editFormVisibility: editFormVisibilityReducer,
     editUserFormVisibility: editUserFormVisibilityReducer,
+    reload:reloadReducer
    
   },
   
