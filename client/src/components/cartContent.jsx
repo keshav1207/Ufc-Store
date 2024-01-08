@@ -13,6 +13,8 @@ import { UpdateCart } from "../apicalls/updateCart";
 import {loadStripe} from '@stripe/stripe-js';
 import axios from "axios";
 import LoadingSpinner from './loadingSpinner';
+import { useDispatch } from "react-redux";
+import { reloadToggle } from "../redux/reloadSlice";
 
 
 export default function CartContent(){
@@ -21,6 +23,7 @@ export default function CartContent(){
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
   
    const navigate = useNavigate();
     
@@ -132,6 +135,8 @@ export default function CartContent(){
             
             const response =  await DeleteFromCart(userId,productId);
             const update = await UpdateCart(userId,qtyArray);
+
+            dispatch(reloadToggle());
             
             setIsLoading(false);
             setReloadAlert(true);
@@ -147,7 +152,7 @@ export default function CartContent(){
             console.log(error);
         }
 
-        
+    
        
     }
 
@@ -158,8 +163,13 @@ export default function CartContent(){
             const newArray = [...prev];
             // Update the value at the specified index
             newArray[index] = newValue;
+
+           
+
+
             // Return the new array
             return newArray;
+            
         })
        
    }
@@ -173,6 +183,9 @@ export default function CartContent(){
         const newArray = [...prev];
         // Update the value at the specified index
         newArray[index] = newValue;
+
+
+
         // Return the new array
         return newArray;
     })
@@ -184,7 +197,9 @@ export default function CartContent(){
               
                 setIsLoading(true)
                 const response =  await ClearCart(userId);
+                dispatch(reloadToggle());
                 console.log(response);
+                
                 setReloadAlert(true);
     
                 setIsLoading(false);
@@ -192,11 +207,15 @@ export default function CartContent(){
             setTimeout(() => {
                 setReloadAlert(false);
             }, 1000);
+
+           
                
             } catch (error) {
                 console.log(error);
                 setIsLoading(false);
             }
+
+           
 
             
         }

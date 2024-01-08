@@ -9,12 +9,16 @@ import { useEffect, useState } from 'react';
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
 import { useJwtAuth } from '../hooks/useJwtAuth';
 import { getAllCartProducts } from '../apicalls/getAllCartProducts';
+import  { useSelector}  from 'react-redux';
+
 
 export default function NavBar (){
 
     const [results,setResults] = useState("");
 
     const { jwtToken } = useJwtAuth();
+
+    const reloadredux = useSelector((state) => state.reload. value);
 
  
 
@@ -105,7 +109,7 @@ export default function NavBar (){
             fetchData()
         }
       
-    },[userId])
+    },[userId, reloadredux])
 
 
     useEffect(() => {
@@ -116,7 +120,11 @@ export default function NavBar (){
             });
             setQuantity(count);
         }
-    }, [productInfo]);
+        else{
+            setQuantity(0);
+        }
+        
+    }, [productInfo, reloadredux]);
        
 
     
@@ -165,7 +173,8 @@ export default function NavBar (){
 
        <div className="cart">
         <Link to={'/cart'}>
-            <div className='NoOfProductsInCart'>{quantity?(quantity):(null)}</div>
+            {quantity &&  quantity > 0?(<div className='NoOfProductsInCart'>{quantity}</div>):(null)}
+            {/* <div className='NoOfProductsInCart'>{quantity?(quantity):(null)}</div> */}
             <AiOutlineShoppingCart id="navSvg"/>
         </Link>
            

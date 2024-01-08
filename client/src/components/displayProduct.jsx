@@ -8,6 +8,8 @@ import { useJwtAuth } from '../hooks/useJwtAuth';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import LoadingSpinner from './loadingSpinner';
+import { useDispatch } from "react-redux";
+import { reloadToggle } from "../redux/reloadSlice";
 
 export default function DisplayProduct(){
     const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +28,7 @@ export default function DisplayProduct(){
     const[imageSelected, setImageSelected] = useState(0);
     
 
-    
+    const dispatch = useDispatch();
 
 
     const leftClick = () => {
@@ -116,6 +118,7 @@ export default function DisplayProduct(){
                 const result = await AddToCart(userId,productInfo._id);
                 console.log(result);
                 setIsLoading(false);
+                dispatch(reloadToggle());
 
             }
             else{
