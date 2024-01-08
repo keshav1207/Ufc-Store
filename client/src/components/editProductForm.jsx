@@ -4,6 +4,7 @@ import  {useDispatch}  from 'react-redux';
 import  { useSelector}  from 'react-redux';
 import { ProductDetail } from "../apicalls/productDetail";
 import { EditProduct } from "../apicalls/editProduct";
+import LoadingSpinner from "./loadingSpinner";
 
 export default function EditProductForm(){
 
@@ -11,7 +12,7 @@ export default function EditProductForm(){
 
   const editProductId = useSelector((state) => state.editProductId.productId);
 
- 
+  const [isLoading, setIsLoading] = useState(false); 
 
 
   const [inputValues, setInputValues] = useState({
@@ -26,6 +27,7 @@ export default function EditProductForm(){
 
     const fetchData =  async ()=>{
       try {
+        setIsLoading(true);
           const response = await ProductDetail(editProductId);
           setSelectedFiles(response.data.images)
 
@@ -38,11 +40,15 @@ export default function EditProductForm(){
             comments: response.data.comments,
             category: response.data.category.name,
           }));
+
+          
           
 
       } catch (error) {
           console.log(error);
       }
+
+      setIsLoading(false);
      
   };
 
@@ -144,6 +150,7 @@ export default function EditProductForm(){
    function handleSubmit(e) {
 
     (async() =>{
+      setIsLoading(true);
 
       // Prevent the browser from reloading the page
       e.preventDefault();
@@ -182,6 +189,8 @@ export default function EditProductForm(){
       const response = await EditProduct(editProductId,formJson);
       console.log(response);
 
+      setIsLoading(false);
+
       dispatch(editFormToggle());
 
     })();
@@ -210,7 +219,7 @@ export default function EditProductForm(){
         
 
         <div className="NewProductSection">
-            <div className="NewProductBox">
+          {isLoading?(<LoadingSpinner/>):(  <div className="NewProductBox">
               <button className="closeFormBtn" onClick={handleClose}>X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
@@ -317,7 +326,7 @@ export default function EditProductForm(){
                 
                
 
-            </div>
+            </div>)}
 
         </div>
        

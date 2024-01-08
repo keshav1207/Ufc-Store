@@ -3,6 +3,7 @@ import { AddNewProduct } from "../apicalls/addProduct";
 import Alert from "./alert";
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
+import LoadingSpinner from "./loadingSpinner";
 
 
 
@@ -10,7 +11,7 @@ import {addProductFormToggle} from '../redux/addProductFormSlice';
 
 export default function AddProductForm(){
   
- 
+  const [isLoading, setIsLoading] = useState(false);
   
   const dispatch = useDispatch();
 
@@ -107,7 +108,7 @@ export default function AddProductForm(){
 
         (async() =>{
 
-          
+          setIsLoading(true);
         
           // Prevent the browser from reloading the page
           e.preventDefault();
@@ -158,6 +159,8 @@ export default function AddProductForm(){
 
         //clear inputs
         e.currentTarget.reset();
+
+        setIsLoading(false);
         dispatch(addProductFormToggle())
         setSelectedFiles([]);
     }
@@ -207,7 +210,7 @@ export default function AddProductForm(){
         :null}
 
         <div className="NewProductSection">
-            <div className="NewProductBox">
+            {isLoading?(<LoadingSpinner/>):(<div className="NewProductBox">
               <button className="closeFormBtn" onClick={handleClose}>X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
@@ -315,7 +318,7 @@ export default function AddProductForm(){
                 
                
 
-            </div>
+            </div>)}
 
         </div>
        

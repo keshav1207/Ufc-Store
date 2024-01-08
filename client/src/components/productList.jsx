@@ -10,6 +10,7 @@ import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import { addproductSelected } from "../redux/editProductIdSlice";
 import {  useNavigate } from "react-router-dom";
 import { useJwtAuth } from '../hooks/useJwtAuth';
+import LoadingSpinner from "./loadingSpinner";
 
 
 
@@ -17,33 +18,37 @@ export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
     const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
-   
+    const [isLoading, setIsLoading] = useState(false);
+    const [reload, setReload] =  useState(false);
   
     
     //Create a state to hold the productInfo fetched from database
     const [productInfo, setProductInfo] = useState(null);
 
-    const fetchData = async()=>{
-        try {
-            
-            const response = await getAllProducts();
-            setProductInfo(response.data);
-            
-        } catch (error) {
-            
-            console.log(error);
-            
-        }
-
-       
-    }
+  
 
 
 
     useEffect(()=> {
+        const fetchData = async()=>{
+            try {
+                setIsLoading(true);
+                const response = await getAllProducts();
+                setProductInfo(response.data);
+                console.log(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                setIsLoading(false);
+                console.log(error);
+                
+                
+            }
+    
+           
+        }
     fetchData();
         
-    },[deleteProduct])
+    },[reload])
 
 
 //Check if token is expired and redirect to login page
@@ -81,7 +86,7 @@ const[deleteModal, setDeleteModal] = useState(false);
         try {
        
         const response  = await DeleteProduct(deleteProductId);
-      
+        setReload(prev => !prev);
         
         
         } catch (error) {
@@ -97,12 +102,15 @@ const[deleteModal, setDeleteModal] = useState(false);
 
     function handleEdit(e){
         e.preventDefault();
-
+        
+       
         //Toggle edit form
         dispatch(editFormToggle());
 
         //Save product Id to redux
         dispatch(addproductSelected(e.target.value));
+
+       
 
     }
 
@@ -111,6 +119,7 @@ const[deleteModal, setDeleteModal] = useState(false);
 
     return(
         <>
+
          <div className="productSection">
         
         <div className="manageProductHeading">Manage Products Page</div>
@@ -131,38 +140,38 @@ const[deleteModal, setDeleteModal] = useState(false);
 
         <div className= {deleteModal?("overlay"):("overlay hideOverlay")}></div>
        
-        <button className="addProductBtn" onClick={()=>dispatch(addProductFormToggle())}>Add New Product</button>
+        <button className="addProductBtn" onClick={()=>dispatch(addProductFormToggle())} disabled={isLoading}>Add New Product</button>
 
-        <div className="products">
+       {isLoading?(<LoadingSpinner/>):( <div className="products">
 
-        <div className="productLine">
+<div className="productLine">
 
-        <div><b>Images</b></div>
-        <div><b>Name</b></div>
-        <div><b>Price</b></div>
-        <div><b>Category</b></div>
+<div><b>Images</b></div>
+<div><b>Name</b></div>
+<div><b>Price</b></div>
+<div><b>Category</b></div>
 
-        </div>
+</div>
 
-                {productInfo?(productInfo.map((item,index)=>(
+        {productInfo?(productInfo.map((item,index)=>(
 
-                        <div className="productLine" key={index}>
+                <div className="productLine" key={index}>
 
-                        <img src={item.images[0]}/>
-                        <div>{item.name}</div>
-                        <div>${item.price}</div>
-                        <div>{item.category.name}</div>
-                        <div className="buttons">
-                        <button className="editBtn"  value={item._id} onClick={handleEdit}>Edit</button>
-                        <button className="deleteBtn" onClick={handleDelete}  value={item._id}>Delete</button>
-                        </div>
-                        
-                        </div>
-                        
-                          
-                ))):(null)}
+                <img src={item.images[0]}/>
+                <div>{item.name}</div>
+                <div>${item.price}</div>
+                <div>{item.category.name}</div>
+                <div className="buttons">
+                <button className="editBtn"  value={item._id} onClick={handleEdit}>Edit</button>
+                <button className="deleteBtn" onClick={handleDelete}  value={item._id}>Delete</button>
+                </div>
+                
+                </div>
+                
+                  
+        ))):(null)}
 
-        </div>
+</div>)}
         
 
         </div>
