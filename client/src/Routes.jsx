@@ -101,7 +101,7 @@ const Router = () => {
 
     {
       path: "/userDetails",
-      element: < UserDetailsPage/>,
+      element: <ProtectedPage>< UserDetailsPage/></ProtectedPage>,
      
     },
 

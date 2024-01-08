@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
 import { useJwtAuth } from '../hooks/useJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
+import { reloadToggle } from "../redux/reloadSlice";
 export default function UserDetails(){
     const navigate = useNavigate();
     
@@ -62,6 +63,7 @@ export default function UserDetails(){
       const handleLogOut = () => {
         localStorage.removeItem('token');
         setIsLoggedOut(true);
+        dispatch(reloadToggle());
         
        };
       

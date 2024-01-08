@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
+import  { useSelector}  from 'react-redux';
 
 
 export  function ProtectedPage({children}){
@@ -10,6 +11,8 @@ export  function ProtectedPage({children}){
 
     
     const token = localStorage.getItem('token');
+
+    const reloadredux = useSelector((state) => state.reload. value);
     
 
     const getUser = async () => {
@@ -65,7 +68,7 @@ export  function ProtectedPage({children}){
             navigate("/login");
         }
         
-    },[token]);
+    },[token, reloadredux]);
 
 
     return(
