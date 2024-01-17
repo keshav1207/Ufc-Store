@@ -146,102 +146,6 @@ height: 10%;
   top: 1.5rem;
 }
 
-@media only screen and (max-width:800px){
-
-  
-  .navBar{
-    flex-direction: column;
-    padding: 0.5rem;
-  }
-
-  .menu{
-    flex-direction: column;
-    margin: 0;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 1rem;
-  }
-
-  .hamburger{
-    display: block;
-    padding-right: 1rem;
-   border: none;
-   background: none;
-  }
-
-  .menu a,  #navSvg, .search input, .search svg, #userHidden,
-  #cartHidden{
-    display: none;
-  }
-
-  #active, #cart, #user, #userName{
-    display: flex;
-  }
-
-   #expand{
-    height: auto;
-   }
-
-   
-
-   .NoOfProductsInCart{
-      top: 0;
-   }
-
-
-
-
-
-  .options{
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .cart{
-    display: block;
-    padding-left: 1rem;
-    width: 3rem;
-  }
-
-  .user{
-    display: block;
-    padding-left: 1rem;
-  }
-
- 
-
-  .search{
-    margin-top: 0.5rem;
-    padding-left: 1rem;
-    width: 100%;
-  }
-
-  .search #navSvg, .search #active{
-    width: 100px;
-    height: 20px;
-   
-  }
-
-  #cart, #user{
-    width: 1.75rem;
-    height: auto;
-  }
-
-
-
-}
-
-@media only screen and (min-width:600px) and (max-width:980px){
-  .search input{
-    width: 6.5rem;
-  }
-
-}
-
-
-
-
-
 
 .promoBanner{
   display: flex;
@@ -275,26 +179,6 @@ height: 10%;
 
 
 
-@media only screen and (max-width: 800px) {
-  .productBox {
-    grid-template-rows: 1fr 1fr 1fr;
-  }
-}
-
-
-@media only screen and (min-width: 800px) {
-  .productBox {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  
-}
-
-
-
-
-
-
 .productBox a{
   background-color: #f0f2f5;
 }
@@ -306,11 +190,7 @@ height: 10%;
   margin-bottom: 2rem;
 }
 
-@media only screen and (max-width:375px){
-  .productDrop p{
-    font-size: 1.5rem;
-  }
-}
+
 
 
 
@@ -887,77 +767,6 @@ gap: 1rem;
 }
 
 
-@media only screen  and (max-width:650px){
-  .productLine{
-    font-size: 0.70rem;
-  }
-
-  .editBtn, .deleteBtn, .addProductBtn{
-    width: 3rem;
-    padding: 0.1rem;
-    font-size: 0.7rem;
-  }
-
-  .manageProductHeading{
-    font-size: 2rem;
-  }
-
-
-  .addProductBtn{
-    width: 3rem;
-  }
-
-  
-
-  .products{
-    padding: 2rem;
-  }
-
-  .productLine img{
-  width: 2.5rem;
-
-}
-
-.buttons{
-  gap:0.5rem;
-  
-}
-
-}
-
-@media only screen  and (max-width:500px){
-  .products{
-    padding: 1rem;
-  }
-
-  .productLine img{
-  width: 1.5rem;
-
-}
-
-.manageProductHeading{
-  font-size: 2rem;
-}
-
-.productLine{
-  font-size: 0.50rem;
-}
-
-.editBtn, .deleteBtn, .addProductBtn{
-  width: 2rem;
-  
-  font-size: 0.5rem;
-}
-
-.addProductBtn{
-  width: 2.5rem;
-}
-
-
-}
-
-
-
 
 .overlay {
   position: fixed;
@@ -987,21 +796,7 @@ gap: 1rem;
   z-index: 2;
 }
 
-@media only screen  and (max-width:800px){
-  .modal{
-    left: 10%;
-  }
 
-}
-
-
-@media only screen  and (max-width:700px){
-  .modal{
-    padding: 1rem;
-    margin-right: 1rem;
-  }
-
-}
 
 
 .hideModal, .hideOverlay{
@@ -1100,77 +895,6 @@ gap: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
     z-index: 2;
 }
-
-@media only screen  and (min-width:665px) and (max-width:800px){
-  .editUserBox{
-    left: 20%;
-    
-    
-  }
-
-  label{
-    width: 5rem;
-  }
-
-  input{
-    width: 12rem;
-  }
-}
-
-@media only screen  and (max-width:665px){
-  .editUserBox{
-    left: 10%;
-   
-    
-  }
-
-  label{
-    width: 5rem;
-  }
-
-  input{
-    width: 12rem;
-  }
-}
-
-@media only screen  and (max-width:530px){
-  .editUserBox{
-    left: 2%;
-    width: 90%;
-    
-    
-  }
-
-  label{
-    width: 5rem;
-  }
-
-  input{
-    width: 12rem;
-  }
-}
-
-@media only screen  and (max-width:400px){
-  .editUserBox{
-    left: 2%;
-    width: 80%;
-    
-    
-  }
-
-  label{
-    width: 3rem;
-  }
-
-  input{
-    width: 10rem;
-  }
-
-  .formField{
-    gap: 1.5rem;
-  }
-}
-
 
 
 
@@ -1324,13 +1048,128 @@ gap: 1rem;
 
 
 
+
+
+/* Media queries*/
+
 @media only screen  and (max-width:800px){
   .NewProductBox{
     left: 15%;
   }
- 
+
+  .registerBox,.loginBox{
+    width: 60%;
+    margin-bottom: 2rem;
+  }
+
+  .orderForm{
+    width: 40%;
+  }
+
+  .CatHeaderText{
+    padding: 1rem;
+  }
+  .CatHeaderTextComponent p{
+    font-size: 0.75rem;
+  }
+
+  .CatHeaderTextComponent h1{
+    font-size: 1rem;
+  }
+
+  .dropdownFilter{
+    margin-top: 2.5rem;
+  }
+
+  .navBar{
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .menu{
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 1rem;
+  }
+
+  .hamburger{
+    display: block;
+    padding-right: 1rem;
+   border: none;
+   background: none;
+  }
+
+  .menu a,  #navSvg, .search input, .search svg, #userHidden,
+  #cartHidden{
+    display: none;
+  }
+
+  #active, #cart, #user, #userName{
+    display: flex;
+  }
+
+   #expand{
+    height: auto;
+   }
+
    
- }
+
+   .NoOfProductsInCart{
+      top: 0;
+   }
+
+
+
+
+
+  .options{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cart{
+    display: block;
+    padding-left: 1rem;
+    width: 3rem;
+  }
+
+  .user{
+    display: block;
+    padding-left: 1rem;
+  }
+
+ 
+
+  .search{
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    width: 100%;
+  }
+
+  .search #navSvg, .search #active{
+    width: 100px;
+    height: 20px;
+   
+  }
+
+  #cart, #user{
+    width: 1.75rem;
+    height: auto;
+  }
+
+  .productBox {
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .modal{
+    left: 10%;
+  }
+
+}
+
+
 
  @media only screen  and (max-width:450px){
 
@@ -1372,22 +1211,27 @@ gap: 1rem;
     
     font-size: 0.5rem;
   }
+
+  #AddToCartBtn{
+    width: 100%;
+  }
+
+  .textbox h1{
+    font-size: 1.5em;
+  }
+
+  .textbox{
+    width: 100%;
+    padding: 0;
+  }
  
    
  }
 
- @media only screen  and (max-width:800px){
-    .registerBox,.loginBox{
-      width: 60%;
-      margin-bottom: 2rem;
-    }
- }
 
- @media only screen  and (max-width:800px){
-    .orderForm{
-      width: 40%;
-    }
- }
+
+
+
 
  @media only screen  and (max-width:600px){
   .products{
@@ -1410,29 +1254,6 @@ gap: 1rem;
     font-size: 1rem;
   }
 
-
-  
-}
-
-@media only screen and (max-width:800px){
-      .CatHeaderText{
-        padding: 1rem;
-      }
-      .CatHeaderTextComponent p{
-        font-size: 0.75rem;
-      }
-
-      .CatHeaderTextComponent h1{
-        font-size: 1rem;
-      }
-
-      .dropdownFilter{
-        margin-top: 2.5rem;
-      }
- 
- }
-
- @media only screen  and (max-width:600px){
   .CatHeaderBox{
     display: flex;
     flex-direction: column;
@@ -1446,8 +1267,13 @@ gap: 1rem;
     font-size: 0.65rem;
     
   }
+
   
- }
+}
+
+
+
+
 
 
 
@@ -1512,18 +1338,185 @@ gap: 1rem;
 
  }
 
- @media only screen  and (max-width:450px){
+ 
 
-  #AddToCartBtn{
-    width: 100%;
+
+
+
+@media only screen and (min-width:600px) and (max-width:980px){
+  .search input{
+    width: 6.5rem;
   }
 
-  .textbox h1{
-    font-size: 1.5em;
+}
+
+
+
+
+@media only screen and (min-width: 800px) {
+  .productBox {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .textbox{
-    width: 100%;
-    padding: 0;
+  
+}
+
+@media only screen and (max-width:375px){
+  .productDrop p{
+    font-size: 1.5rem;
   }
- }
+}
+
+@media only screen  and (max-width:650px){
+  .productLine{
+    font-size: 0.70rem;
+  }
+
+  .editBtn, .deleteBtn, .addProductBtn{
+    width: 3rem;
+    padding: 0.1rem;
+    font-size: 0.7rem;
+  }
+
+  .manageProductHeading{
+    font-size: 2rem;
+  }
+
+
+  .addProductBtn{
+    width: 3rem;
+  }
+
+  
+
+  .products{
+    padding: 2rem;
+  }
+
+  .productLine img{
+  width: 2.5rem;
+
+}
+
+.buttons{
+  gap:0.5rem;
+  
+}
+
+}
+
+@media only screen  and (max-width:500px){
+  .products{
+    padding: 1rem;
+  }
+
+  .productLine img{
+  width: 1.5rem;
+
+}
+
+.manageProductHeading{
+  font-size: 2rem;
+}
+
+.productLine{
+  font-size: 0.50rem;
+}
+
+.editBtn, .deleteBtn, .addProductBtn{
+  width: 2rem;
+  
+  font-size: 0.5rem;
+}
+
+.addProductBtn{
+  width: 2.5rem;
+}
+
+
+}
+
+
+
+
+
+@media only screen  and (max-width:700px){
+  .modal{
+    padding: 1rem;
+    margin-right: 1rem;
+  }
+
+}
+
+
+@media only screen  and (min-width:665px) and (max-width:800px){
+  .editUserBox{
+    left: 20%;
+    
+    
+  }
+
+  label{
+    width: 5rem;
+  }
+
+  input{
+    width: 12rem;
+  }
+}
+
+@media only screen  and (max-width:665px){
+  .editUserBox{
+    left: 10%;
+   
+    
+  }
+
+  label{
+    width: 5rem;
+  }
+
+  input{
+    width: 12rem;
+  }
+}
+
+@media only screen  and (max-width:530px){
+  .editUserBox{
+    left: 2%;
+    width: 90%;
+    
+    
+  }
+
+  label{
+    width: 5rem;
+  }
+
+  input{
+    width: 12rem;
+  }
+}
+
+@media only screen  and (max-width:400px){
+  .editUserBox{
+    left: 2%;
+    width: 80%;
+    
+    
+  }
+
+  label{
+    width: 3rem;
+  }
+
+  input{
+    width: 10rem;
+  }
+
+  .formField{
+    gap: 1.5rem;
+  }
+}
+
+
