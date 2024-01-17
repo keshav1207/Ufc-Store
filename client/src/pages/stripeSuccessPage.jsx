@@ -1,7 +1,7 @@
 
 import { useEffect,useState } from "react"
 import { ClearCart } from "../apicalls/clearCart"
-import { useJwtAuth } from "../hooks/useJwtAuth";
+import { UseJwtAuth } from "../hooks/UseJwtAuth";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function StripeSuccessPage(){
     const[userId, setUserId] = useState(null);
-    const { jwtToken } = useJwtAuth();
+    const { jwtToken } = UseJwtAuth();
     const navigate = useNavigate();
 
 

@@ -9,7 +9,7 @@ import {addProductFormToggle} from '../redux/addProductFormSlice';
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import { addproductSelected } from "../redux/editProductIdSlice";
 import {  useNavigate } from "react-router-dom";
-import { useJwtAuth } from '../hooks/useJwtAuth';
+import { UseJwtAuth } from '../hooks/UseJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
 import {  toast } from 'react-toastify';
 
@@ -56,7 +56,7 @@ export default function ProductList(){
 
 
 //Check if token is expired and redirect to login page
-const { jwtToken } = useJwtAuth();
+const { jwtToken } = UseJwtAuth();
 const navigate = useNavigate();
 useEffect(()=> {
     if(!jwtToken){

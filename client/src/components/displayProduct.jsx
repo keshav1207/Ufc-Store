@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import { GoArrowLeft,GoArrowRight } from "react-icons/go";
 import { AddToCart } from "../apicalls/addToCart";
-import { useJwtAuth } from '../hooks/useJwtAuth';
+import { UseJwtAuth } from '../hooks/UseJwtAuth';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import LoadingSpinner from './loadingSpinner';
@@ -84,7 +84,7 @@ export default function DisplayProduct(){
         },[]);
 
 
-        const { jwtToken } = useJwtAuth();
+        const { jwtToken } = UseJwtAuth();
         const[userId, setUserId] = useState(null);
         
         
