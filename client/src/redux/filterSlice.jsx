@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Purpose of this slice is to handle the application of a filter to the product grid.
+
 const initialState = {
     filter: null,
   }

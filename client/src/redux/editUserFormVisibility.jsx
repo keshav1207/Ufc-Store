@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//Controls the visibility of the edit User form on the screen.
+
 const initialState = {
-    editUserFormVisibilityValue: false,
+    editUserFormVisibility: false,
   }
 
   const editUserFormVisibilitySlice = createSlice({
@@ -9,7 +11,7 @@ const initialState = {
     initialState,
     reducers: {
         editUserFormToggle: (state) => {
-        state.editUserFormVisibilityValue = !state.editUserFormVisibilityValue;
+        state.editUserFormVisibility = !state.editUserFormVisibility;
       },
 
       

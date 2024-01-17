@@ -16,7 +16,7 @@ export default function UserDetails(){
     
     const [data,setData] = useState(null);
     const dispatch = useDispatch();
-    const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibilityValue);
+    const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibility);
     const [isLoggedOut, setIsLoggedOut] = useState(false);
     const { jwtToken } = UseJwtAuth();
     const [isLoading, setIsLoading] = useState(false);

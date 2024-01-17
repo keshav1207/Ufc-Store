@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
+//Controls the visibility of the add product form on the screen.
+
+
 const initialState = {
-    addProductFormVisib: false,
+    addProductFormVisible: false,
   }
 
   const addProductFormSlice = createSlice({
@@ -9,7 +13,7 @@ const initialState = {
     initialState,
     reducers: {
         addProductFormToggle: (state) => {
-        state.addProductFormVisib = !state.addProductFormVisib;
+        state.addProductFormVisible = !state.addProductFormVisible;
       },
 
       

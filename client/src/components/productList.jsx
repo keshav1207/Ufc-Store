@@ -7,7 +7,7 @@ import  { useSelector}  from 'react-redux';
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
-import { addproductSelected } from "../redux/editProductIdSlice";
+import { setProductId } from "../redux/editProductIdSlice";
 import {  useNavigate } from "react-router-dom";
 import { UseJwtAuth } from '../hooks/UseJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
@@ -19,8 +19,8 @@ import {  toast } from 'react-toastify';
 
 export default function ProductList(){
     const dispatch = useDispatch();
-    const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisib);
-    const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibilityValue);
+    const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisible);
+    const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibility);
     const reloadredux = useSelector((state) => state.reload. value);
     const [isLoading, setIsLoading] = useState(false);
     const [reload, setReload] =  useState(false);
@@ -117,7 +117,7 @@ const[deleteModal, setDeleteModal] = useState(false);
         dispatch(editFormToggle());
 
         //Save product Id to redux
-        dispatch(addproductSelected(e.target.value));
+        dispatch(setProductId(e.target.value));
 
        
 

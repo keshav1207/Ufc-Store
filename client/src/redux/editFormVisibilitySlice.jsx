@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//Controls the visibility of the edit product form on the screen.
+
 const initialState = {
-    editFormVisibilityValue: false,
+    editFormVisibility: false,
   }
 
   const editFormVisibilitySlice = createSlice({
@@ -9,7 +11,7 @@ const initialState = {
     initialState,
     reducers: {
         editFormToggle: (state) => {
-        state.editFormVisibilityValue = !state.editFormVisibilityValue;
+        state.editFormVisibility = !state.editFormVisibility;
       },
 
       

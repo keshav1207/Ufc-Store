@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//Controls the data of the  product being edited in the edit form on the screen.
+
 const initialState = {
     productId: null,
   }
@@ -8,7 +10,7 @@ const initialState = {
     name: 'editProductId',
     initialState,
     reducers: {
-        addproductSelected: (state,action) => {
+        setProductId: (state,action) => {
         state.productId = action.payload;
       },
 
@@ -17,6 +19,6 @@ const initialState = {
   });
   
   // Action creators are generated for each case reducer function
-  export const {addproductSelected } = editProductIdSlice.actions;
+  export const {setProductId } = editProductIdSlice.actions;
   
   export default editProductIdSlice.reducer;

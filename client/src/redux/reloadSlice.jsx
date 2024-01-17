@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Purpose of this slice is to handle the toggling of a reload state.
+
 const initialState = {
     value: false,
   }
