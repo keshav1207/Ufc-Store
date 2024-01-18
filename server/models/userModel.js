@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     name: {
     type:String,
-    required:true
+    required:true,
+    trim: true,
     },
 
 
@@ -12,6 +13,7 @@ const userSchema = new mongoose.Schema({
     required:true,
     unique: true,
     trim: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Add email validation
     },
 
     password: {

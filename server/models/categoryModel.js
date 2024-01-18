@@ -4,6 +4,8 @@ const categorySchema = new mongoose.Schema({
     name: {
     type:String,
     required:true,
+    trim:true,
+    unique: true,
     
 
     },
@@ -11,6 +13,7 @@ const categorySchema = new mongoose.Schema({
     description: {
         type:String,
         required:true,
+        trim:true,
 
     },
     
