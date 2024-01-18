@@ -6,9 +6,8 @@ import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function StripeSuccessPage(){
+
     const[userId, setUserId] = useState(null);
     const { jwtToken } = UseJwtAuth();
     const navigate = useNavigate();

@@ -1,27 +1,25 @@
 import FixedNavBannerContainer from '../components/fixedNavBannerContainer'
 import Footer from '../components/footer'
 import DisplayCategory from '../components/displayCategory'
-import '../index.css'
 import { useParams } from 'react-router-dom'
 
-export default function Category(){
+export default function CategoryPage(){
     const {categoryName} = useParams();
     
-   
-    return(
-        <>
+   return(
+     <>
 
-        <main>
+    <main>
 
-        <FixedNavBannerContainer/>
+    <FixedNavBannerContainer/>
 
-        <DisplayCategory category={categoryName}/>
+     <DisplayCategory category={categoryName}/>
 
-
-        <Footer/>
+    <Footer/>
        
-        </main>
+    </main>
       
-        </>
+    </>
+    
     )
 }

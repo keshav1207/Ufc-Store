@@ -2,10 +2,7 @@ import Footer from '../components/footer'
 import FixedNavBannerContainer from '../components/fixedNavBannerContainer'
 import DisplayProduct from '../components/displayProduct'
 
-
-import '../index.css'
-
-export default function Product_Detail(){
+export default function ProductDetailPage(){
     return(
         <>
 

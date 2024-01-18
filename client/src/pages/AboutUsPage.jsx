@@ -5,19 +5,13 @@ import AboutUsInfo from '../components/aboutUsInfo'
 
 export default function AboutUsPage(){
     return(
-        <>
-        <main>
-       <FixedNavBannerContainer/>
-        <AboutUsInfo/>
-        <Footer/>
-        </main>
-        
-        
-        </>
-
-
-
-
+    <>
+    <main>
+    <FixedNavBannerContainer/>
+    <AboutUsInfo/>
+    <Footer/>
+    </main>        
+    </>
 
     )
 }

@@ -5,19 +5,13 @@ import CartContent from '../components/cartContent'
 
 export default function CartPage(){
     return(
-        <>
-        <main>
-      <FixedNavBannerContainer/>
-       <CartContent/>
-        <Footer/>
-        </main>
-        
-        
-        </>
-
-
-
-
+    <>
+    <main>
+    <FixedNavBannerContainer/>
+    <CartContent/>
+    <Footer/>
+    </main>
+     </>
 
     )
 }

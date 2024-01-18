@@ -8,9 +8,10 @@ export default function UserDetailsPage(){
         <>
          <main>
     
-         <FixedNavBannerContainer/>
+        <FixedNavBannerContainer/>
         <UserDetails/>
         <Footer/>
+        
         </main>
         
         

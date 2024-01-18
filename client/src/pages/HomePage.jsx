@@ -3,9 +3,7 @@ import FixedNavBannerContainer from "../components/fixedNavBannerContainer";
 import ProductDropScreen from "../components/productDrop";
 import Footer from "../components/footer";
 
-import '../index.css'
-
-export default function Home(){
+export default function HomePage(){
     return(
         <>
 

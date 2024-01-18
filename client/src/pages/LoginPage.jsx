@@ -1,17 +1,17 @@
 import FixedNavBannerContainer from '../components/fixedNavBannerContainer'
-import RegisterForm from "../components/registerForm";
+import LoginForm from "../components/loginForm";
 import Footer from "../components/footer";
 
-import '../index.css'
 
-export default function Register(){
+export default function LoginPage(){
     return(
         <>
 
         <main>
-
+      
         <FixedNavBannerContainer/>
-        <RegisterForm/>
+
+        <LoginForm/>
 
         <Footer/>
        
