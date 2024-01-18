@@ -1,15 +1,9 @@
 import axiosInstance  from "./axiosInstance";
 import axiosMultiFormInstance from './axiosMultiFormInstance'
 
-
-
-
-
-
-
 //Register User
 
-export const RegisterUser= async function(payload){
+export const registerUser = async function(payload){
     try {
         const response = await axiosInstance.post("http://localhost:5000/api/users/register", payload);
         return response.data;
@@ -21,8 +15,8 @@ export const RegisterUser= async function(payload){
     }
 }
 
-//Edit User
-export const EditUser= async function(payload){
+//Edit User details
+export const editUser = async function(payload){
     try {
         const response = await axiosMultiFormInstance.put("http://localhost:5000/api/users/editUserInfo", payload);
         return response.data;

@@ -1,9 +1,5 @@
 import  axiosMultiFormInstance  from "./axiosMultiFormInstance";
 
-        
-
-
-
 //Get all products from a category
 
 export const getCategoryProducts = async function(category,optionalFilter){
@@ -16,7 +12,11 @@ export const getCategoryProducts = async function(category,optionalFilter){
         
         if(error.response){
             return `${error.response.data.msg}`
-        } 
+        } else {
+            // Generic catch block for unexpected errors
+            console.error("Unexpected error:", error);
+            return "An unexpected error occurred.";
+          }
         
             
         } 

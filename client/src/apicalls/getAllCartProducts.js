@@ -10,6 +10,10 @@ export const getAllCartProducts = async function(userId){
     } catch (error) {
         if(error.response){
             return `${error.response.data.msg}`
-        } 
+        } else {
+            // Generic catch block for unexpected errors
+            console.error("Unexpected error:", error);
+            return "An unexpected error occurred.";
+          }
     }
 }

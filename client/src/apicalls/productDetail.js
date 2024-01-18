@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const ProductDetail = async function(productId){
+export const productDetail = async function(productId){
     try {
        
         const response = await axios.get(`http://localhost:5000/api/product/${productId}`);
@@ -15,7 +15,7 @@ export const ProductDetail = async function(productId){
 }
 
 
-export const DeleteProduct = async function(productId){
+export const deleteProduct = async function(productId){
     try {
         
         const response = await axios.delete(`http://localhost:5000/api/product/${productId}`);
