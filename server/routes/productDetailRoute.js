@@ -16,7 +16,7 @@ router.get('/:productId',asyncHandler( async function(req, res, next) {
         const productInfo = await Product.findById(productId).populate('category').exec();
        
 
-        res.json({success:true, data: productInfo});
+       return res.json({success:true, data: productInfo});
 
 }))
 
@@ -34,7 +34,7 @@ router.delete('/:productId',asyncHandler( async function(req, res, next) {
         const result = await Product.findById(productId).select('-_id cloudinaryPublicId').exec();
 
         const publicIds = result. cloudinaryPublicId;
-        console.log(publicIds);
+       
 
         // //Delete Product from Cloudinary
         for(const Id of publicIds){
@@ -52,7 +52,7 @@ router.delete('/:productId',asyncHandler( async function(req, res, next) {
         }
 
 
-        res.json({success:true, data: deletedProduct});
+       return res.json({success:true, data: deletedProduct});
         
 
 }))

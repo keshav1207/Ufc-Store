@@ -5,7 +5,6 @@ const User = require("../models/userModel");
 
 router.delete('/:userId/:productId',asyncHandler( async function(req, res){
     
-
     //Get product Id and User Id from params
     const productId = req.params['productId'];
     const userId = req.params['userId'];
@@ -15,15 +14,12 @@ router.delete('/:userId/:productId',asyncHandler( async function(req, res){
     var cartArray  = await User.findById(userId).select('-_id cart').exec();
     cartArray = cartArray.cart;
 
-
     var updatedCart;
 
    
-        //  Remove specific product from cart
+    //Remove specific product from cart
       
-        updatedCart = cartArray.filter(obj => obj.id !== productId);
-
-
+    updatedCart = cartArray.filter(obj => obj.id !== productId);
 
 
     //Update user cart in database

@@ -29,6 +29,10 @@ router.get('/:categoryName/:optionalFilter?',asyncHandler( async function(req, r
 
    
     const categorySelected = await Category.findOne({name: categoryName}).exec();
+
+    if (!categorySelected) {
+        return res.status(404).json({ success: false, error: "Category not found" });
+    }
     const categoryId = categorySelected._id; 
 
 

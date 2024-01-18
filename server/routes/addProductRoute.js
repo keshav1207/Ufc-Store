@@ -3,18 +3,23 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
-const Multer = require("multer");
 const cloudinary = require( '../config/cloudinaryConfig');
 const upload = require('../middleware/multerMiddleware');
 
 /* Create new product. */
-const filesUploaded =  upload.fields([{ name: 'file-0', maxCount: 1 }, { name: 'file-1', maxCount: 1 },{ name: 'file-2', maxCount: 1 },{ name: 'file-3', maxCount: 1 },{ name: 'file-4', maxCount: 1 }])
+
+const filesUploaded =  upload.fields([{ name: 'file-0', maxCount: 1
+ }, { name: 'file-1', maxCount: 1 },{ name: 'file-2', maxCount: 1 },
+{ name: 'file-3', maxCount: 1 },{ name: 'file-4', maxCount: 1 }])
+
 router.post('/', filesUploaded,asyncHandler( async function(req, res, next) {
 
         var deliveryUrlArray = [];
         var publicIdArray  = [];
 
         const files = req.files;
+
+        
         //Iterates through the fields
         for (const field of Object.keys(files) ){
                 //Access files  for each field
@@ -31,28 +36,14 @@ router.post('/', filesUploaded,asyncHandler( async function(req, res, next) {
                         const deliveryUrl = result.secure_url;
                         deliveryUrlArray.push(deliveryUrl);
                         
-
+                        //This Id will be used  to remove the image from cloudinary later if we delete the image
                          const public_Id = result.public_id;
                          publicIdArray.push(public_Id);
                          
-                        
-                     
-
-                        
-                
-                        
+                               
                 }
         };
                 
-        
-
-
-        
-        
-        
-
-        
-
         
 
         const {name,price,features,comments,category} = req.body;
