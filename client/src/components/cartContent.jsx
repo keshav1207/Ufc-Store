@@ -3,13 +3,13 @@ import { getAllCartProducts } from "../apicalls/getAllCartProducts"
 import { UseJwtAuth } from "../hooks/UseJwtAuth";
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
-import { DeleteFromCart } from "../apicalls/deleteFromCart";
+import { deleteFromCart } from "../apicalls/deleteFromCart";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { ClearCart } from "../apicalls/clearCart";
-import { UpdateCart } from "../apicalls/updateCart";
+import { clearCart } from "../apicalls/clearCart";
+import { updateCart } from "../apicalls/updateCart";
 import {loadStripe} from '@stripe/stripe-js';
 import axios from "axios";
 import LoadingSpinner from './loadingSpinner';
@@ -133,8 +133,8 @@ export default function CartContent(){
             setIsLoading(true);
             const productId = e.currentTarget.value;
             
-            const response =  await DeleteFromCart(userId,productId);
-            const update = await UpdateCart(userId,qtyArray);
+            const response =  await deleteFromCart(userId,productId);
+            const update = await updateCart(userId,qtyArray);
             toast.dismiss();
             toast.success("Product successfully deleted from cart ", {
                 position: toast.POSITION.TOP_CENTER,
@@ -200,7 +200,7 @@ export default function CartContent(){
             try {
               
                 setIsLoading(true)
-                const response =  await ClearCart(userId);
+                const response =  await clearCart(userId);
                 toast.dismiss();
             toast.success("Cart Cleared successfully", {
                 position: toast.POSITION.TOP_CENTER,
@@ -250,7 +250,7 @@ export default function CartContent(){
 
                 setIsLoading(true);
                 //Update database for any changes in qty before navigating to checkout page
-                await UpdateCart(userId,qtyArray);
+                await updateCart(userId,qtyArray);
 
                 
 

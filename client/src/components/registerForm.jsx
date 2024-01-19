@@ -1,7 +1,7 @@
 import '../index.css'
 import {  useEffect, useId} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { RegisterUser } from '../apicalls/users';
+import { registerUser } from '../apicalls/users';
 import { useState } from 'react';
 
 import LoadingSpinner from './loadingSpinner';
@@ -49,7 +49,7 @@ export default function RegisterForm(){
 
             event.preventDefault();
             setIsLoading(true);
-             const response = await RegisterUser(formData);
+             const response = await registerUser(formData);
              
              setResponse(response);
             

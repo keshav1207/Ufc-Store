@@ -2,8 +2,8 @@ import { useId,useState,useEffect,useRef } from "react"
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import  {useDispatch}  from 'react-redux';
 import  { useSelector}  from 'react-redux';
-import { ProductDetail } from "../apicalls/productDetail";
-import { EditProduct } from "../apicalls/editProduct";
+import { productDetail } from "../apicalls/productDetail";
+import { editProduct } from "../apicalls/editProduct";
 import LoadingSpinner from "./loadingSpinner";
 import { reloadToggle } from "../redux/reloadSlice";
 import {  toast } from 'react-toastify';
@@ -30,7 +30,7 @@ export default function EditProductForm(){
     const fetchData =  async ()=>{
       try {
         setIsLoading(true);
-          const response = await ProductDetail(editProductId);
+          const response = await productDetail(editProductId);
           setSelectedFiles(response.data.images)
 
 
@@ -188,7 +188,7 @@ export default function EditProductForm(){
       console.log(formJson);
       
       
-      const response = await EditProduct(editProductId,formJson);
+      const response = await editProduct(editProductId,formJson);
       toast.dismiss();
       toast.success("Product Edited successfully", {
         position: toast.POSITION.TOP_CENTER,

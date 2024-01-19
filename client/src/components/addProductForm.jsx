@@ -1,5 +1,5 @@
 import { useId,useState,useRef } from "react"
-import { AddNewProduct } from "../apicalls/addProduct";
+import { addNewProduct } from "../apicalls/addProduct";
 import  {useDispatch}  from 'react-redux';
 import {addProductFormToggle} from '../redux/addProductFormSlice';
 import LoadingSpinner from "./loadingSpinner";
@@ -114,7 +114,7 @@ export default function AddProductForm(){
           console.log(formJson);
           
 
-          const response = await AddNewProduct(formJson);
+          const response = await addNewProduct(formJson);
            
 
           if(response.success){

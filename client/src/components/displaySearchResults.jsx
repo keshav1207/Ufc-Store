@@ -3,17 +3,17 @@ import DropdownFilter from "./dropdownFilter"
 import SearchResultsHeading from "./searchResultsHeading";
 import SearchResultsGrid from "./searchResultsGrid";
 
-export default function DisplaySearchResults({numberOfProductsFound, querydata}){
+export default function DisplaySearchResults({numberOfProductsFound, queryData}){
     
     return(
         <>
 
         <div className="ResultsContainer">
-        <SearchResultsHeading productsTotal ={numberOfProductsFound} textSearched={querydata}/>
+        <SearchResultsHeading productsTotal ={numberOfProductsFound} textSearched={queryData}/>
             
             <DropdownFilter/>
              
-        <SearchResultsGrid textSearched={querydata}/>
+        <SearchResultsGrid textSearched={queryData}/>
         </div>
          
 

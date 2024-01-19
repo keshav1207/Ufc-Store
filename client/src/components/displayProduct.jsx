@@ -1,9 +1,9 @@
 
-import { ProductDetail } from "../apicalls/productDetail"
+import { productDetail } from "../apicalls/productDetail"
 import { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import { GoArrowLeft,GoArrowRight } from "react-icons/go";
-import { AddToCart } from "../apicalls/addToCart";
+import { addToCart } from "../apicalls/addToCart";
 import { UseJwtAuth } from '../hooks/UseJwtAuth';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
@@ -60,7 +60,7 @@ export default function DisplayProduct(){
             const fetchData =  async ()=>{
                 try {
                     setIsLoading(true);
-                    const response = await ProductDetail(productId);
+                    const response = await productDetail(productId);
                     setProductInfo(response.data);
 
                     // We split the features using the delimetre newline before storing it in the featuresArray
@@ -116,7 +116,7 @@ export default function DisplayProduct(){
            setAuthToken(jwtToken);
             if(userId){
                 setIsLoading(true);
-                const result = await AddToCart(userId,productInfo._id);
+                const result = await addToCart(userId,productInfo._id);
                 console.log(result);
                 toast.success("Product added to cart", {
                     position: toast.POSITION.TOP_CENTER,

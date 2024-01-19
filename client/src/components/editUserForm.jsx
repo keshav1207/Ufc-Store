@@ -1,7 +1,7 @@
 import { useId , useState, useEffect, useRef} from "react";
 import { useDispatch } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
-import { EditUser } from "../apicalls/users";
+import { editUser } from "../apicalls/users";
 import { setAuthTokenMulti } from "../apicalls/axiosMultiFormInstance";
 import LoadingSpinner from "./loadingSpinner";
 import {  toast } from 'react-toastify';
@@ -126,7 +126,7 @@ export default function EditUserForm({userInformation}){
       setAuthTokenMulti(token);
 
      
-      const response = await EditUser(formJson);
+      const response = await editUser(formJson);
     
       if(formJson.password !== ""){
         localStorage.removeItem('token');

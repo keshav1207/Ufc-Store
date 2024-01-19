@@ -1,6 +1,6 @@
 import { useEffect,useState} from "react"
 import { getAllProducts } from "../apicalls/getAllProducts"
-import { DeleteProduct } from "../apicalls/productDetail";
+import { deleteProduct } from "../apicalls/productDetail";
 import AddProductForm from "../components/addProductForm"
 import EditProductForm from "../components/editProductForm"
 import  { useSelector}  from 'react-redux';
@@ -89,7 +89,7 @@ const[deleteModal, setDeleteModal] = useState(false);
     async function deleteProduct(){
         try {
        
-        const response  = await DeleteProduct(deleteProductId);
+        const response  = await deleteProduct(deleteProductId);
         toast.dismiss();
         toast.success("Product Deleted", {
             position: toast.POSITION.TOP_CENTER,

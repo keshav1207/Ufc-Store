@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingSpinner from '../components/loadingSpinner'
 import FixedNavBannerContainer from '../components/fixedNavBannerContainer'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SearchResultsPage(){
     const {searchQuery} =  useParams();
@@ -25,12 +27,21 @@ export default function SearchResultsPage(){
                 else{
                     setNumberOfProducts(0);
                 }
-                setIsLoading(false);
+                
                 
             } catch (error) {
                 console.log(error);
+               
+                toast.dismiss();
+                toast.error('An error occurred. Please try again.', {
+              position: toast.POSITION.TOP_CENTER,
+            });
+
+            } finally {
                 setIsLoading(false);
             }
+
+            
 
         };
 
@@ -45,7 +56,7 @@ export default function SearchResultsPage(){
 
        <FixedNavBannerContainer/>
 
-        {isLoading?<LoadingSpinner/>:(<DisplaySearchResults numberOfProductsFound={numberOfProducts}  querydata ={searchQuery.toUpperCase()}/>)}
+        {isLoading?<LoadingSpinner/>:(<DisplaySearchResults numberOfProductsFound={numberOfProducts}  queryData ={searchQuery.toUpperCase()}/>)}
 
 
         <Footer/>

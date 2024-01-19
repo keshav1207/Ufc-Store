@@ -1,6 +1,6 @@
 
 import { useEffect,useState } from "react"
-import { ClearCart } from "../apicalls/clearCart"
+import { clearCart } from "../apicalls/clearCart"
 import { UseJwtAuth } from "../hooks/UseJwtAuth";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
@@ -41,9 +41,9 @@ export default function StripeSuccessPage(){
 
     async function handleClick(){
 
-        const clearCart =  async ()=>{
+        const clearCartFunction =  async ()=>{
             try {
-                const response =  await ClearCart(userId);
+                const response =  await clearCart(userId);
                 console.log(response);
 
             } catch (error) {
@@ -53,7 +53,7 @@ export default function StripeSuccessPage(){
         };
 
       if(jwtToken && userId != null){
-        await clearCart();
+        await clearCartFunction();
         navigate('/');
         
       }
