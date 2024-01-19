@@ -1,22 +1,22 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/homePage";
-import Register from "./pages/registerPage";
-import Login from "./pages/loginPage";
+import HomePage from "./pages/HomePage"
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import {ProtectedPage} from "./components/ProtectedPage";
-import Category from "./pages/categoryPage";
-import Product_Detail from "./pages/product_detailPage";
-import ManageProductsPage from "./pages/manageProductsPage";
-import SearchResultsPage from "./pages/searchResultsPage";
-import AboutUsPage from "./pages/aboutUsPage";
-import ContactUsPage from "./pages/contactUsPage";
-import CookiePolicyPage from "./pages/cookiePolicyPage";
-import PrivatePolicyPage from "./pages/privatePolicyPage";
-import ShippingsAndReturnsPage from "./pages/shippingsAndReturnsPage";
-import GiftCardsPage from "./pages/giftCardsPage";
-import UserDetailsPage from "./pages/userDetailsPage";
-import CartPage from "./pages/cartPage";
-import StripeSuccessPage from "./pages/stripeSuccessPage";
-import StripeFailurePage from "./pages/stripeFailurePage";
+import CategoryPage from "./pages/CategoryPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import ManageProductsPage from "./pages/ManageProductsPage";
+import SearchResultsPage from "./pages/SearchResultsPage";
+import AboutUsPage from "./pages/AboutUsPage";
+import ContactUsPage from "./pages/ContactUsPage";
+import CookiePolicyPage from "./pages/CookiePolicyPage";
+import PrivatePolicyPage from "./pages/PrivatePolicyPage";
+import ShippingsAndReturnsPage from "./pages/ShippingsAndReturnsPage";
+import GiftCardsPage from "./pages/GiftCardsPage";
+import UserDetailsPage from "./pages/UserDetailsPage";
+import CartPage from "./pages/CartPage";
+import StripeSuccessPage from "./pages/StripeSuccessPage";
+import StripeFailurePage from "./pages/StripeFailurePage";
 
 
 
@@ -24,30 +24,30 @@ const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<Home/>  ,    
+      element:<HomePage/>  ,    
     },
 
     {
       path: "/register",
-      element: < Register/>,
+      element: < RegisterPage/>,
      
     },
 
     {
       path: "/login",
-      element: < Login/>,
+      element: < LoginPage/>,
      
     },
 
     {
       path: "/categories/:categoryName",
-      element: < Category/>,
+      element: < CategoryPage/>,
      
     },
 
     {
       path: "/products/:productId",
-      element: < Product_Detail/>,
+      element: < ProductDetailPage/>,
      
     },
 
