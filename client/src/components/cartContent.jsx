@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllCartProducts } from "../apicalls/getAllCartProducts"
-import { UseJwtAuth } from "../hooks/UseJwtAuth";
+import { useJwtAuth } from "../hooks/useJwtAuth";
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance";
 import { deleteFromCart } from "../apicalls/deleteFromCart";
@@ -19,7 +19,7 @@ import {  toast } from 'react-toastify';
 
 export default function CartContent(){
 
-    const { jwtToken } = UseJwtAuth();
+    const { jwtToken } = useJwtAuth();
     const[userId, setUserId] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(false);

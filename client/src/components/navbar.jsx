@@ -8,7 +8,7 @@ import ufclogo from "../assets/logo.avif"
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
-import { UseJwtAuth } from '../hooks/UseJwtAuth';
+import { useJwtAuth } from '../hooks/useJwtAuth';
 import { getAllCartProducts } from '../apicalls/getAllCartProducts';
 import  { useSelector}  from 'react-redux';
 
@@ -18,7 +18,7 @@ export default function NavBar (){
 
     const [results,setResults] = useState("");
 
-    const { jwtToken } = UseJwtAuth();
+    const { jwtToken } = useJwtAuth();
 
     const reloadredux = useSelector((state) => state.reload. value);
 

@@ -5,7 +5,7 @@ import { setAuthToken } from "../apicalls/axiosInstance"
 import {  toast } from 'react-toastify';
 
 
-export const UseJwtAuth = () => {
+export const useJwtAuth = () => {
 //Purpose of this custom hook is to check for JWT token and check whether its expired and if so, then delete JWT 
 //and redirects to the Log in page.
 
