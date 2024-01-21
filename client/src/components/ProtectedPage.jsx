@@ -23,9 +23,9 @@ export  function ProtectedPage({children}){
             return response.data ;
             
         } catch (error) {
-            if(error.response){
-                return`${error.response.data.msg}` ;
-            } 
+            
+            return`${error.response.data.msg}` ;
+            
         }
 
     }
@@ -35,8 +35,6 @@ export  function ProtectedPage({children}){
         try {
             
             const response = await getUser();
-            
-            console.log(response.success);
             if(response.success){
             setUser(response.success);
 

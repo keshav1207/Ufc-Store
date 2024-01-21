@@ -1,7 +1,7 @@
 
 export default function PrivatePolicyInfo(){
     return(
-    <div className="footerLinksInfo">
+    <section className="footerLinksInfo">
     <h1>PRIVATE POLICY</h1>
     <br></br>
     <p>This privacy policy is applicable to the Site accessible at www.ufc.com and all other sites (including without limitation, ufc.tv, ufcstore.com, ufcstore.eu, ufcfightclub.com, and data received from UFC’s Fight Pass website) which are owned and operated by Zuffa, LLC (hereinafter referred to as "we", "our", or "us"). The purpose of this privacy policy is to disclose to you what information we may collect, how we may collect it, with whom we may share it, and certain other matters related to such information, including the choices you have regarding 
@@ -50,7 +50,7 @@ export default function PrivatePolicyInfo(){
         <li>monitor or improve the use of the Site;</li>
         <li>customize the advertising and content you see;</li>
     </ul>
-    </div>
+    </section>
 
     )
 }   

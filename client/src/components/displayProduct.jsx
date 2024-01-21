@@ -1,10 +1,9 @@
-
 import { productDetail } from "../apicalls/productDetail"
 import { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import { GoArrowLeft,GoArrowRight } from "react-icons/go";
 import { addToCart } from "../apicalls/addToCart";
-import { UseJwtAuth } from '../hooks/UseJwtAuth';
+import { useJwtAuth } from '../hooks/useJwtAuth';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import LoadingSpinner from './loadingSpinner';
@@ -14,7 +13,6 @@ import {  toast } from 'react-toastify';
 
 export default function DisplayProduct(){
     const [isLoading, setIsLoading] = useState(false);
-
 
     // Getting productId from params
     const {productId} = useParams();
@@ -67,13 +65,13 @@ export default function DisplayProduct(){
                     setFeatures(response.data.features.split("\n"));
 
                     setNumberOfImages(response.data.images.length);
-
-                    setIsLoading(false);
                    
                     console.log(productInfo)
 
                 } catch (error) {
                     console.log(error);
+                    
+                }finally{
                     setIsLoading(false);
                 }
                
@@ -84,7 +82,7 @@ export default function DisplayProduct(){
         },[]);
 
 
-        const { jwtToken } = UseJwtAuth();
+        const { jwtToken } = useJwtAuth();
         const[userId, setUserId] = useState(null);
         
         
@@ -94,11 +92,12 @@ export default function DisplayProduct(){
                     setIsLoading(true);
                     const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
                    setUserId(response.data.data._id);
-                   setIsLoading(false);
-                
-
+                  
                 } catch (error) {
                     console.log(error);
+                    
+
+                }finally{
                     setIsLoading(false);
                 }
                
@@ -112,7 +111,7 @@ export default function DisplayProduct(){
 
 
         const navigate = useNavigate();
-        async function addToCart(){
+        async function addToCartFunction(){
            setAuthToken(jwtToken);
             if(userId){
                 setIsLoading(true);
@@ -156,7 +155,7 @@ export default function DisplayProduct(){
     
 
     <div>
-    <img  src= {productInfo?(productInfo.images[imageSelected]):("...Loading")} alt="" />
+    <img  src= {productInfo?(productInfo.images[imageSelected]):("...Loading")} alt="Product Image" />
     </div>
     
     {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={rightClick}>
@@ -171,7 +170,7 @@ export default function DisplayProduct(){
 <div className="textbox">
     <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
     <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
-    <button id="AddToCartBtn" onClick={addToCart}>Add to Cart</button>
+    <button id="AddToCartBtn" onClick={addToCartFunction}>Add to Cart</button>
 
 </div>
 

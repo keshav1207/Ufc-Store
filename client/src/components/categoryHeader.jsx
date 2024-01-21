@@ -5,8 +5,6 @@ import ApparelHeaderPic from "../assets/ApparelHeaderPic.webp";
 
 export default function CategoryHeader({categorySelected}){
 
-    console.log(categorySelected);
-
     let image,header, paragraph;
 
     if(categorySelected == "Apparel"){
@@ -29,28 +27,28 @@ export default function CategoryHeader({categorySelected}){
 
 
     return(
-        <>
+    <>
 
-        <div className="CatHeaderBox">
+    <div className="CatHeaderBox">
 
-            <div className="CatHeaderText">
-                <div className="CatHeaderTextComponent">
-                <h1>{header}</h1>
-                <p>{paragraph}</p>
-                </div>
+        <div className="CatHeaderText">
+            <div className="CatHeaderTextComponent">
+            <h1>{header}</h1>
+            <p>{paragraph}</p>
+            </div>
                 
-            </div>
+        </div>
 
-            <div className="CatHeaderImg">
-                <img src={image} alt={categorySelected} />
+        <div className="CatHeaderImg">
+            <img src={image} alt={categorySelected} />
 
-            </div>
-
-        
         </div>
 
         
+     </div>
+
+        
       
-        </>
+    </>
     )
 }

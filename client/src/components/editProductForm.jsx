@@ -43,15 +43,13 @@ export default function EditProductForm(){
             category: response.data.category.name,
           }));
 
-          
-          
-
       } catch (error) {
           console.log(error);
+
+      }finally{
+        setIsLoading(false);
       }
 
-      setIsLoading(false);
-     
   };
 
   fetchData();
@@ -205,10 +203,6 @@ export default function EditProductForm(){
   }
 
   
- 
-
-  
-
 
   function handleInputChange(e){
     const { name, value } = e.target;
@@ -225,17 +219,17 @@ export default function EditProductForm(){
         <>
         
 
-        <div className="NewProductSection">
-          {isLoading?(<LoadingSpinner/>):(  <div className="NewProductBox">
+        <div className="editProductSection">
+          {isLoading?(<LoadingSpinner/>):(  <div className="editProductBox">
               <button className="closeFormBtn" onClick={handleClose}>X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
-                    <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>
-                    <button className= {visible==2?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(2)}>Images</button>
+                    <button className= {visible==1?("tabBtn tabBtnActive"):("tabBtn")} onClick={()=>handleClick(1)}>General</button>
+                    <button className= {visible==2?("tabBtn tabBtnActive"):("tabBtn")} onClick={()=>handleClick(2)}>Images</button>
                 </div>
 
                 {visible==1?(<h1> Product details</h1>):(<h1>Product images</h1>)}
-                <form className="NewProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
+                <form className="editProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>
@@ -325,7 +319,7 @@ export default function EditProductForm(){
 
                   
                 
-                <button type="submit"  className={visible==1?("addProductBtn"):("addProductBtn hidden")}>Save changes</button>
+                <button type="submit"  className={visible==1?("editProductBtn"):("editProductBtn hidden")}>Save changes</button>
 
 
                 </form>

@@ -67,15 +67,14 @@ export default function CartContent(){
                 const response = await getAllCartProducts(userId);
                 console.log(response.data);
                 setProductInfo(response.data);
-
-         
-                
-                
+  
             } catch (error) {
                 console.log(error);
+            }finally{
+                setIsLoading(false);
             }
 
-            setIsLoading(false);
+            
         }
         if(userId){
             fetchData()
@@ -142,7 +141,7 @@ export default function CartContent(){
 
             dispatch(reloadToggle());
             
-            setIsLoading(false);
+            
             setReloadAlert(true);
 
 
@@ -152,8 +151,9 @@ export default function CartContent(){
         }, 1000);
            
         } catch (error) {
-            setIsLoading(false);
             console.log(error);
+        }finally{
+            setIsLoading(false);
         }
 
     
@@ -167,9 +167,6 @@ export default function CartContent(){
             const newArray = [...prev];
             // Update the value at the specified index
             newArray[index] = newValue;
-
-           
-
 
             // Return the new array
             return newArray;
@@ -187,8 +184,6 @@ export default function CartContent(){
         const newArray = [...prev];
         // Update the value at the specified index
         newArray[index] = newValue;
-
-
 
         // Return the new array
         return newArray;
@@ -210,7 +205,7 @@ export default function CartContent(){
                 
                 setReloadAlert(true);
     
-                setIsLoading(false);
+               
             // Reset reloadAlert to false after a delay (e.g., 1 second)
             setTimeout(() => {
                 setReloadAlert(false);
@@ -220,12 +215,11 @@ export default function CartContent(){
                
             } catch (error) {
                 console.log(error);
+                
+            }finally {
                 setIsLoading(false);
             }
-
-           
-
-            
+ 
         }
 
 
@@ -233,11 +227,13 @@ export default function CartContent(){
             try {
                 setIsLoading(true);
                 //Update database for any changes in qty before navigating to home page
-                const update = await UpdateCart(userId,qtyArray);
-                setIsLoading(false);
+                const update = await updateCart(userId,qtyArray);
+                
                 navigate('/');
             } catch (error) {
                 console.log(error);
+                
+            }finally {
                 setIsLoading(false);
             }
 
@@ -246,20 +242,14 @@ export default function CartContent(){
         async function handlePay(){
             try {
 
-               
-
                 setIsLoading(true);
                 //Update database for any changes in qty before navigating to checkout page
                 await updateCart(userId,qtyArray);
 
-                
-
-            const updatedcart = await getAllCartProducts(userId);
+                const updatedcart = await getAllCartProducts(userId);
 
                 const stripe =  await loadStripe( import.meta.env. VITE_STRIPE_PUBLISHABLE_KEY);
                 
-                
-
                 const data = {
                     products: updatedcart.data,
                 }
@@ -284,9 +274,12 @@ export default function CartContent(){
                 
             } catch (error) {
                 console.log(error);
+
+            }finally{
+                setIsLoading(false);
             }
 
-            setIsLoading(false);
+          
         }
 
 

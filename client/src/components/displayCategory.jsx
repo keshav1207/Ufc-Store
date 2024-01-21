@@ -17,12 +17,6 @@ export default function DisplayCategory({category}){
 
         </div>
 
-        
-        
-      
-
-        
-      
         </>
     )
 }

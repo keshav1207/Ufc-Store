@@ -1,4 +1,3 @@
-import '../index.css'
 import {  useEffect, useId} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../apicalls/users';
@@ -17,11 +16,6 @@ export default function RegisterForm(){
     const passwordId = useId();
 
 
-
-
-   
-
-
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -37,12 +31,7 @@ export default function RegisterForm(){
       };
 
 
-      //This response state will used as a prop to display  messages in the alert forms
-
-      const[response,setResponse] = useState("");
-
-    
-
+     
       function submitForm(event){
         (async() =>{
           try {
@@ -51,8 +40,6 @@ export default function RegisterForm(){
             setIsLoading(true);
              const response = await registerUser(formData);
              
-             setResponse(response);
-            
             if(response != "User created successfully!"){
               setIsLoading(false);
               throw Error(response);
@@ -119,7 +106,7 @@ export default function RegisterForm(){
            <label htmlFor={passwordId} >Password</label>
            <input  required='true ' name="password" id={passwordId} type='password' onChange={handleInputChange} value={formData.password}/>
 
-           <button type="submit" className="registerBtn">Register</button>
+           <button type="submit" className="registerBtn" disabled={isLoading}>Register</button>
 
         </form>
 

@@ -1,8 +1,7 @@
 
-
 export default function CookiePolicyInfo(){
     return(
-        <div className="footerLinksInfo">
+        <section className="footerLinksInfo">
 
         <h1>COOKIE POLICY PAGE</h1>
 
@@ -13,8 +12,13 @@ export default function CookiePolicyInfo(){
         
          <br></br>
 
-        <p>“Cookies” are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit  <a href= 'https://www.allaboutcookies.org.'> https://www.allaboutcookies.org.</a> </p>
-        </div>
+        {/* In this example, target="_blank" is used to instruct the browser to open the link in a new tab or window. Additionally, the rel="noopener noreferrer" attribute is added for security reasons. 
+        It helps prevent potential security vulnerabilities related to opening links in a new tab. */}
+
+        <p>“Cookies” are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit  
+        <a href='https://www.allaboutcookies.org' target="_blank" rel="noopener noreferrer">https://www.allaboutcookies.org</a>.    </p>
+            
+        </section>
 
 
     )

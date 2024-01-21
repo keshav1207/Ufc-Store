@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import EditUserForm from "./editUserForm";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserFormToggle } from "../redux/editUserFormVisibility";
-import { UseJwtAuth } from '../hooks/UseJwtAuth';
+import { useJwtAuth } from '../hooks/useJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
 import { reloadToggle } from "../redux/reloadSlice";
 import { toast} from 'react-toastify';
@@ -18,7 +18,7 @@ export default function UserDetails(){
     const dispatch = useDispatch();
     const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibility);
     const [isLoggedOut, setIsLoggedOut] = useState(false);
-    const { jwtToken } = UseJwtAuth();
+    const { jwtToken } = useJwtAuth();
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect( () => {
@@ -40,9 +40,12 @@ export default function UserDetails(){
                 if(error.response){
                     console.log(`${error.response.data.msg}`) ;
                 } 
+
+            }finally{
+                setIsLoading(false);
             }
 
-            setIsLoading(false);
+            
             
         };
 

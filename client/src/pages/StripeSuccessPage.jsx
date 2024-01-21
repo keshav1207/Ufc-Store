@@ -1,7 +1,6 @@
-
 import { useEffect,useState } from "react"
 import { clearCart } from "../apicalls/clearCart"
-import { useJwtAuth } from "../hooks/UseJwtAuth";
+import { useJwtAuth } from "../hooks/useJwtAuth"
 import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
 import { useNavigate } from "react-router-dom";

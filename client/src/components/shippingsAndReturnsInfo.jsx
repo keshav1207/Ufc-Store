@@ -2,7 +2,7 @@
 export default function ShippingsAndReturnsInfo(){
     
     return(
-        <div className="footerLinksInfo">
+        <section className="footerLinksInfo">
         <h1>SHIPPING & RETURNS</h1>
         <br></br>
         <p> <b>SHIPPING:</b> </p>
@@ -34,7 +34,7 @@ export default function ShippingsAndReturnsInfo(){
         <p>Note: To receive an exchanged item more quickly, return your item(s) for a refund and place a new order today. You will be responsible for shipping fees associated with the return/exchange. The method of shipping the item(s) back to us is your choice; we recommend you receive a tracking number when returning your package to ensure proof of delivery. Please note there will be an additional shipping charge for the new package if you request an exchange. It will take 2-10 business days from the date received for the refund to appear on your credit card statement. If requesting an exchange, 
             it may take up to 10 business days for your new order to ship.</p>
          <br></br>
-        </div>
+        </section>
 
     )
 

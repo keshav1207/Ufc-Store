@@ -125,8 +125,15 @@ export default function EditUserForm({userInformation}){
 
       setAuthTokenMulti(token);
 
-     
+     try {
       const response = await editUser(formJson);
+     } catch (error) {
+      toast.dismiss();
+      toast.error("An error occured! Please try again", { 
+        position: toast.POSITION.TOP_CENTER,
+      });
+     }
+      
     
       if(formJson.password !== ""){
         localStorage.removeItem('token');
@@ -160,46 +167,46 @@ export default function EditUserForm({userInformation}){
           <h1>Edit User details</h1>
            <form className="editUserForm" encType="multipart/form-data" onSubmit={handleSubmit} >
 
-<div className="formField">
-      <label htmlFor= {nameId}>Name</label>
-      <input type="text" name="name" id={nameId} onChange={handleInputChange} value={userInformation?(inputValues.name):("")} />
-</div>
-      
-<div className="formField">
-    <label htmlFor= {emailId}>Email</label>
-    <input type="text" name="email" id={emailId} onChange={handleInputChange} value={userInformation?(inputValues.email):("")} />
-</div>
-     
-<div className="formField">
-      <label htmlFor= {passwordId}> New Password</label>
-      <input type="password" name="password" id={passwordId} onChange={handleInputChange} value={userInformation?(inputValues.password):("")} />
+            <div className="formField">
+                  <label htmlFor= {nameId}>Name</label>
+                  <input type="text" name="name" id={nameId} onChange={handleInputChange} value={inputValues.name} />
+            </div>
+                  
+            <div className="formField">
+                <label htmlFor= {emailId}>Email</label>
+                <input type="text" name="email" id={emailId} onChange={handleInputChange} value={inputValues.email} />
+            </div>
+                
+            <div className="formField">
+                  <label htmlFor= {passwordId}> New Password</label>
+                  <input type="password" name="password" id={passwordId} onChange={handleInputChange} value={inputValues.password} />
 
-</div>
-      
-<div className="formField">
-     <label htmlFor= {pictureId}>Picture</label>
-      <input type="file" name="picture" id={pictureId} onChange={handleFileUpload}  ref={hiddenFileInput}/>
+            </div>
+                  
+            <div className="formField">
+                <label htmlFor= {pictureId}>Picture</label>
+                  <input type="file" name="picture" id={pictureId} onChange={handleFileUpload}  ref={hiddenFileInput}/>
 
-</div>  
+            </div>  
 
 
-    <div className="selectedImages">
-                        {selectedImage && selectedImage[0] !== ""?(selectedImage.map((file,index)=>(
-                        
-                              <div className="selectedImageContainer"key={index}>
+            <div className="selectedImages">
+                                {selectedImage && selectedImage[0] !== ""?(selectedImage.map((file,index)=>(
+                                
+                                      <div className="selectedImageContainer"key={index}>
 
-                            {typeof file === "string"?(<img className="selectedImage" src={file} />):(<img className="selectedImage" src={URL.createObjectURL(file)} />)}
-                              {/* Check ()=> handleDelete(index) */}
-                              <button className="deleteImageBtn" onClick={handleDelete} >X</button>
-                              </div>
-                            
- 
-                        )
+                                    {typeof file === "string"?(<img className="selectedImage" src={file} />):(<img className="selectedImage" src={URL.createObjectURL(file)} />)}
+                                      {/* Check ()=> handleDelete(index) */}
+                                      <button className="deleteImageBtn" onClick={handleDelete} >X</button>
+                                      </div>
+                                    
+        
+                                )
 
-                        )): (null)}
-                        
+                                )): (null)}
+                                
 
-     </div>
+            </div>
 
      
 

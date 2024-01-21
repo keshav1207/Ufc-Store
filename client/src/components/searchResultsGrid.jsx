@@ -9,9 +9,7 @@ export default function SearchResultsGrid({textSearched}){
 
     const [isLoading, setIsLoading] = useState(false);
     const filter = useSelector((state) => state.filter.filter);
-   
-
-        const[myarray,setArray] = useState(null);
+    const[myarray,setArray] = useState(null);
 
         
 
@@ -22,10 +20,13 @@ export default function SearchResultsGrid({textSearched}){
                     setIsLoading(true);
                     const response = await getSearchResults(textSearched,filter);
                     setArray(response.data);
-                    setIsLoading(false);
+                  
                    
                 } catch (error) {
                     console.log(error);
+                    
+
+                }finally{
                     setIsLoading(false);
                 }
                
@@ -40,7 +41,7 @@ export default function SearchResultsGrid({textSearched}){
     return(
         <>
 
-        {isLoading?<LoadingSpinner/>:( < div className="ProductsGrid">
+        {isLoading?<LoadingSpinner/>:( < div className="productsGrid">
 
 
        

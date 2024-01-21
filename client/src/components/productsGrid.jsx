@@ -1,4 +1,3 @@
-
 import { getCategoryProducts } from "../apicalls/getCategoryProducts"
 import { useEffect, useState } from "react";
 import { useSelector} from 'react-redux'
@@ -8,12 +7,8 @@ import LoadingSpinner from './loadingSpinner';
 export default function ProductsGrid(props){
 
     const [isLoading, setIsLoading] = useState(false);
-    
     const filter = useSelector((state) => state.filter.filter);
-
-   
-
-        const[myarray,setArray] = useState(null);
+    const[myarray,setArray] = useState(null);
 
         
 
@@ -24,10 +19,14 @@ export default function ProductsGrid(props){
                     setIsLoading(true);
                     const response = await getCategoryProducts(props.categorySelected,filter);
                     setArray(response.data);
-                    setIsLoading(false);
+                    
                 } catch (error) {
                     console.log(error);
+                    
+
+                }finally{
                     setIsLoading(false);
+
                 }
                
             };
@@ -37,11 +36,6 @@ export default function ProductsGrid(props){
 
 
 
-        
-        
-     
-       
-    
     
     return(
         <>

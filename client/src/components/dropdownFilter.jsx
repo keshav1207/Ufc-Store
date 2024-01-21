@@ -5,8 +5,7 @@ export default function DropdownFilter(){
     const dispatch = useDispatch()
 
     function dispatchFunction(e){
-        
-            dispatch(filterApplied(e.target.value));
+        dispatch(filterApplied(e.target.value));
     }
     return(
         <>

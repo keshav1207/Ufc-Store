@@ -7,15 +7,11 @@ import { reloadToggle } from "../redux/reloadSlice";
 import {  toast } from 'react-toastify';
 
 
-
-
 export default function AddProductForm(){
   
   const [isLoading, setIsLoading] = useState(false);
-  
   const dispatch = useDispatch();
 
-  
     //Generating unique ids
     const imagesId = useId();
     const nameId = useId();
@@ -27,16 +23,7 @@ export default function AddProductForm(){
     const featuresId = useId();
 
 
-    
-
-
-
-
-  //This response state will used as a prop to display  messages in the alert forms
-
-    const[response,setResponse] = useState("");
-
-
+  
 
   // State to hold selected file
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -50,17 +37,19 @@ export default function AddProductForm(){
       const newFiles = Array.from(event.target.files);
       
       
-      
-
       //Add each file to our currentFiles variable
         newFiles.forEach(file => {
 
         // Limit the number of images that can be uploaded to 5
           if(currentFiles.length >= 5){
-        alert('You can only upload up to 5 images.');
-        setSelectedFiles(currentFiles);
-        hiddenFileInput.current.value = null;
-        return;
+            toast.dismiss();
+            toast.warning('You can only upload up to 5 images.', {
+              position: toast.POSITION.TOP_CENTER,
+            });
+       
+          setSelectedFiles(currentFiles);
+          hiddenFileInput.current.value = null;
+          return;
         }
 
         //Check if image is already uploaded
@@ -68,7 +57,11 @@ export default function AddProductForm(){
           currentFiles.push(file);
         }
         else{
-          alert("Image already uploaded!")
+          toast.dismiss();
+            toast.warning("Image already uploaded!", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+         
         }
         
         });
@@ -81,8 +74,6 @@ export default function AddProductForm(){
 
 
     function handleSubmit(e) {
-
-      
 
         (async() =>{
 
@@ -119,7 +110,7 @@ export default function AddProductForm(){
 
           if(response.success){
              
-            setResponse(response.msg); 
+            
             toast.dismiss();
             toast.success(response.msg, {
               position: toast.POSITION.TOP_CENTER,
@@ -128,7 +119,7 @@ export default function AddProductForm(){
           }
 
           else{
-            setResponse(response);
+            
             toast.dismiss();
             toast.error(response, {
               position: toast.POSITION.TOP_CENTER,
@@ -151,10 +142,10 @@ export default function AddProductForm(){
 
 
    //State to manage visibility  of the 2 tabs
-   const[visible,setvisible] = useState(1);
+   const[visible,setVisible] = useState(1);
 
    function handleClick(index){
-    setvisible(index);
+    setVisible(index);
    }
 
 
@@ -182,30 +173,25 @@ export default function AddProductForm(){
     dispatch(addProductFormToggle());
 
     
-   
-    
    }
 
-
-   
-   
 
     return(
         <>
         
       
 
-        <div className="NewProductSection">
-            {isLoading?(<LoadingSpinner/>):(<div className="NewProductBox">
+        <div className="newProductSection">
+            {isLoading?(<LoadingSpinner/>):(<div className="newProductBox">
               <button className="closeFormBtn" onClick={handleClose}>X</button>
                 <div className="tabs">
                   {/* We add ()=>handleclick() to the onClick so that React stores the function instead calling it everytime it renders these buttons */}
-                    <button className= {visible==1?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(1)}>General</button>
-                    <button className= {visible==2?("TabBtn TabBtnActive"):("TabBtn")} onClick={()=>handleClick(2)}>Images</button>
+                    <button className= {visible==1?("tabBtn tabBtnActive"):("tabBtn")} onClick={()=>handleClick(1)}>General</button>
+                    <button className= {visible==2?("tabBtn tabBtnActive"):("tabBtn")} onClick={()=>handleClick(2)}>Images</button>
                 </div>
 
                 {visible==1?(<h1>New product details</h1>):(<h1>New product images</h1>)}
-                <form className="NewProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
+                <form className="newProductForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
                     <div className={visible==1?("formField"):("formfield hidden")}>
                         <label htmlFor={nameId}>Product Name</label>

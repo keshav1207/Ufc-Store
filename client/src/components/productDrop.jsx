@@ -16,10 +16,13 @@ export default function ProductDropScreen(){
                 setIsLoading(true);
                 const response = await getNewProducts();
                 setData(response.data);
-                setIsLoading(false);
+                
                
             } catch (error) {
                 console.log(error);
+              
+
+            }finally{
                 setIsLoading(false);
             }
            
@@ -39,42 +42,39 @@ return(
 
     {isLoading? <LoadingSpinner/>:( <div className="productBox">
 
-{data?(data.map((item,index)=>(
+    {data?(data.map((item,index)=>(
 
-<Link to={`/products/${item._id}`}   key={item._id}>
-<div className="product">
-    <div className="picture">
-<img src= {item.images[0]} alt="" />
-</div>
-
-<div className="info" >
-
-<div className="productName">{item.name.toUpperCase().substring(0,30)}  </div>
-<div className="productPrice">${item.price}</div>
-</div>
-</div>
-
-</Link>
-   
-
-))):(<LoadingSpinner/>)
-
-
-}
-
-
-</div>)}
-
-   
+    <Link to={`/products/${item._id}`}   key={item._id}>
+    <div className="product">
+        <div className="picture">
+    <img src= {item.images[0]} alt="" />
     </div>
+
+    <div className="info" >
+
+    <div className="productName">{item.name.toUpperCase().substring(0,30)}  </div>
+    <div className="productPrice">${item.price}</div>
+    </div>
+    </div>
+
+    </Link>
+    
+
+    ))):(<LoadingSpinner/>)
+
+
+    }
+
+
+    </div>)}
+
+    
+        </div>
     
     </>
 
 )
-
-   
-
-
+ 
 
 }
 

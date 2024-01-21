@@ -1,5 +1,4 @@
 
-import '../index.css'
 import {  CiUser } from "react-icons/ci";
 import {  AiOutlineSearch } from "react-icons/ai";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
@@ -61,18 +60,19 @@ export default function NavBar (){
                 setLoading(true);
                 const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
                 setUserId(response.data.data._id);
-                setLoading(false);
-               
+                
                 
                 
                 
                 setUserName(response.data.data.name) ;
                 
             } catch (error) {
-                setLoading(false);
+                
                 if(error.response){
                     console.log(`${error.response.data.error}`) ;
                 } 
+            }finally{
+                setLoading(false);
             }
             
         };
@@ -184,7 +184,7 @@ export default function NavBar (){
 
        <div className="cart">
         {userName?(<Link to={'/cart'}>
-            {quantity &&  quantity > 0?(<div className='NoOfProductsInCart' id={nav?(null):('cartHidden')}>{quantity}</div>):(null)}
+            {quantity &&  quantity > 0?(<div className='noOfProductsInCart' id={nav?(null):('cartHidden')}>{quantity}</div>):(null)}
             
             <AiOutlineShoppingCart id={nav?('cart'):('navSvg')}/>
         </Link>):(<Link to={'/login'}><AiOutlineShoppingCart id={nav?('cart'):('navSvg')}/></Link> )}

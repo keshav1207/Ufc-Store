@@ -111,7 +111,7 @@ height: 10%;
   
 }
 
-.NoOfProductsInCart{
+.noOfProductsInCart{
   color: black;
   position: absolute;
   top: 1.25rem;
@@ -426,7 +426,7 @@ select{
 
 /* Product grid component*/
 
-.ProductsGrid{
+.productsGrid{
   background-color: white;
   display: grid;
   grid-template-columns: repeat(4,1fr);
@@ -436,7 +436,7 @@ select{
   
 }
 
-.product, .ProductsGrid a{
+.product, .productsGrid a{
   background-color: #f0f2f5;
   
 }
@@ -566,7 +566,7 @@ label{
 
 
 
-.NewProductBox{
+.newProductBox,.editProductBox{
   left: 37%;
   bottom: 30%;
   margin-bottom: 2rem;
@@ -582,7 +582,7 @@ label{
   z-index: 2;
 }
 
-.NewProductForm{
+.newProductForm, .editProductForm{
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -634,7 +634,7 @@ input[type=radio] {
 }
 
 
-.addProductBtn, .editUserBtn{
+.addProductBtn, .editUserBtn, .editProductBtn{
   align-self: center;
   margin-top: 2rem;
   background-color: black;
@@ -652,7 +652,7 @@ input[type=radio] {
   grid-template-columns: 1fr 1fr;
 }
 
-.TabBtn{
+.tabBtn{
   align-self: center;
   background-color:rgb(235,235,228);
   color: black;
@@ -661,7 +661,7 @@ input[type=radio] {
   
 }
 
-.TabBtnActive{
+.tabBtnActive{
   
   background-color:white;
   
@@ -749,7 +749,7 @@ input[type=radio] {
  
 }
 
-.Pimage, .Pprice,.Pname,.Pcategory, .Pquantity, .Psubtotal{
+.p-image, .p-price,.p-name,.p-category, .p-quantity, .p-subtotal{
   display: flex;
   flex-direction: column;
 }
@@ -826,7 +826,7 @@ gap: 1rem;
 
 
 /* Search Results page*/
-.ResultsContainer{
+.resultsContainer{
   margin-top: 8rem;
   height: 67%;
   padding: 1rem 4rem;
@@ -834,7 +834,7 @@ gap: 1rem;
  flex-direction: column;
 }
 
-.ResultsHeading{
+.resultsHeading{
   text-align: center;
 }
 
@@ -1053,7 +1053,7 @@ gap: 1rem;
 /* Media queries*/
 
 @media only screen  and (max-width:800px){
-  .NewProductBox{
+  .newProductBox,.editProductBox{
     left: 15%;
   }
 
@@ -1116,7 +1116,7 @@ gap: 1rem;
 
    
 
-   .NoOfProductsInCart{
+   .noOfProductsInCart{
       top: 0;
    }
 
@@ -1174,7 +1174,7 @@ gap: 1rem;
  @media only screen  and (max-width:450px){
 
   
-  .NewProductBox{
+  .newProductBox,.editProductBox{
     width: 300px;
     height: auto;
     left: 10%;
@@ -1183,13 +1183,13 @@ gap: 1rem;
     
   }
 
-   .NewProductBox input, .NewProductBox textarea{
+   .newProductBox input, .newProductBox textarea, .editProductBox input , .editProductBox textarea{
     width: 5rem;
   }
 
   
 
-  .NewProductForm .formField{
+  .newProductForm .formField, .editProductForm .formField {
      
       width: 10rem;
   }
@@ -1261,7 +1261,7 @@ gap: 1rem;
     padding: 0;
   }
 
-  .ProductsGrid{
+  .productsGrid{
     padding: 0;
     grid-template-columns: repeat(1,1fr);
     font-size: 0.65rem;
@@ -1281,7 +1281,7 @@ gap: 1rem;
  @media only screen  and (min-width:600px) and (max-width:830px){
   
 
-  .ProductsGrid{
+  .productsGrid{
     padding: 0;
     grid-template-columns: repeat(2,1fr);
     font-size: 1rem;
@@ -1293,7 +1293,7 @@ gap: 1rem;
  @media only screen  and (min-width:830px) and (max-width:1175px){
   
 
-  .ProductsGrid{
+  .productsGrid{
     padding: 0;
     grid-template-columns: repeat(3,1fr);
     font-size: 0.75rem;
@@ -1372,7 +1372,7 @@ gap: 1rem;
     font-size: 0.70rem;
   }
 
-  .editBtn, .deleteBtn, .addProductBtn{
+  .editBtn, .deleteBtn, .addProductBtn, .editProductBtn{
     width: 3rem;
     padding: 0.1rem;
     font-size: 0.7rem;
@@ -1383,7 +1383,7 @@ gap: 1rem;
   }
 
 
-  .addProductBtn{
+  .addProductBtn, .editProductBtn{
     width: 3rem;
   }
 
@@ -1423,13 +1423,13 @@ gap: 1rem;
   font-size: 0.50rem;
 }
 
-.editBtn, .deleteBtn, .addProductBtn{
+.editBtn, .deleteBtn, .addProductBtn, .editProductBtn{
   width: 2rem;
   
   font-size: 0.5rem;
 }
 
-.addProductBtn{
+.addProductBtn, .editProductBtn{
   width: 2.5rem;
 }
 

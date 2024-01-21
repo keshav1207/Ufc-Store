@@ -8,10 +8,10 @@ export default function DisplaySearchResults({numberOfProductsFound, queryData})
     return(
         <>
 
-        <div className="ResultsContainer">
+        <div className="resultsContainer">
         <SearchResultsHeading productsTotal ={numberOfProductsFound} textSearched={queryData}/>
             
-            <DropdownFilter/>
+        <DropdownFilter/>
              
         <SearchResultsGrid textSearched={queryData}/>
         </div>

@@ -9,7 +9,7 @@ import {addProductFormToggle} from '../redux/addProductFormSlice';
 import { editFormToggle } from "../redux/editFormVisibilitySlice";
 import { setProductId } from "../redux/editProductIdSlice";
 import {  useNavigate } from "react-router-dom";
-import { UseJwtAuth } from '../hooks/UseJwtAuth';
+import { useJwtAuth } from '../hooks/useJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
 import {  toast } from 'react-toastify';
 
@@ -40,12 +40,14 @@ export default function ProductList(){
                 const response = await getAllProducts();
                 setProductInfo(response.data);
                 console.log(response.data);
-                setIsLoading(false);
+               
             } catch (error) {
-                setIsLoading(false);
+                
                 console.log(error);
                 
                 
+            }finally{
+                setIsLoading(false);
             }
     
            
@@ -56,14 +58,14 @@ export default function ProductList(){
 
 
 //Check if token is expired and redirect to login page
-const { jwtToken } = UseJwtAuth();
-const navigate = useNavigate();
-useEffect(()=> {
-    if(!jwtToken){
-        navigate('/login');
-    }
-        
-    },[jwtToken])
+    const { jwtToken } = useJwtAuth();
+    const navigate = useNavigate();
+    useEffect(()=> {
+        if(!jwtToken){
+            navigate('/login');
+        }
+            
+        },[jwtToken])
 
 
 
@@ -86,7 +88,7 @@ const[deleteModal, setDeleteModal] = useState(false);
         toggleDeleteModal();
     }
 
-    async function deleteProduct(){
+    async function deleteProductFunction(){
         try {
        
         const response  = await deleteProduct(deleteProductId);
@@ -144,7 +146,7 @@ const[deleteModal, setDeleteModal] = useState(false);
         <div className= {deleteModal?("modal"):("modal hideModal")}>
             <p>Do you want to delete this product?</p>
             <div className="confirmationBtn">
-                <button onClick={deleteProduct}>Yes</button>
+                <button onClick={deleteProductFunction}>Yes</button>
                 <button onClick={toggleDeleteModal}>No</button>
             </div>
         </div>
@@ -155,27 +157,27 @@ const[deleteModal, setDeleteModal] = useState(false);
 
        {isLoading?(<LoadingSpinner/>):( <div className="products">
 
-<div className="productLine">
+        <div className="productLine">
 
 
 
-<div className="Pimage"><b>Images</b></div>
-<div className="Pname"><b>Name</b></div>
-<div className="Pprice" ><b>Price</b></div>
-<div  className="Pcategory"><b>Category</b></div>
+        <div className="p-image"><b>Images</b></div>
+        <div className="p-name"><b>Name</b></div>
+        <div className="p-price" ><b>Price</b></div>
+        <div  className="p-category"><b>Category</b></div>
 
 
 
-</div>
+        </div>
 
         {productInfo?(productInfo.map((item,index)=>(
 
                 <div className="productLine" key={index}>
 
-                <img  className= 'Pimage'src={item.images[0]}/>
-                <div className="Pname">{item.name}</div>
-                <div className="Pprice">${item.price}</div>
-                <div className="Pcategory">{item.category.name}</div>
+                <img  className= 'p-image'src={item.images[0]}/>
+                <div className="p-name">{item.name}</div>
+                <div className="p-price">${item.price}</div>
+                <div className="p-category">{item.category.name}</div>
                 <div className="buttons">
                 <button className="editBtn"  value={item._id} onClick={handleEdit}>Edit</button>
                 <button className="deleteBtn" onClick={handleDelete}  value={item._id}>Delete</button>
@@ -186,7 +188,7 @@ const[deleteModal, setDeleteModal] = useState(false);
                   
         ))):(null)}
 
-</div>)}
+        </div>)}
         
 
         </div>

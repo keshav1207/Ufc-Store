@@ -1,5 +1,5 @@
 
-import { useId, useEffect, useState, useRef} from 'react';
+import { useId, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
@@ -42,9 +42,7 @@ export default function LoginForm(){
         }));
       };
 
-      //This response state will used as a prop to display  messages in the alert forms
-
-        const[response,setResponse] = useState("");
+      
 
         const LoginUser = async (payload) => { 
         try {
@@ -53,23 +51,19 @@ export default function LoginForm(){
           const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
           const token = response.data.token;
           localStorage.setItem('token', token);
-          
-         
-          
           setAuthToken(token);
-
-          setIsLoading(false);
-
           return response.data.msg;
         
           
       } catch (error) {
-        setIsLoading(false);
-          if(error.response){
-              return (error.response.data.msg);
-          } 
+        
+        return (error.response.data.msg);
+           
           
+      }finally{
+        setIsLoading(false);
       }
+
       }
       
      
@@ -82,7 +76,7 @@ export default function LoginForm(){
             const data = await LoginUser(formData);
             const response =  data;
             console.log(`the response is: ${response}`)
-            setResponse(response);
+            
             
             if(response != "User Logged in Successfully"){
               
@@ -102,11 +96,6 @@ export default function LoginForm(){
               });
             
 
-            
-
-            
-  
-  
           } catch (error) {
             console.log(error.message);
             toast.dismiss();
