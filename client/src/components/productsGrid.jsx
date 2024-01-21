@@ -39,7 +39,7 @@ export default function ProductsGrid(props){
     
     return(
         <>
-    {isLoading? <LoadingSpinner/>:( < div className="ProductsGrid">
+    {isLoading? <LoadingSpinner/>:( < div className="productsGrid">
 
 
        

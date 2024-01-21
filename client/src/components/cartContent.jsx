@@ -293,18 +293,18 @@ export default function CartContent(){
         {isLoading?(<LoadingSpinner/>):(<> {productInfo !== undefined ?( <div>
        
        <div className="productSection">
-       {userId?(<div className="CartProducts">Products in Cart</div>):(<div className="CartProducts">Cart empty</div>)}
+       {userId?(<div className="cartProducts">Products in Cart</div>):(<div className="cartProducts">Cart empty</div>)}
        
        <div className="products">
        <div className="productLineCart">
 
-           <div className="Pimage"><b>Images</b></div>
+           <div className="p-image"><b>Images</b></div>
            
-           <div className="Pname"><b>Name</b></div>
-           <div className="Pprice"><b>Price</b></div>
-           <div className="Pcategory"><b>Category</b></div>
-           <div className="Pquantity"><b>Quantity</b></div>
-           <div className="Psubtotal"><b>Subtotal</b></div>
+           <div className="p-name"><b>Name</b></div>
+           <div className="p-price"><b>Price</b></div>
+           <div className="p-category"><b>Category</b></div>
+           <div className="p-quantity"><b>Quantity</b></div>
+           <div className="p-subtotal"><b>Subtotal</b></div>
 
 
        </div>
@@ -313,12 +313,12 @@ export default function CartContent(){
 
                <div className="productLineCart" key={index}>
 
-               <img className="Pimage" src={item.productInfo.images[0]}/>
-               <div className="Pname">{item.productInfo.name}</div>
-               <div className="Pprice">${item.productInfo.price}</div>
-               <div className="Pcategory">{item.productInfo.category.name}</div>
-               <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="QuantitySvg" /></button> <div className="Pquantity" >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="QuantitySvg" /></button> </div>
-               <div className="Psubtotal">${qtyArray[index] * priceArray[index] }</div>
+               <img className="p-image" src={item.productInfo.images[0]}/>
+               <div className="p-name">{item.productInfo.name}</div>
+               <div className="p-price">${item.productInfo.price}</div>
+               <div className="p-category">{item.productInfo.category.name}</div>
+               <div className="qtyBtns"> <button className="incrementBtn" onClick={() => handleIncrement(index,qtyArray[index])}><CiSquarePlus  className="quantitySvg" /></button> <div className="p-quantity" >{qtyArray[index]}</div><button className="decrementBtn" onClick={() => handleDecrement(index,qtyArray[index])}><CiSquareMinus  className="quantitySvg" /></button> </div>
+               <div className="p-subtotal">${qtyArray[index] * priceArray[index] }</div>
                <div className="buttons">         
                
                <button className="deleteBtn" onClick={deleteProduct}  value={item.productInfo._id}><MdDeleteOutline /></button>
@@ -337,8 +337,8 @@ export default function CartContent(){
        
 
 <div className="cartBtns">
-<button className="Btn" onClick={continueShop} disabled={isLoading}>Continue Shopping</button>
-<button className="Btn" onClick={handleClearCart} disabled={isLoading}>Clear Cart</button>
+<button className="btn" onClick={continueShop} disabled={isLoading}>Continue Shopping</button>
+<button className="btn" onClick={handleClearCart} disabled={isLoading}>Clear Cart</button>
 </div>
 
 
@@ -349,7 +349,7 @@ export default function CartContent(){
    <div className="orderFormLine"> <div>Tax </div> <div>0</div></div>
   
  
-  <button className="Btn" onClick={handlePay} disabled={isLoading}>Pay {total?(<div>${total}</div>):(null)}</button>
+  <button className="btn" onClick={handlePay} disabled={isLoading}>Pay {total?(<div>${total}</div>):(null)}</button>
   
 
 </div>

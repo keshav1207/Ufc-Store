@@ -29,17 +29,17 @@ export default function CategoryHeader({categorySelected}){
     return(
     <>
 
-    <div className="CatHeaderBox">
+    <div className="catHeaderBox">
 
-        <div className="CatHeaderText">
-            <div className="CatHeaderTextComponent">
+        <div className="catHeaderText">
+            <div className="catHeaderTextComponent">
             <h1>{header}</h1>
             <p>{paragraph}</p>
             </div>
                 
         </div>
 
-        <div className="CatHeaderImg">
+        <div className="catHeaderImg">
             <img src={image} alt={categorySelected} />
 
         </div>

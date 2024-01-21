@@ -7,7 +7,7 @@ export default function DisplayCategory({category}){
     return(
         <>
 
-        < div className="Categorycontainer">
+        < div className="categorycontainer">
             <CategoryHeader categorySelected={category}/> 
 
             

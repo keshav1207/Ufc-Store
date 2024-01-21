@@ -343,7 +343,7 @@ input{
 
 
 /* Category Page component*/
-.Categorycontainer{
+.categorycontainer{
   margin-top: 8rem;
   height: 67%;
  
@@ -356,7 +356,7 @@ input{
 
 /* Category Header component*/
 
-.CatHeaderBox{
+.catHeaderBox{
  
 
   padding: 1rem 4rem;
@@ -366,7 +366,7 @@ input{
   
 }
 
-.CatHeaderText{
+.catHeaderText{
   padding: 3rem;
   text-align: center;
   grid-column: 1/6;
@@ -381,7 +381,7 @@ input{
 
 
 
-.CatHeaderTextComponent h1{
+.catHeaderTextComponent h1{
   
   margin-bottom: 10px;
 }
@@ -389,7 +389,7 @@ input{
 
 
 
-.CatHeaderImg{
+.catHeaderImg{
 
   grid-column: 6/13;
 
@@ -398,7 +398,7 @@ input{
 
 }
 
-.CatHeaderImg img {
+.catHeaderImg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -739,7 +739,7 @@ input[type=radio] {
 
 
 
-.editBtn, .deleteBtn, .manageBtn, .LogOutBtn, .Btn, .editDetailsBtn{
+.editBtn, .deleteBtn, .manageBtn, .LogOutBtn, .btn, .editDetailsBtn{
    align-self: center;
   background-color: black;
   color: white;
@@ -899,7 +899,7 @@ gap: 1rem;
 
 
 /* Cart page*/
-.CartProducts{
+.cartProducts{
   font-weight: bold;
     text-align: center;
     font-size: 3rem;
@@ -924,7 +924,7 @@ gap: 1rem;
 }
 
 
-.QuantitySvg{
+.quantitySvg{
   font-size: 1.5rem;
   color: black;
  margin-top: 1rem;
@@ -963,7 +963,7 @@ gap: 1rem;
   justify-content: space-between;
 }
 
-.orderForm .Btn{
+.orderForm .btn{
   display: flex;
   gap: 1rem;
 }
@@ -1066,14 +1066,14 @@ gap: 1rem;
     width: 40%;
   }
 
-  .CatHeaderText{
+  .catHeaderText{
     padding: 1rem;
   }
-  .CatHeaderTextComponent p{
+  .catHeaderTextComponent p{
     font-size: 0.75rem;
   }
 
-  .CatHeaderTextComponent h1{
+  .catHeaderTextComponent h1{
     font-size: 1rem;
   }
 
@@ -1246,7 +1246,7 @@ gap: 1rem;
     grid-template-columns: 1fr 2fr 1fr 1fr 3fr 1fr 1fr;
   }
 
-  .CartProducts{
+  .cartProducts{
     font-size: 1.5rem;
   }
 
@@ -1254,7 +1254,7 @@ gap: 1rem;
     font-size: 1rem;
   }
 
-  .CatHeaderBox{
+  .catHeaderBox{
     display: flex;
     flex-direction: column;
     width: 100%;
