@@ -186,7 +186,8 @@ export default function DisplayProduct(){
                     <h3>Key Features:</h3>
                     <ul>
                     {featuresArray?(featuresArray.map((item,index)=>(
-                            <li key={index}>{item}</li>
+                            // Check if the item is not blank before rendering
+                            item.trim() !== "" && <li key={index}>{item}</li>
 
                     ))):( <li>...Loading </li>)}
                     
