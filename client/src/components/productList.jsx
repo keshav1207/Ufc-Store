@@ -21,7 +21,11 @@ export default function ProductList(){
     const dispatch = useDispatch();
     const addProductFormVisibility = useSelector((state) => state.addProductForm. addProductFormVisible);
     const editProductFormVisiblity = useSelector((state) => state.editFormVisibility. editFormVisibility);
+
+    //This redux state is used to notify this component that some of its child components completed an action 
+    //and a reload of the this component is required
     const reloadredux = useSelector((state) => state.reload. value);
+
     const [isLoading, setIsLoading] = useState(false);
     const [reload, setReload] =  useState(false);
   
@@ -104,9 +108,11 @@ const[deleteModal, setDeleteModal] = useState(false);
             
             console.log(error);
             
+        }finally{
+            toggleDeleteModal();
         }
 
-        toggleDeleteModal();
+        
         
     }
 
@@ -143,13 +149,14 @@ const[deleteModal, setDeleteModal] = useState(false);
         <div className= {editProductFormVisiblity?("overlay"):("overlay hideOverlay")}></div>
         {editProductFormVisiblity?(<EditProductForm/>):(null)}
 
-        <div className= {deleteModal?("modal"):("modal hideModal")}>
+        {isLoading?(null):(<div className= {deleteModal?("modal"):("modal hideModal")}>
             <p>Do you want to delete this product?</p>
             <div className="confirmationBtn">
                 <button onClick={deleteProductFunction}>Yes</button>
                 <button onClick={toggleDeleteModal}>No</button>
             </div>
-        </div>
+        </div>)}
+        
 
         <div className= {deleteModal?("overlay"):("overlay hideOverlay")}></div>
        

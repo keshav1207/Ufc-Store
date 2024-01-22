@@ -74,12 +74,10 @@ export default function AddProductForm(){
 
 
     function handleSubmit(e) {
-
+      setIsLoading(true);
         (async() =>{
-
-          setIsLoading(true);
-        
-          // Prevent the browser from reloading the page
+          try {
+            // Prevent the browser from reloading the page
           e.preventDefault();
     
           // Read the form data
@@ -126,17 +124,28 @@ export default function AddProductForm(){
             });
           
           }
-         
-          dispatch(reloadToggle());
+
+          } catch (error) {
+            console.log(error);
+
+          }finally{
+            setIsLoading(false);
+            dispatch(reloadToggle());
+             //clear inputs
+          e.currentTarget.reset();
+          dispatch(addProductFormToggle())
+          setSelectedFiles([]);
+          }
 
         })();  
 
-        //clear inputs
-        e.currentTarget.reset();
+         
+          //clear inputs
+          e.currentTarget.reset();
+          dispatch(addProductFormToggle())
+          setSelectedFiles([]);
 
-        setIsLoading(false);
-        dispatch(addProductFormToggle())
-        setSelectedFiles([]);
+          
        
     }
 

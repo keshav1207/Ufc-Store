@@ -152,7 +152,8 @@ export default function EditProductForm(){
     (async() =>{
       setIsLoading(true);
 
-      // Prevent the browser from reloading the page
+      try {
+        // Prevent the browser from reloading the page
       e.preventDefault();
 
       // Read the form data
@@ -193,10 +194,16 @@ export default function EditProductForm(){
       });
       console.log(response);
 
+      } catch (error) {
+        console.log(error);
+      
+      
+      }finally{
       setIsLoading(false);
-
       dispatch(editFormToggle());
       dispatch(reloadToggle());
+
+      }
 
     })();
 
