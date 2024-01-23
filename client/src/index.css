@@ -568,9 +568,9 @@ label{
 
 .newProductBox,.editProductBox{
   left: 37%;
-  bottom: 30%;
+  bottom: 15%;
   margin-bottom: 2rem;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -782,7 +782,7 @@ gap: 1rem;
 }
 
 .modal{
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 35%; 
   display: flex;
@@ -884,7 +884,7 @@ gap: 1rem;
      left: 37%;
     bottom: 30%; 
     margin-top: 1.5rem;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
