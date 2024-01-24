@@ -191,15 +191,11 @@ export default function DisplayProduct(){
 
                     ))):( <li>...Loading </li>)}
                     
-                        
-
                     </ul>
             </div>
         </div>)}
 
         
-
-
         </>
 
     )
