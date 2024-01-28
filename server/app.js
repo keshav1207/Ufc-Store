@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Fixing cors error
 const corsOptions ={
-  origin:'http://localhost:5173', 
+  origin:'https://ufc-store-client.onrender.com', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
