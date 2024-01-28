@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import  { useSelector}  from 'react-redux';
+import { API_BASE_URL } from "../apicalls/apiService";
+
 
 
 export  function ProtectedPage({children}){
@@ -19,7 +21,7 @@ export  function ProtectedPage({children}){
         try {
     
             setAuthToken(token);
-            const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+            const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
             return response.data ;
             
         } catch (error) {

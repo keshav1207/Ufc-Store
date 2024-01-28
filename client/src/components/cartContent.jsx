@@ -16,6 +16,8 @@ import LoadingSpinner from './loadingSpinner';
 import { useDispatch } from "react-redux";
 import { reloadToggle } from "../redux/reloadSlice";
 import {  toast } from 'react-toastify';
+import { API_BASE_URL } from "../apicalls/apiService";
+
 
 export default function CartContent(){
 
@@ -33,7 +35,7 @@ export default function CartContent(){
             try {
                 setIsLoading(true);
                 setAuthToken(jwtToken);
-                const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
+                const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`) ;
                setUserId(response.data.data._id);
             
 
@@ -254,7 +256,7 @@ export default function CartContent(){
                     products: updatedcart.data,
                 }
 
-               const response = await axios.post('http://localhost:5000/api/create-checkout-session', JSON.stringify(data), {
+               const response = await axios.post(`${API_BASE_URL}/api/create-checkout-session`, JSON.stringify(data), {
             headers: {                  
                     'Content-Type': 'application/json'
                     }

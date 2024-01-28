@@ -1,9 +1,10 @@
 import axios from "axios";
+import { API_BASE_URL } from "./apiService";
 
 export const updateCart = async function(userId,payload){
     try {
         
-        const response = await axios.put(`http://localhost:5000/api/updateCart/${userId}`,payload);
+        const response = await axios.put(`${API_BASE_URL}/api/updateCart/${userId}`,payload);
         return response.data;
         
     } catch (error) {

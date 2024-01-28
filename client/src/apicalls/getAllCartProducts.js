@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_BASE_URL } from "./apiService";
 
 export const getAllCartProducts = async function(userId){
     try {
        
-        const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+        const response = await axios.get(`${API_BASE_URL}/api/cart/${userId}`);
         
         return response.data;
         

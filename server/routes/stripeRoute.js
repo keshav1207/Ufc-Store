@@ -23,8 +23,8 @@ router.post('/', (async function(req, res) {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:5173/success",
-            cancel_url: "http://localhost:5173/failure"
+            success_url: "https://ufc-store-client.onrender.com/success",
+            cancel_url: "https://ufc-store-client.onrender.com/failure"
         });
 
         return res.json({ id: session.id });

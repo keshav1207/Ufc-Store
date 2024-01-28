@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_BASE_URL } from "./apiService";
 
 export const getSearchResults = async function(searchQuery,optionalFilter){
     try {
        
-        const response = await axios.get(optionalFilter?(`http://localhost:5000/api/searchResults/${searchQuery}/${optionalFilter}`):(`http://localhost:5000/api/searchResults/${searchQuery}`));
+        const response = await axios.get(optionalFilter?(`${API_BASE_URL}/api/searchResults/${searchQuery}/${optionalFilter}`):(`${API_BASE_URL}/api/searchResults/${searchQuery}`));
         
         return response.data;
         

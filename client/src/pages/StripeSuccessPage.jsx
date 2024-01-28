@@ -4,6 +4,7 @@ import { useJwtAuth } from "../hooks/useJwtAuth"
 import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "./apiService";
 
 export default function StripeSuccessPage(){
 
@@ -17,7 +18,7 @@ export default function StripeSuccessPage(){
         const fetchUserId =  async ()=>{
             try {
                 setAuthToken(jwtToken);
-                const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo") ;
+                const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`) ;
                setUserId(response.data.data._id);
             
 

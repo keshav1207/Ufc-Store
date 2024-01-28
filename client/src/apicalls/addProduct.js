@@ -1,11 +1,12 @@
 import  axiosMultiFormInstance  from "./axiosMultiFormInstance";
+import { API_BASE_URL } from "./apiService";
 
 //Add new product
 
 export const addNewProduct = async function(payload){
     try {
         
-        const response = await axiosMultiFormInstance.post("http://localhost:5000/api/addProduct", payload);
+        const response = await axiosMultiFormInstance.post(`${API_BASE_URL}/api/addProduct`, payload);
         return response.data;
 
     } catch (error) {

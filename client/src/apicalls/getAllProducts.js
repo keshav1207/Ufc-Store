@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_BASE_URL } from "./apiService";
 
 export const getAllProducts = async function(){
     try {
        
-        const response = await axios.get("http://localhost:5000/api/manageProducts");
+        const response = await axios.get(`${API_BASE_URL}/api/manageProducts`);
         
         return response.data;
         

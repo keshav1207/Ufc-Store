@@ -1,9 +1,10 @@
 import axios from "axios";
+import { API_BASE_URL } from "./apiService";
 
 export const clearCart = async function(userId){
     try {
         
-        const response = await axios.delete(`http://localhost:5000/api/clearCart/${userId}`);
+        const response = await axios.delete(`${API_BASE_URL}/api/clearCart/${userId}`);
         
         return response.data;
         

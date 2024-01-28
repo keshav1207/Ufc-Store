@@ -1,6 +1,7 @@
 import axiosInstance  from "./axiosInstance";
 import { setAuthToken } from "./axiosInstance"
 import { useEffect , useState} from "react";
+import { API_BASE_URL } from "./apiService";
 
 
 const LoginUser = ({ payload }) => {
@@ -12,7 +13,7 @@ const LoginUser = ({ payload }) => {
         const fetchData = async()=>{
             try {
                 
-                const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
+                const response = await axiosInstance.post(`${API_BASE_URL}/api/users/login`, payload);
                 const token = response.data.token;
 
                 localStorage.setItem('token', token);

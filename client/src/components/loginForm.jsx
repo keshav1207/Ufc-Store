@@ -6,6 +6,8 @@ import axiosInstance  from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import LoadingSpinner from './loadingSpinner';
 import {  toast } from 'react-toastify';
+import { API_BASE_URL } from '../apicalls/apiService';
+
 
 
 
@@ -48,7 +50,7 @@ export default function LoginForm(){
         try {
     
           setIsLoading(true);
-          const response = await axiosInstance.post("http://localhost:5000/api/users/login", payload);
+          const response = await axiosInstance.post(`${API_BASE_URL}/api/users/login`, payload);
           const token = response.data.token;
           localStorage.setItem('token', token);
           setAuthToken(token);

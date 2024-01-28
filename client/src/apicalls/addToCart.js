@@ -1,9 +1,10 @@
 import  AxiosInstance  from "axios";
+import { API_BASE_URL } from "./apiService";
 
 export const addToCart = async function(userId,productId){
     try {
         
-        const response = await AxiosInstance.put(`http://localhost:5000/api/addToCart/${userId}/${productId}`);
+        const response = await AxiosInstance.put(`${API_BASE_URL}/api/addToCart/${userId}/${productId}`);
         
         return response.data;
         

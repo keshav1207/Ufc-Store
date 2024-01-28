@@ -10,6 +10,8 @@ import axiosInstance ,{ setAuthToken } from "../apicalls/axiosInstance";
 import { useJwtAuth } from '../hooks/useJwtAuth';
 import { getAllCartProducts } from '../apicalls/getAllCartProducts';
 import  { useSelector}  from 'react-redux';
+import { API_BASE_URL } from "../apicalls/apiService";
+
 
 
 
@@ -58,7 +60,7 @@ export default function NavBar (){
                 setAuthToken(jwtToken);
                 
                 setLoading(true);
-                const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+                const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
                 setUserId(response.data.data._id);
                 
                 

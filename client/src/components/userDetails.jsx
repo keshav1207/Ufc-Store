@@ -8,6 +8,8 @@ import { useJwtAuth } from '../hooks/useJwtAuth';
 import LoadingSpinner from "./loadingSpinner";
 import { reloadToggle } from "../redux/reloadSlice";
 import { toast} from 'react-toastify';
+import { API_BASE_URL } from "../apicalls/apiService";
+
 
 
 
@@ -30,7 +32,7 @@ export default function UserDetails(){
                 setAuthToken(jwtToken);
                 
                 
-                const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+                const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
                 
                 setData(response.data.data);
                 
