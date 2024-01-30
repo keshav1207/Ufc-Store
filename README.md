@@ -55,3 +55,6 @@ List of Features includes:
 
 
 ## Contact
+## Contact
+[![LinkedIn](./icons/linkedin.svg)](https://www.linkedin.com/in/keshav0799)
+
