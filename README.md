@@ -52,6 +52,8 @@ List of Features includes:
 ## Screenshots
 ![Example screenshot - HomePage](./ReadMe-IconsAndPics/ScreenshotHomePage.png)
 
+<br>
+
 ![Example screenshot - LoginPage](./ReadMe-IconsAndPics/ScreenshotLoginPage.png)
 
 
