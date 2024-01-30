@@ -4,7 +4,7 @@ import { useJwtAuth } from "../hooks/useJwtAuth"
 import { setAuthToken } from "../apicalls/axiosInstance";
 import axiosInstance from "../apicalls/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "./apiService";
+import { API_BASE_URL } from "../apicalls/apiService";
 
 export default function StripeSuccessPage(){
 
