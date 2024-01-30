@@ -50,8 +50,9 @@ List of Features includes:
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+![Example screenshot - HomePage](./ReadMe-IconsAndPics/ScreenshotHomePage.png)
+![Example screenshot - LoginPage](./ReadMe-IconsAndPics/ScreenshotLoginPage.png)
+
 
 
 
