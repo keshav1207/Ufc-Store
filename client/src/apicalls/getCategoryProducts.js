@@ -1,11 +1,12 @@
 import  axiosMultiFormInstance  from "./axiosMultiFormInstance";
+import { API_BASE_URL } from "./apiService";
 
 //Get all products from a category
 
 export const getCategoryProducts = async function(category,optionalFilter){
     try {
         
-        const response = await axiosMultiFormInstance.get(optionalFilter?(`http://localhost:5000/api/categories/${category}/${optionalFilter}`):(`http://localhost:5000/api/categories/${category}`));
+        const response = await axiosMultiFormInstance.get(optionalFilter?(`${API_BASE_URL}/api/categories/${category}/${optionalFilter}`):(`${API_BASE_URL}/api/categories/${category}`));
         return response.data;
 
     } catch (error) {

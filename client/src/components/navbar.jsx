@@ -62,10 +62,6 @@ export default function NavBar (){
                 setLoading(true);
                 const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
                 setUserId(response.data.data._id);
-                
-                
-                
-                
                 setUserName(response.data.data.name) ;
                 
             } catch (error) {
