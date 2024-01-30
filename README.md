@@ -54,7 +54,7 @@ List of Features includes:
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
+
 ## Contact
-## Contact
-[![LinkedIn](./icons/linkedin.svg)](https://www.linkedin.com/in/keshav0799)
+[![LinkedIn](<img src="./icons/linkedin.svg" width="20">)](https://www.linkedin.com/in/keshav0799)
 
