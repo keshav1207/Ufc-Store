@@ -56,5 +56,4 @@ List of Features includes:
 
 
 ## Contact
-[![LinkedIn](<img src="./icons/linkedin.svg" width="20">)](https://www.linkedin.com/in/keshav0799)
-
+[<img src="./icons/linkedin.svg" width="20">](https://www.linkedin.com/in/keshav0799)
