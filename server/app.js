@@ -30,7 +30,7 @@ try {
 
 ; 
 } catch (error) { 
-  console.log("Failure");
+  
  handleError(error); 
 } 
 
