@@ -1,5 +1,5 @@
 
-export const API_BASE_URL =  'https://ufc-store-server.onrender.com'
+export const API_BASE_URL =  'ufc-store-production.up.railway.app'
 
 
 
