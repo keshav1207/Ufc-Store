@@ -41,8 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Fixing cors error
 const corsOptions ={
-  origin:'https://ufc-store-client.vercel.app', 
-  
+  origin:'https://ufc-store-client.onrender.com', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
