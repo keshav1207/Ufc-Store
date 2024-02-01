@@ -39,6 +39,19 @@ try {
 app.use(bodyParser.json()) // handle json data
 app.use(bodyParser.urlencoded({ extended: true })) 
 
+
+// Custom middleware to add CORS headers
+app.use((req, res, next) => {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', 'https://ufc-store-client.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
+  
+  // Pass control to the next middleware
+  next();
+})
+
 // Fixing cors error
 const corsOptions ={
   origin:'https://ufc-store-client.onrender.com', 
