@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import {  toast } from 'react-toastify';
+import { API_BASE_URL } from "./apiService";
 
 
 export const useJwtAuth = () => {
@@ -15,7 +16,7 @@ const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
 const isTokenExpired = async(jwtToken) => {
     try {
       setAuthToken(jwtToken);
-      const response = await axiosInstance.get("http://localhost:5000/api/users/getUserInfo");
+      const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
       console.log(response.data);
       
       if (response.data.error == "Token expired") {
