@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import axiosInstance from "../apicalls/axiosInstance";
 import { setAuthToken } from "../apicalls/axiosInstance"
 import {  toast } from 'react-toastify';
-import { API_BASE_URL } from "./apiService";
+import { API_BASE_URL } from "../apicalls/apiService";
 
 
 export const useJwtAuth = () => {
