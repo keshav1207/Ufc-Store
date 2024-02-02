@@ -12,7 +12,7 @@ export default function StripeFailurePage(){
 
         <div>Payment was unsuccessful. Your credit card was not charged. </div>
 
-        <Link to={'/cart'}><button className="Btn">Back to Cart</button></Link>
+        <Link to={'/cart'}><button className="btn">Back to Cart</button></Link>
 
         </div>
 

@@ -25,6 +25,7 @@ router.post('/', (async function(req, res) {
             mode: "payment",
             success_url: "https://ufc-store-client.onrender.com/success",
             cancel_url: "https://ufc-store-client.onrender.com/failure"
+            
         });
 
         return res.json({ id: session.id });

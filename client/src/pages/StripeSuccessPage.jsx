@@ -75,7 +75,7 @@ export default function StripeSuccessPage(){
 
         <div>Your order has been placed. We'll send an email with your order details </div>
 
-        <button className="Btn" onClick={handleClick}>Back to HomePage</button>
+        <button className="btn" onClick={handleClick}>Back to HomePage</button>
 
         </div>
 
