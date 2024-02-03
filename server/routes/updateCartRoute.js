@@ -23,7 +23,7 @@ router.put('/:userId',asyncHandler( async function(req, res){
     var updatedCart;
 
    
-        //  Update product qty in cart
+       
       
         // Update product qty in cart
      updatedCart = cartArray.map((item, index) => ({

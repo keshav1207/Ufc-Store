@@ -28,6 +28,10 @@ router.put('/:userId/:productId',asyncHandler( async function(req, res, next){
                 
                 if(object.id == productId){
                     found = true;
+
+                    //Use spread syntax below to do a shallow copy of the object. This ensures  immutability which makes it
+                    // easier to debug.
+                    
                     return{...object, count: object.count +1};
                 }
 
