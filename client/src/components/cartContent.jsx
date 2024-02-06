@@ -61,7 +61,7 @@ export default function CartContent(){
     const [priceArray, setPriceArray] = useState([]);
     const [total, setTotal] = useState(null);
    
-
+    // Get all products from cart if userId is present
     useEffect(()=>{
         const fetchData = async()=>{
             try {
@@ -84,7 +84,7 @@ export default function CartContent(){
       
     },[userId,reloadAlert])
 
-
+// Calculate the total cost 
     useEffect(()=>{
         if(productInfo){
             setIsLoading(true);

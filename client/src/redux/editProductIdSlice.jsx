@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-//Controls the data of the  product being edited in the edit form on the screen.
+//Controls the data of the specific product being edited in the edit form on the screen.
 
 const initialState = {
     productId: null,

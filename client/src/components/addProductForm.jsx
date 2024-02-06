@@ -28,7 +28,7 @@ export default function AddProductForm(){
   // State to hold selected file
     const [selectedFiles, setSelectedFiles] = useState([]);
 
-    
+    // This function is triggered everytime the file input changes
     const handleFileUpload = (event) => {
       //Use spread operator to copy the state into a  new array
       const currentFiles = [...selectedFiles];
@@ -146,7 +146,6 @@ export default function AddProductForm(){
           setSelectedFiles([]);
 
           
-       
     }
 
 
@@ -177,19 +176,13 @@ export default function AddProductForm(){
 
    function handleClose(e){
     e.preventDefault();
-  
-    
     dispatch(addProductFormToggle());
 
-    
    }
 
 
     return(
         <>
-        
-      
-
         <div className="newProductSection">
             {isLoading?(<LoadingSpinner/>):(<div className="newProductBox">
               <button className="closeFormBtn" onClick={handleClose}>X</button>
@@ -269,7 +262,7 @@ export default function AddProductForm(){
 
                             <div className="selectedImageContainer"key={index}>
                             <img className="selectedImage" src={URL.createObjectURL(file)} />
-                            {/* Check ()=> handleDelete(index) */}
+                            
                             <button className="deleteImageBtn" onClick={(event) => handleDelete(event,index)}>X</button>
                             </div>
                             
