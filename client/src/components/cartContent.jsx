@@ -36,7 +36,7 @@ export default function CartContent(){
                 setIsLoading(true);
                 setAuthToken(jwtToken);
                 const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`) ;
-               setUserId(response.data.data._id);
+                setUserId(response.data.data._id);
             
 
             } catch (error) {
@@ -84,7 +84,7 @@ export default function CartContent(){
       
     },[userId,reloadAlert])
 
-// Calculate the total cost 
+// Calculate the total cost and add the price and quantity of each products  to the QtyArray and PriceArray state
     useEffect(()=>{
         if(productInfo){
             setIsLoading(true);
@@ -105,7 +105,8 @@ export default function CartContent(){
        
     },[productInfo])
 
-    //Recalculates total if qty is changed with the plus and minus icon
+
+    //Recalculates total if qtyArray is changed. This occurs when the user is using the plus and minus icon to change quantity
     useEffect(()=>{
         if(priceArray.length > 0){
             setIsLoading(true);
@@ -133,7 +134,6 @@ export default function CartContent(){
             //Otherwise, currentTarget refers to the DOM element that the event listener is listening on. In this case, we need to use currentTarget
             setIsLoading(true);
             const productId = e.currentTarget.value;
-            
             const response =  await deleteFromCart(userId,productId);
             const update = await updateCart(userId,qtyArray);
             toast.dismiss();
@@ -142,8 +142,6 @@ export default function CartContent(){
               });
 
             dispatch(reloadToggle());
-            
-            
             setReloadAlert(true);
 
 
@@ -204,7 +202,6 @@ export default function CartContent(){
               });
                 dispatch(reloadToggle());
                 console.log(response);
-                
                 setReloadAlert(true);
     
                
