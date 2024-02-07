@@ -55,6 +55,8 @@ export default function DisplayProduct(){
        
       };
 
+    //Get the product information from the database
+
     useEffect(()=>{
             const fetchData =  async ()=>{
                 try {
@@ -87,12 +89,13 @@ export default function DisplayProduct(){
         const[userId, setUserId] = useState(null);
         
         
+        //Get user Id from database
         useEffect(()=>{
             const fetchUserId =  async ()=>{
                 try {
                     setIsLoading(true);
                     const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`) ;
-                   setUserId(response.data.data._id);
+                    setUserId(response.data.data._id);
                   
                 } catch (error) {
                     console.log(error);
@@ -112,6 +115,10 @@ export default function DisplayProduct(){
 
 
         const navigate = useNavigate();
+
+        // Only if the user is logged in (userId is present), the item can be added to cart, 
+        //otherwise the user will be rediected to login page.
+
         async function addToCartFunction(){
            setAuthToken(jwtToken);
             if(userId){
@@ -131,22 +138,24 @@ export default function DisplayProduct(){
 
         }
 
+
+
     return(
         <>
 
         
-        {isLoading?<LoadingSpinner/>:( <div className="productImageBox">
+    {isLoading?<LoadingSpinner/>:( <div className="productImageBox">
 
-<div className="smallPics">
-{productInfo?(productInfo.images.map((item,index)=>(
-                <img  src={item}  key={index} />
+    <div className="smallPics">
+    {productInfo?(productInfo.images.map((item,index)=>(
+                    <img  src={item}  key={index} />
 
-        ))):( null)}
+            ))):( null)}
    
 
-</div>
+    </div>
 
-<div className="bigPic">
+    <div className="bigPic">
 
     {/* Add condition that product need to have more than one product for arrows to appear */}
     {productInfo?(productInfo.images.length > 1? (<div className="arrows" onClick={leftClick}>
@@ -165,18 +174,18 @@ export default function DisplayProduct(){
     ):( null)}
     
 
-</div>
+    </div>
 
 
-<div className="textbox">
+    <div className="textbox">
     <h1>{productInfo?(productInfo.name.toUpperCase()):("...Loading")}</h1>
     <h3>${productInfo?(productInfo.price):("...Loading")}</h3>
     <button id="AddToCartBtn" onClick={addToCartFunction}>Add to Cart</button>
 
-</div>
+    </div>
 
-</div>
-)}
+    </div>
+    )}
        
         {isLoading?<LoadingSpinner/>:(<div className="featureBox">
             <div className="comments">

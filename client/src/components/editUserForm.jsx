@@ -196,7 +196,7 @@ export default function EditUserForm({userInformation}){
                                       <div className="selectedImageContainer"key={index}>
 
                                     {typeof file === "string"?(<img className="selectedImage" src={file} />):(<img className="selectedImage" src={URL.createObjectURL(file)} />)}
-                                      {/* Check ()=> handleDelete(index) */}
+                                      
                                       <button className="deleteImageBtn" onClick={handleDelete} >X</button>
                                       </div>
                                     
