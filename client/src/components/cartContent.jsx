@@ -105,7 +105,7 @@ export default function CartContent(){
        
     },[productInfo])
 
-
+    //Recalculates total if qty is changed with the plus and minus icon
     useEffect(()=>{
         if(priceArray.length > 0){
             setIsLoading(true);
