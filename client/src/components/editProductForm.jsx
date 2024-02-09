@@ -88,7 +88,10 @@ export default function EditProductForm(){
 
         // Limit the number of images that can be uploaded to 5
           if(currentFiles.length >= 5){
-        alert('You can only upload up to 5 images.');
+            toast.dismiss();
+            toast.warning('You can only upload up to 5 images.', {
+              position: toast.POSITION.TOP_CENTER,
+            });
         setSelectedFiles(currentFiles);
         hiddenFileInput.current.value = null;
         return;
@@ -99,7 +102,10 @@ export default function EditProductForm(){
           currentFiles.push(file);
         }
         else{
-          alert("Image already uploaded!")
+          toast.dismiss();
+            toast.warning("Image already uploaded!", {
+              position: toast.POSITION.TOP_CENTER,
+            });
         }
         
         });
