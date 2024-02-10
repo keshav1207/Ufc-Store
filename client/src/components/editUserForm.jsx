@@ -10,26 +10,28 @@ import { reloadToggle } from "../redux/reloadSlice";
 
 
 export default function EditUserForm({userInformation}){
+
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   
     
+  // Generating unique IDs
+  const nameId = useId();
+  const emailId = useId();
+  const passwordId = useId();
+  const pictureId = useId();
 
-    const nameId = useId();
-    const emailId = useId();
-    const passwordId = useId();
-    const pictureId = useId();
-
-    const [inputValues, setInputValues] = useState({
+  const [inputValues, setInputValues] = useState({
         name: "",
         email: "" ,
         password:  "",
         profilePicture:"",
         
         
-      });
+  });
 
-      useEffect(() => {
+  // Add user information from the props to our state
+    useEffect(() => {
             if(userInformation){
                 setInputValues((prevInputValues) => ({
                     ...prevInputValues,

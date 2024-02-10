@@ -87,7 +87,7 @@ export default function EditProductForm(){
         newFiles.forEach(file => {
 
         // Limit the number of images that can be uploaded to 5
-          if(currentFiles.length >= 5){
+        if(currentFiles.length >= 5){
             toast.dismiss();
             toast.warning('You can only upload up to 5 images.', {
               position: toast.POSITION.TOP_CENTER,

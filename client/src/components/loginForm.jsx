@@ -23,9 +23,6 @@ export default function LoginForm(){
     const emailId = useId();
     const passwordId = useId();
 
- 
-   
-
 
     const [formData, setFormData] = useState({
         name: "",
@@ -36,9 +33,9 @@ export default function LoginForm(){
 
      
 
-      const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData((prevState) => ({
           ...prevState,
           [name]: value,
         }));
