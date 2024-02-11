@@ -1,5 +1,5 @@
 # Ufc-Store
-> An e-commerce store  created using the MERN stack.
+> An e-commerce store based on the official UFC store  created using the MERN stack.
  
 
 ## Table of Contents
