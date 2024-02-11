@@ -37,7 +37,7 @@ export default function NavBar (){
 
     const navigate = useNavigate();
 
-
+    // Only navigate to search results page if the user  press enter and the input bar is not blank
     const handleKeyPress = (event) => {
         console.log(results);
             if(event.key == 'Enter' && results != ""){
@@ -51,6 +51,7 @@ export default function NavBar (){
     const[loading,setLoading] = useState(false);
 
 
+    // Get User Info and set the username
     useEffect( () => {
 
         const fetchData = async() =>{  
@@ -94,6 +95,7 @@ export default function NavBar (){
     const [quantity, setQuantity] = useState(0);
 
 
+    // Get all the products from the User's Cart if user is logged in
     useEffect(()=>{
         const fetchData = async()=>{
             try {
@@ -112,6 +114,7 @@ export default function NavBar (){
     },[userId, reloadredux])
 
 
+    // Count the number of items in the cart and add to the Quantity state
     useEffect(() => {
         if (productInfo) {
             var count = 0;
@@ -128,6 +131,7 @@ export default function NavBar (){
        
 
 
+    // State used to toggle Nav bar when the hamburger menu is present in  smaller screen sizes
     const[nav,setNav] = useState(false);
 
     function toggleNavbar(){
@@ -167,19 +171,22 @@ export default function NavBar (){
                 <input id={nav?('active'):(null)} name='search' placeholder = "Search Store" value={results} onChange={handleInputChange} onKeyDown={handleKeyPress} />
             </form>
 
+
+        {/* The code below add a link to the searchResults Page to the search SVG if the searchBar is not empty, otherwise the link is omitted*/}
         {results != ""?(<Link to={`/searchResults/${results}`}><AiOutlineSearch  id={nav?('active'):('navSvg')}/></Link>):(<AiOutlineSearch id={nav?('active'):('navSvg')} />)}
             
        </div>
 
        <div className="user">
 
-   
+         {/* The code below add a link to the user details Page to the username if the user is logged in, otherwise we have the default userIcon which links to the loginPage*/}
         {loading?(<div>...Loading</div>):(userName?(<Link to={"/userDetails"}><div id={nav?('userName'):('userHidden')}>{userName}</div></Link>):(<Link to={'/login'}><CiUser id={nav?('user'):('navSvg')}/></Link> ))}
 
         
            
        </div>
-
+         {/* The code below add a link to the cart Page to the cart icon if the user is logged in, otherwise there is a link the loginPage*/}
+          {/* In addtion, if the user is logged in, we will also display the number of items in the cart on the cart icon*/}
        <div className="cart">
         {userName?(<Link to={'/cart'}>
             {quantity &&  quantity > 0?(<div className='noOfProductsInCart' id={nav?(null):('cartHidden')}>{quantity}</div>):(null)}

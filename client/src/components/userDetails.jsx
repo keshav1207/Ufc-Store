@@ -15,7 +15,6 @@ import { API_BASE_URL } from "../apicalls/apiService";
 
 export default function UserDetails(){
     const navigate = useNavigate();
-    
     const [data,setData] = useState(null);
     const dispatch = useDispatch();
     const editForm = useSelector((state) => state.editUserFormVisibility.editUserFormVisibility);
@@ -30,10 +29,7 @@ export default function UserDetails(){
                 
                 setIsLoading(true);
                 setAuthToken(jwtToken);
-                
-                
                 const response = await axiosInstance.get(`${API_BASE_URL}/api/users/getUserInfo`);
-                
                 setData(response.data.data);
                 
                 
@@ -47,8 +43,7 @@ export default function UserDetails(){
                 setIsLoading(false);
             }
 
-            
-            
+               
         };
 
 

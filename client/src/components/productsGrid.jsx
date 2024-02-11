@@ -12,7 +12,7 @@ export default function ProductsGrid(props){
 
         
 
-
+        // Get  all the products from the category passed down as props
         useEffect(()=>{
             const fetchData =  async ()=>{
                 try {

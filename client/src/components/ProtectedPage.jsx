@@ -8,15 +8,13 @@ import { API_BASE_URL } from "../apicalls/apiService";
 
 
 export  function ProtectedPage({children}){
+
     const [user,setUser] = useState(false);
     const navigate = useNavigate();
-
-    
     const token = localStorage.getItem('token');
-
     const reloadredux = useSelector((state) => state.reload. value);
     
-
+    // Get User information
     const getUser = async () => {
         try {
     
@@ -56,6 +54,7 @@ export  function ProtectedPage({children}){
     };
 
 
+    // Check if token is valid, otherwise redirects to login page
     useEffect(()=>{
         
         if(localStorage.getItem('token')){

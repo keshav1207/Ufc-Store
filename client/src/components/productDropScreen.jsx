@@ -10,6 +10,7 @@ export default function ProductDropScreen(){
     const [isLoading, setIsLoading] = useState(false);
     const[data,setData] = useState(null);
 
+    // Get 3 most recent products
     useEffect(()=>{
         const fetchData =  async ()=>{
             try {
