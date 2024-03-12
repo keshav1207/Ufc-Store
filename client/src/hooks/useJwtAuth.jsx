@@ -67,7 +67,7 @@ const isTokenExpired = async(jwtToken) => {
     useEffect(() => {
       const checkTokenExpirationInterval = setInterval(() => {
         checkTokenExpiration();
-      }, 60000); // Check every 60 seconds, adjust as needed
+      }, 10000); // Check every 10 seconds, adjust as needed
     
       // Cleanup function to clear the interval when the component unmounts
       return () => clearInterval(checkTokenExpirationInterval);
