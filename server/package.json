@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
+    "heroku-postbuild": "npm run build --prefix client",
     "devstart": "nodemon node app.js"
   },
   "dependencies": {
