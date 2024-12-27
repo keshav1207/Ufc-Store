@@ -42,12 +42,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // Fixing cors error
-const corsOptions ={
-  origin:'https://ufc-store-9890e5e4dc93.herokuapp.com',
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+// const corsOptions ={
+//   origin:'https://ufc-store-9890e5e4dc93.herokuapp.com',
+//   credentials:true,            //access-control-allow-credentials:true
+//   optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
 
 
 
