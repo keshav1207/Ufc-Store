@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://ufc-store-9890e5e4dc93.herokuapp.com/",
+  
   "scripts": {
     "dev": " vite",
     "build": "vite build",
