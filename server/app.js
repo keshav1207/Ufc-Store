@@ -42,12 +42,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // Fixing cors error
- const corsOptions ={
-  origin:port,
-  credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200
- }
- app.use(cors(corsOptions));
+//  const corsOptions ={
+//   origin:port,
+//   credentials:true,            //access-control-allow-credentials:true
+//    optionSuccessStatus:200
+//  }
+//  app.use(cors(corsOptions));
 
 
 
