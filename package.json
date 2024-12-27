@@ -10,7 +10,9 @@
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "start-client": "cd client && npm run dev",
-    "start": "npm run start-server" 
+    "start": "npm run start-server" ,
+    "heroku-postbuild":"npm run build-client"
+     
   },
   "keywords": [],
   "author": "",
