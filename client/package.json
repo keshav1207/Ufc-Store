@@ -10,6 +10,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+
+  "proxy": "https://ufc-store-server.onrender.com",
+
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@stripe/stripe-js": "^2.2.2",
