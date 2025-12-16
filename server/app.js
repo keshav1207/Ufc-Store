@@ -66,6 +66,19 @@ app.use('/api/clearCart', clearCartRoute);
 app.use('/api/updateCart', updateCartRoute);
 app.use('/api/create-checkout-session', stripeRoute);
 
+
+// Keepalive endpoint to avoid cold start from MongoDB
+app.get('/keepalive', async (req, res) => {
+  try {
+    // Ping the database
+    await mongoose.connection.db.admin().ping();
+    res.status(200).send('OK - DB is alive');
+  } catch (err) {
+    console.error('Keepalive error:', err);
+    res.status(500).send('DB ping failed');
+  }
+});
+
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
 
 
