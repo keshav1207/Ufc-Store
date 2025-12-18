@@ -62,4 +62,5 @@ List of Features includes:
 
 
 ## Contact
-[<img src="./ReadMe-IconsAndPics/linkedin.svg" width="20">](https://www.linkedin.com/in/keshav0799)
+
+- Keshav Callychurn [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20" alt="LinkedIn"/>](https://www.linkedin.com/in/keshav0799)
